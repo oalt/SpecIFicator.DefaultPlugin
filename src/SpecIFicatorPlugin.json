@@ -1,0 +1,7 @@
+{
+    "title": "SpecIFicator Default Plugin",
+    "description": "Default UI",
+    "assemblies": [
+        "SpecIFicator.DefaultPlugin.dll"
+    ]
+}

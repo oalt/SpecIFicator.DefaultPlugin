@@ -1,24 +1,46 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
-    <RootNamespace>$(MSBuildProjectName.Replace("-dev", ""))</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
+        <RootNamespace>$(MSBuildProjectName.Replace("-dev", ""))</RootNamespace>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <BaseOutputPath></BaseOutputPath>
+    </PropertyGroup>
 
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.6" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\MDD4All.Configuration\src\MDD4All.Configuration\MDD4All.Configuration-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
+        <ProjectReference Include="..\..\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj">
+            <Private>false</Private>
+            <ExcludeAssets>runtime</ExcludeAssets>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\DataConnectors\SpecIfMultiFileConnector.resx">
+        <Generator></Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\DataConnectors\SpecIfMongoDbConnector.resx">
+        <Generator></Generator>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="xcopy /y $(OutputPath)SpecIFicator.DefaultPlugin.* $(SolutionDir)plugins\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)SpecIFicatorPlugin.json $(SolutionDir)plugins\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)\de\*.resources.dll $(SolutionDir)plugins\SpecIFicator.DefaultPlugin\de\" />
+    </Target>
 
 </Project>

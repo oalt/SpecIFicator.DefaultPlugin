@@ -1,3 +1,16 @@
-﻿<h3>SpecIfMultiFileConnector</h3>
-
-
+﻿<h2>
+    <i class="bi bi-folder"></i> @L["Label.ConnectorTitle"]
+</h2>
+<div>
+    <fieldset>
+        <legend>@L["Label.DataPath"]</legend>
+        <input type="text" class="form-control" @bind="DataPath" />
+    </fieldset>
+    <fieldset>
+        <legend>@L["Label.MetadataPath"]</legend>
+        <input type="text" class="form-control" @bind="MetadataPath" />
+    </fieldset>
+</div>
+<div class="mt-4">
+    <button class="btn btn-success" @onclick="HandleConnectClick">@L["Label.Connect"]</button>
+</div>

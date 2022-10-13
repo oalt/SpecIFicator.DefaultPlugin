@@ -18,12 +18,16 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
         <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.6" />
+        <PackageReference Include="SplitJs.Blazor" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\MDD4All.Configuration\src\MDD4All.Configuration\MDD4All.Configuration-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
         <ProjectReference Include="..\..\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj">
             <Private>false</Private>
             <ExcludeAssets>runtime</ExcludeAssets>

@@ -1,0 +1,69 @@
+﻿@using MDD4All.UI.BlazorComponents.Ribbon
+@using MDD4All.UI.BlazorComponents.Tooltip
+@using MDD4All.UI.BlazorComponents.Tree
+@using SplitJs.Blazor.Components
+@if (HierarchyViewModel != null)
+{
+    <div class="mainPanel">
+        <div class="toolbarPanel">
+            <RibbonCategory>
+                <RibbonPanel PanelTitle="New Resource">
+                    <div class="toolStackPanel">
+
+
+                        <div>
+                            <select class="form-select form-select-sm" @onchange="OnHierarchySelectionChange">
+                                @foreach (ResourceClass resourceClass in AvailableResourceClasses)
+                                {
+                                    Key key = new Key(resourceClass.ID, resourceClass.Revision);
+                                    <option value="@key.ToString()">@resourceClass.Title</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="p-1">
+                            <Tooltip Text="New child resource">
+                                <button type="button" class="btn btn-outline-primary">
+                                    <i class="bi bi-people"></i>
+                                </button>
+                            </Tooltip>
+                            <Tooltip Text="New resource below">
+                                <button type="button" class="btn btn-outline-info">
+                                    <i class="bi bi-caret-down-square"></i>
+                                </button>
+                            </Tooltip>
+                            <Tooltip Text="New resource above">
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="bi bi-caret-up-square"></i>
+                                </button>
+                            </Tooltip>
+                        </div>
+                    </div>
+                </RibbonPanel>
+                <RibbonPanel PanelTitle="Delete Resource">
+                    <div class="toolStackPanel">
+                        <div>
+                            <button type="button" class="btn btn-outline-danger  btn-lg"><i class="bi bi-trash"></i></button>
+                        </div>                        
+                    </div>
+                    
+                </RibbonPanel>
+            </RibbonCategory>
+        </div>
+        <div class="editorPanel">
+            <SplitZone Style="height:100%;">
+                <Horizontal>
+                    <Split MinSizePx="100">
+                        
+                    </Split>
+                    <Split>
+                        @*<DocumentView Content="HierarchyViewModel.LinearResourceList" />*@
+                    </Split>
+                </Horizontal>
+            </SplitZone>
+        </div>
+    </div>
+}
+else
+{
+    <h2>Loading...</h2>
+}

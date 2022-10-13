@@ -1,0 +1,13 @@
+﻿@*@foreach(HierarchyViewModel item in Content)
+{
+    switch(item.Type)
+    {
+        case "IREB:Requirement":
+            <RequirementResource HierarchyViewModel="item" />
+            break;
+
+        default:
+            <DefaultResource HierarchyViewModel="item" />
+            break;
+    }
+}*@

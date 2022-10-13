@@ -1,0 +1,62 @@
+﻿@using System.Collections.ObjectModel
+@using MDD4All.SpecIF.ViewModels
+<h1>Projects</h1>
+
+<div class="input-group mb-3">
+    <select class="form-control" @onchange="OnHierarchySelectionChange">
+        @foreach (ResourceClass resourceClass in AvailableResourceClasses)
+        {
+            Key key = new Key(resourceClass.ID, resourceClass.Revision);
+            <option value="@key.ToString()">@resourceClass.Title</option>
+        }
+    </select>
+    <div class="input-group-append">
+        <button class="btn btn-success" @onclick="() => OnNewHierarchyButtonClicked()">New Hierarchy</button>
+    </div>    
+</div>
+
+
+
+<div>
+
+    @foreach(ProjectViewModel projectViewModel in _projectsViewModel.Projects)
+    {
+        
+        <h4>@projectViewModel.ProjectTitle</h4>
+        @projectViewModel.ProjectID
+
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        @foreach(HierarchyViewModel hierarchyViewModel in projectViewModel.Hierarchies)
+        {
+            <tr>
+                <td>@((MarkupString)hierarchyViewModel.ReferencedResource.Icon)</td>
+                <td>@hierarchyViewModel.Title</td>
+                <td>[@hierarchyViewModel.ClassTitle]</td>
+                <td><a href="/hierarchy/@hierarchyViewModel.HierarchyKey.ToString()">Edit</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    }
+</div>
+
+@if(ShowNewHierarchyDialog)
+{
+
+    <ModalDialog OnClose="@OnNewHierarchyDialogClose"
+                 DialogType="ModalDialog.ModalDialogType.OkCancel"
+                 Title="Create new Hierarchy...">
+            <ResourcePanel ResourceViewModel="@NewHierarchyViewModel" />
+    </ModalDialog>
+
+}

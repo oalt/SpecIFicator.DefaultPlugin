@@ -1,0 +1,8 @@
+﻿<Tree Nodes="HierarchyViewModel.RootNodes"
+      ChildSelector="viewModel => viewModel.Children"
+      @bind-SelectedNode="SelectedNode"
+      HasChildNodes="node => node.Children?.Any() == true">
+
+    <TitleTemplate>xyz @HierarchyViewModel.Level @HierarchyViewModel.Title</TitleTemplate>
+
+</Tree>

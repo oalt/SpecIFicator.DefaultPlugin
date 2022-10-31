@@ -1,6 +1,7 @@
 ﻿@using MDD4All.UI.BlazorComponents.Ribbon
+@using MDD4All.UI.BlazorComponents.TabControl
 @using MDD4All.UI.BlazorComponents.Tooltip
-@using MDD4All.UI.BlazorComponents.Tree
+@using SpecIFicator.DefaultPlugin.BlazorComponents.Document
 @using SplitJs.Blazor.Components
 @if (HierarchyViewModel != null)
 {
@@ -43,9 +44,9 @@
                     <div class="toolStackPanel">
                         <div>
                             <button type="button" class="btn btn-outline-danger  btn-lg"><i class="bi bi-trash"></i></button>
-                        </div>                        
+                        </div>
                     </div>
-                    
+
                 </RibbonPanel>
             </RibbonCategory>
         </div>
@@ -53,10 +54,28 @@
             <SplitZone Style="height:100%;">
                 <Horizontal>
                     <Split MinSizePx="100">
-                        
+                        @if (_treeType != null)
+                        {
+                            <CascadingValue Value="@DataContext">
+                                <DynamicComponent Type="@_treeType"></DynamicComponent>
+                            </CascadingValue>
+                        }
+                        else
+                        {
+                            <p>No matching tree view found!</p>
+                        }
                     </Split>
                     <Split>
-                        @*<DocumentView Content="HierarchyViewModel.LinearResourceList" />*@
+                        @if (_hierarchyViewType != null)
+                        {
+                            <CascadingValue Value="@DataContext">
+                                <DynamicComponent Type="@_hierarchyViewType"></DynamicComponent>
+                            </CascadingValue>
+                        }
+                        else
+                        {
+                            <h1>No matching hierarchy view found!</h1>
+                        }
                     </Split>
                 </Horizontal>
             </SplitZone>

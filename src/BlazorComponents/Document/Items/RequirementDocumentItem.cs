@@ -1,19 +1,16 @@
 ﻿using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using SpecIFicator.Framework.CascadingValues;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
+namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
-    public partial class DocumentView
+    public partial class RequirementDocumentItem : IDocumentItem
     {
+
+
+        public string Type => "IREB:Requirement";
+
         [CascadingParameter]
         public HierarchyEditorContext DataContext { get; set; }
-
-        
     }
 }

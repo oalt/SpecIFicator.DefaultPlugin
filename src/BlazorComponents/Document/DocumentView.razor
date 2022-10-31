@@ -1,13 +1,25 @@
-﻿@*@foreach(HierarchyViewModel item in Content)
+﻿@using SpecIFicator.Framework.Configuration
+@using SpecIFicator.Framework.CascadingValues
+@if (DataContext.HierarchyViewModel.LinearResourceList != null)
 {
-    switch(item.Type)
+    foreach(HierarchyViewModel item in DataContext.HierarchyViewModel.LinearResourceList)
     {
-        case "IREB:Requirement":
-            <RequirementResource HierarchyViewModel="item" />
-            break;
+        Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
+                                                                     GetType().FullName,
+                                                                     item.RootResourceClassKey);
 
-        default:
-            <DefaultResource HierarchyViewModel="item" />
-            break;
+        if(itemType != null)
+        {
+            HierarchyEditorContext itemDataContext = new HierarchyEditorContext();
+            itemDataContext.HierarchyViewModel = item;
+
+            <CascadingValue Value="@itemDataContext">
+                <DynamicComponent Type="@itemType"></DynamicComponent>
+            </CascadingValue>
+        }
+        else
+        {
+            <strong>Item type not found.</strong>
+        }
     }
-}*@
+}

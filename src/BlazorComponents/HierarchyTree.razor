@@ -1,8 +1,9 @@
-﻿<Tree Nodes="HierarchyViewModel.RootNodes"
+﻿@using MDD4All.UI.BlazorComponents.Tree
+<Tree Nodes="HierarchyViewModel.RootNodes"
       ChildSelector="viewModel => viewModel.Children"
-      @bind-SelectedNode="SelectedNode"
+      @bind-SelectedNode="selectedNode"
       HasChildNodes="node => node.Children?.Any() == true">
 
-    <TitleTemplate>xyz @HierarchyViewModel.Level @HierarchyViewModel.Title</TitleTemplate>
+    <TitleTemplate>@context.Level @context.Title</TitleTemplate>
 
 </Tree>

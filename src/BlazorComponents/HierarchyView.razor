@@ -1,3 +1,28 @@
-﻿<h3>HierarchyView</h3>
+﻿@using MDD4All.UI.BlazorComponents.TabControl
+@using SpecIFicator.DefaultPlugin.BlazorComponents.Document
+@using SplitJs.Blazor.Components
+<TabControl>
+    <TabPage>
+        <Header>
+            Document View
+        </Header>
+        <ChildContent>
+            @if (_documentViewType != null)
+            {
+                <CascadingValue Value="@DataContext">
+                    <DynamicComponent Type="@_documentViewType"></DynamicComponent>
+                </CascadingValue>
+            }
+            else
+            {
+                <h1>No matching document view found!</h1>
+            }
+
+        </ChildContent>
+
+    </TabPage>
+</TabControl>
+
+
 
 

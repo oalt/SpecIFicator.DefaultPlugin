@@ -19,13 +19,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         public HierarchyViewModel HierarchyViewModel { get; set; }
 
-        private HierarchyViewModel SelectedNode { get; set; }
+        HierarchyViewModel selectedNode;
 
         protected override void OnInitialized()
         {
             HierarchyViewModel = DataContext.HierarchyViewModel;
 
-            _selectedNode = HierarchyViewModel.SelectedNode;
+            //_selectedNode = HierarchyViewModel.SelectedNode;
         }
     }
 }

@@ -1,15 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Localization;
-using MDD4All.SpecIF.DataModels;
+using SpecIFicator.Framework.CascadingValues;
+using SpecIFicator.Framework.Configuration;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
     public partial class HierarchyView
     {
+        [CascadingParameter]
+        public HierarchyEditorContext DataContext { get; set; }
+
+        private Type _documentViewType;
+
+
+
+        private Type _rawViewType;
+
+        private Type _resourceViewType;
+
+        protected override void OnInitialized()
+        {
+
+
+            _documentViewType = DynamicConfigurationManager.GetComponentType("DocumentView",
+                                                                             GetType().FullName,
+                                                                             DataContext.HierarchyViewModel.RootResourceClassKey
+                                                                            );
+
+
+        }
     }
 }

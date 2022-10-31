@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpecIFicator.Framework.CascadingValues;
+using SpecIFicator.Framework.Configuration;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
@@ -35,6 +36,10 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private Key SelectedHierarchyKey { get; set; } = new Key();
 
+        private Type _treeType;
+
+        private Type _hierarchyViewType; 
+
         protected override void OnInitialized()
         {
             MetadataReader = DataProviderFactory.MetadataReader;
@@ -42,6 +47,16 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             DataWriter = DataProviderFactory.DataWriter;
 
             HierarchyViewModel = DataContext.HierarchyViewModel;
+
+            _treeType = DynamicConfigurationManager.GetComponentType("Tree",
+                                                                     GetType().FullName,
+                                                                     DataContext.HierarchyViewModel.RootResourceClassKey);
+
+            _hierarchyViewType = DynamicConfigurationManager.GetComponentType("HierarchyView",
+                                                                              GetType().FullName,
+                                                                              HierarchyViewModel.RootResourceClassKey);
+
+            
         }
 
         private List<ResourceClass> AvailableResourceClasses

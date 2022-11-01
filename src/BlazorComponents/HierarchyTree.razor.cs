@@ -8,6 +8,7 @@ using Microsoft.Extensions.Localization;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.ViewModels;
 using SpecIFicator.Framework.CascadingValues;
+using MDD4All.UI.DataModels.Tree;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
@@ -19,13 +20,16 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         public HierarchyViewModel HierarchyViewModel { get; set; }
 
-        HierarchyViewModel selectedNode;
-
         protected override void OnInitialized()
         {
             HierarchyViewModel = DataContext.HierarchyViewModel;
 
             //_selectedNode = HierarchyViewModel.SelectedNode;
+        }
+
+        void OnSelectionChanged(ITreeNode node)
+        {
+            //StateHasChanged();
         }
     }
 }

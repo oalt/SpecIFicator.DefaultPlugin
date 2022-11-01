@@ -1,9 +1,9 @@
 ﻿@using MDD4All.UI.BlazorComponents.Tree
-<Tree Nodes="HierarchyViewModel.RootNodes"
-      ChildSelector="viewModel => viewModel.Children"
-      @bind-SelectedNode="selectedNode"
-      HasChildNodes="node => node.Children?.Any() == true">
+@using Microsoft.AspNetCore.Components
 
-    <TitleTemplate>@context.Level @context.Title</TitleTemplate>
+<MvvmTree TNode="HierarchyViewModel" 
+          Nodes="HierarchyViewModel.RootNodes"
+          SelectedNodeChanged="OnSelectionChanged">
 
-</Tree>
+    <TitleTemplate>@context.Level <strong>@((MarkupString)context.ReferencedResource.Icon)</strong> @context.Title @context.IsSelected</TitleTemplate>
+</MvvmTree>

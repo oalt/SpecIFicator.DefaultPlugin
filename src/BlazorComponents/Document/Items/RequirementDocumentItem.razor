@@ -1,31 +1,25 @@
 ﻿@using MDD4All.SpecIF.ViewModels
 @using MDD4All.SpecIF.DataModels.Manipulation
 <div id="@DataContext.HierarchyViewModel.ReferencedResource.Resource.ID">
-    <table border="0" width="100%">
-        <tr style="background-color:lightgray;">
+    <table width="100%" style="border:solid;border-width:1px">
+        <tr style="border:solid;border-width:1px">
 
-
+            <td rowspan="2" style="border:solid;border-width:1px;width:10px;"></td>
             <td>
                 <div>
                     <strong>
-                        @DataContext.HierarchyViewModel.Level ANFORDERUNG: @DataContext.HierarchyViewModel.Title
-                    </strong>(
-                    <strong>ID:</strong> @DataContext.HierarchyViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:identifier", DataContext.HierarchyViewModel.MetadataReader),
-                    <strong>Revision:</strong> @DataContext.HierarchyViewModel.ReferencedResource.Resource.Revision
-                    )
+                        @DataContext.HierarchyViewModel.Level @((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Icon)
+                        @DataContext.HierarchyViewModel.Title
+                    </strong>
                 </div>
             </td>
         </tr>
-        <tr>
+        <tr style="border:solid;border-width:1px">
+           
             <td>
-                <div>@(DataContext.HierarchyViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.HierarchyViewModel.MetadataReader))</div>
+                <div>@((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.HierarchyViewModel.MetadataReader))</div>
             </td>
         </tr>
-        <tr>
-            <td>
-                <div><strong>Status:</strong> @DataContext.HierarchyViewModel.ReferencedResource.Status  □</div>
 
-            </td>
-        </tr>
     </table>
 </div>

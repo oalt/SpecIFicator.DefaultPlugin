@@ -13,9 +13,12 @@
             HierarchyEditorContext itemDataContext = new HierarchyEditorContext();
             itemDataContext.HierarchyViewModel = item;
 
-            <CascadingValue Value="@itemDataContext">
-                <DynamicComponent Type="@itemType"></DynamicComponent>
-            </CascadingValue>
+            <div @onclick="@(() => OnSelectResource(item))"
+                 class="@(item.IsSelected ? ResourceSelectedStyle : ResourceUnselectedStyle)">
+                <CascadingValue Value="@itemDataContext">
+                    <DynamicComponent Type="@itemType"></DynamicComponent>
+                </CascadingValue>
+            </div>           
         }
         else
         {

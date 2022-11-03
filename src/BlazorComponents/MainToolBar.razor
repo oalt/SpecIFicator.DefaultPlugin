@@ -1,0 +1,50 @@
+﻿@using MDD4All.UI.BlazorComponents.Ribbon
+@using MDD4All.UI.BlazorComponents.Tooltip
+<div class="toolbarPanel">
+    <RibbonCategory>
+        <RibbonPanel PanelTitle="@L["Label.NewResource"]">
+            <div class="toolStackPanel">
+
+                <ResourceClassSelector SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
+
+                <div class="p-1">
+                    <Tooltip Text="@L["Tooltip.NewChildResource"]">
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-box-arrow-down-right"></i>
+                        </button>
+                    </Tooltip>
+                    <Tooltip Text="@L["Tooltip.NewResourceBelow"]">
+                        <button type="button" class="btn btn-outline-info">
+                            <i class="bi bi-box-arrow-down"></i>
+                        </button>
+                    </Tooltip>
+                    <Tooltip Text="@L["Tooltip.NewResourceAbove"]">
+                        <button type="button" class="btn btn-outline-secondary">
+                            <i class="bi bi-box-arrow-up"></i>
+                        </button>
+                    </Tooltip>
+                </div>
+            </div>
+        </RibbonPanel>
+        <RibbonPanel PanelTitle="@L["Label.DeleteResource"]">
+            <div class="toolStackPanel">
+                <div>
+                    <button type="button" class="btn btn-outline-danger  btn-lg"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+
+        </RibbonPanel>
+        <RibbonPanel PanelTitle="@L["Label.EditResource"]">
+            <div class="toolStackPanel">
+                <div>
+                    <button type="button"
+                            class="btn btn-outline-primary  btn-lg"
+                            @onclick="() => OpenEditDialog()">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                </div>
+            </div>
+
+        </RibbonPanel>
+    </RibbonCategory>
+</div>

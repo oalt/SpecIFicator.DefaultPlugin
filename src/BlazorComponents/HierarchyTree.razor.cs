@@ -24,12 +24,22 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         {
             HierarchyViewModel = DataContext.HierarchyViewModel;
 
+            HierarchyViewModel.PropertyChanged += OnPropertyChanged;
+
             //_selectedNode = HierarchyViewModel.SelectedNode;
         }
 
         void OnSelectionChanged(ITreeNode node)
         {
             //StateHasChanged();
+        }
+
+        private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs arguments)
+        {
+            if (arguments.PropertyName == "SelectedNode")
+            {
+                StateHasChanged();
+            }
         }
     }
 }

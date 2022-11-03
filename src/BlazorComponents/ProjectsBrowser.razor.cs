@@ -7,12 +7,16 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MDD4All.SpecIF.DataModels.Manipulation;
+using Microsoft.Extensions.Localization;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
     public partial class ProjectsBrowser
     {
         private ProjectsViewModel _projectsViewModel;
+
+        [Inject]
+        private IStringLocalizer<ProjectsBrowser> L { get; set; }
 
         [Inject]
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }

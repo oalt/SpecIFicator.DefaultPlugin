@@ -1,0 +1,66 @@
+﻿<fieldset class="propertyField">
+    <legend>
+        <span>@PropertyViewModel.Title</span>
+        @{
+            string unit = PropertyViewModel.Unit;
+            if (!string.IsNullOrEmpty(unit))
+            {
+                <span>&nbsp;[@unit]</span>
+            }
+        }
+    </legend>
+
+    @if (PropertyViewModel.HasMultipleValues) // multiple property
+    {
+        @if (PropertyViewModel.IsEnumeration)
+        {
+            if (PropertyViewModel.IsMultipleEnumeration)
+            {
+                <p>Not Implemented!</p>
+            }
+            else
+            {
+                List<List<string>> values = PropertyViewModel.EnumerationValues;
+                for (int counter = 0; counter < values.Count; counter++)
+                {
+
+
+                    <p>[@counter]: @values[counter][0]</p>
+
+                }
+            }
+
+        }
+        else // no enumeration
+        {
+            List<string> values = PropertyViewModel.Values;
+            for (int counter = 0; counter < values.Count; counter++)
+            {
+
+
+                <p>[@counter]: @values[counter]</p>
+
+            }
+        }
+
+    }
+    else // no multiple property
+    {
+        @if (PropertyViewModel.IsEnumeration)
+        {
+            <p>@PropertyViewModel.EnumerationValue</p>
+        }
+        else // no enumeration
+        {
+            if (PropertyViewModel.DataTypeType == "xs:duration")
+            {
+                <p>@PropertyViewModel.DurationValue</p>
+            }
+            else
+            {
+                <p>@PropertyViewModel.Value</p>
+            }
+        }
+    }
+</fieldset>
+

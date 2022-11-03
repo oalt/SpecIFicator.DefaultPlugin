@@ -1,0 +1,36 @@
+﻿@using MDD4All.SpecIF.DataModels.Manipulation
+
+@if (ResourceViewModel != null)
+{
+<div class="resourcePanel">
+    <fieldset class="resourceFieldset">
+        <legend>
+            <strong>Resource [@ResourceViewModel.Type]</strong>
+        </legend>
+
+
+        <fieldset class="propertyField">
+            <legend>Key</legend>
+            <p style="font-family: 'Courier New', monospace;">@ResourceViewModel.Resource.Key()</p>
+        </fieldset>
+
+        @foreach (PropertyViewModel propertyViewModel in ResourceViewModel.Properties)
+        {
+            @if (ResourceViewModel.IsInEditMode)
+            {
+                <PropertyEditor PropertyViewModel="@propertyViewModel" />
+            }
+            else
+            {
+                <PropertyViewer PropertyViewModel="@propertyViewModel" />
+            }
+        }
+    </fieldset>
+</div>
+}
+else
+{
+<div class="noSelctionPanel">No Resource selected.</div>
+}
+
+

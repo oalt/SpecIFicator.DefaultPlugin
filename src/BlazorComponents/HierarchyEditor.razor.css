@@ -9,9 +9,7 @@
     min-height: 0;
 }
 
-.toolbarPanel {
-    width:100%;
-}
+
 
 .editorPanel {
     height: 100%;
@@ -21,12 +19,3 @@
     padding: 5px;
 }
 
-.toolStackPanel {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    grid-gap: 5px;
-    padding: 3px;
-}

@@ -1,0 +1,9 @@
+﻿<div>
+    <select class="form-select form-select-sm" @onchange="OnHierarchySelectionChange">
+        @foreach (ResourceClass resourceClass in AvailableResourceClasses)
+        {
+            Key key = new Key(resourceClass.ID, resourceClass.Revision);
+            <option value="@key.ToString()"><strong>@((MarkupString)resourceClass.Icon)</strong> @resourceClass.Title</option>
+        }
+    </select>
+</div>

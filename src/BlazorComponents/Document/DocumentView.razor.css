@@ -1,0 +1,7 @@
+﻿.selected {
+    background-color: gold;
+}
+
+.unselected {
+    background-color: transparent;
+}

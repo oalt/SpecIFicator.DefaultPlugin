@@ -10,11 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using SpecIFicator.Framework.CascadingValues;
 using SpecIFicator.Framework.Configuration;
+using Microsoft.Extensions.Localization;
+using SpecIFicator.DefaultPlugin.DataConnectors;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
     public partial class HierarchyEditor
     {
+        [Inject]
+        private IStringLocalizer<HierarchyEditor> L { get; set; }
+
         [Inject]
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
@@ -34,11 +39,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private HierarchyViewModel SelectedNode { get; set; }
 
-        private Key SelectedHierarchyKey { get; set; } = new Key();
+        
 
         private Type _treeType;
 
-        private Type _hierarchyViewType; 
+        private Type _hierarchyViewType;
+
+        
 
         protected override void OnInitialized()
         {
@@ -59,26 +66,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             
         }
 
-        private List<ResourceClass> AvailableResourceClasses
+
+
+        private async Task OnEditDialogClose(bool accepted)
         {
-            get
-            {
-                List<ResourceClass> result = new List<ResourceClass>();
-
-                result = MetadataReader.GetAllResourceClasses();
-
-                return result;
-            }
+            HierarchyViewModel.EditorActive = false;
+            StateHasChanged();
         }
 
-        private async Task OnHierarchySelectionChange(ChangeEventArgs args)
-        {
-            Console.WriteLine(args.Value.ToString());
-            string selection = args.Value.ToString();
-            if (!string.IsNullOrEmpty(selection))
-            {
-                SelectedHierarchyKey.InitailizeFromKeyString(selection);
-            }
-        }
+
     }
 }

@@ -1,0 +1,54 @@
+﻿@using MDD4All.SpecIF.ViewModels.Models
+<fieldset class="propertyField">
+    <legend>
+        <span>@PropertyViewModel.Title</span>
+        @{
+            string unit = PropertyViewModel.Unit;
+            if (!string.IsNullOrEmpty(unit))
+            {
+                <span>&nbsp;[@unit]</span>
+            }
+        }
+    </legend>
+
+    @if (!PropertyViewModel.IsEnumeration)
+    {
+        string type = PropertyViewModel.DataTypeType;
+
+        switch (type)
+        {
+            case "xs:string":
+                if (PropertyViewModel.Format == "plain")
+                {
+                    <textarea class="form-control" rows="2" @bind="PropertyViewModel.Value"></textarea>
+                }
+                else // xhtml
+                {
+                    @*<BlazingComponents.Summernote.Editor @bind-Content="PropertyViewModel.Value"
+                                                         ShowEditButton="false" />*@
+                }
+                break;
+
+            case "xs:integer":
+                <input type="text" class="form-control" @bind="PropertyViewModel.Value" />
+                break;
+
+            case "xs:double":
+                <input type="text" class="form-control" @bind="PropertyViewModel.Value" />
+                break;
+
+            case "xs:boolean":
+                <input type="checkbox" class="form-check-input" @bind="PropertyViewModel.Value">
+                break;
+        }
+    }
+    else
+    {
+        <select class="form-control">
+            @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+            {
+                <option value="@item.Value">@item.Title</option>
+            }
+        </select>
+     }
+</fieldset>

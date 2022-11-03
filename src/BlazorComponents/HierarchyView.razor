@@ -4,7 +4,7 @@
 <TabControl>
     <TabPage>
         <Header>
-            Document View
+           <i class="bi bi-file-earmark-richtext"></i> @L["Label.DocumentTab"]
         </Header>
         <ChildContent>
             @if (_documentViewType != null)
@@ -19,8 +19,27 @@
             }
 
         </ChildContent>
-
     </TabPage>
+    <TabPage>
+        <Header>
+            @L["Label.ResourceTab"]
+        </Header>
+        <ChildContent>
+
+            @if (ResourceViewType != null)
+            {
+                <CascadingValue Value="@DataContext">
+                    <DynamicComponent Type="@ResourceViewType"></DynamicComponent>
+                </CascadingValue>
+            }
+            else
+            {
+                <div>No matching resource viewer found.</div>
+            }
+            
+        </ChildContent>
+    </TabPage>
+
 </TabControl>
 
 

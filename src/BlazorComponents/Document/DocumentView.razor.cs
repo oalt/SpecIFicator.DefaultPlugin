@@ -14,6 +14,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
         [CascadingParameter]
         public HierarchyEditorContext DataContext { get; set; }
 
-        
+        private void OnSelectResource(HierarchyViewModel node)
+        {
+            DataContext.HierarchyViewModel.SelectedNode = node;
+        }
+
+        private string ResourceSelectedStyle = "selected";
+
+        private string ResourceUnselectedStyle = "unselected";
+
     }
 }

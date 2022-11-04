@@ -4,13 +4,8 @@
 <h1>@L["Label.Projects"]</h1>
 
 <div class="input-group mb-3">
-    <select class="form-control" @onchange="OnHierarchySelectionChange">
-        @foreach (ResourceClass resourceClass in AvailableResourceClasses)
-        {
-            Key key = new Key(resourceClass.ID, resourceClass.Revision);
-            <option value="@key.ToString()">@resourceClass.Title</option>
-        }
-    </select>
+    <ResourceClassSelector SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
+
     <div class="input-group-append">
         <button class="btn btn-success" @onclick="() => OnNewHierarchyButtonClicked()">@L["Button.NewHierarchy"]</button>
     </div>
@@ -24,7 +19,7 @@
     {
 
         <h4>@projectViewModel.ProjectTitle</h4>
-        @projectViewModel.ProjectID
+        <p>ID: @projectViewModel.ProjectID</p>
 
         <table class="table table-striped">
             <thead>

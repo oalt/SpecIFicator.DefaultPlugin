@@ -1,8 +1,8 @@
 ﻿@using SpecIFicator.Framework.Configuration
 @using SpecIFicator.Framework.CascadingValues
-@if (DataContext.HierarchyViewModel.LinearResourceList != null)
+@if (HierarchyViewModel.LinearResourceList != null)
 {
-    foreach(HierarchyViewModel item in DataContext.HierarchyViewModel.LinearResourceList)
+    foreach(HierarchyViewModel item in HierarchyViewModel.LinearResourceList)
     {
         Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
                                                                      GetType().FullName,
@@ -10,7 +10,7 @@
 
         if(itemType != null)
         {
-            HierarchyEditorContext itemDataContext = new HierarchyEditorContext();
+            HierarchyContext itemDataContext = new HierarchyContext();
             itemDataContext.HierarchyViewModel = item;
 
             <div @onclick="@(() => OnSelectResource(item))"

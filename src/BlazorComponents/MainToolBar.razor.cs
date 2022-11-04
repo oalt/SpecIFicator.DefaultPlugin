@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Localization;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.ViewModels;
@@ -21,10 +16,9 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
         [Parameter]
-        public HierarchyViewModel HierarchyViewModel { get; set; }
+        public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
 
-        private bool _editDialogOpen = false;
-
+        
         private Key SelectedResourceClassKey { get; set; }
 
         protected override void OnInitialized()
@@ -32,16 +26,24 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             
         }
 
-        
-
-        
-
-        private void OpenEditDialog()
+        private void EditResource()
         {
-            _editDialogOpen = true;
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(null);
             StateHasChanged();
         }
 
-        
+        private async Task OnEditDialogClose(bool accepted)
+        {
+            if(accepted)
+            {
+                HierarchyEditorViewModel.ConfirmEditResourceCommand.Execute(null);
+            }
+            else
+            {
+                HierarchyEditorViewModel.CancelEditResourceCommand.Execute(null);
+            }
+            StateHasChanged();
+        }
+
     }
 }

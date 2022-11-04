@@ -29,9 +29,9 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
                 Key classKey = null;
 
-                if(DataContext.HierarchyViewModel.SelectedNode != null)
+                if(DataContext.HierarchyEditorViewModel.SelectedNode != null)
                 {
-                    HierarchyViewModel selectedNode = DataContext.HierarchyViewModel.SelectedNode as HierarchyViewModel;
+                    HierarchyViewModel selectedNode = DataContext.HierarchyEditorViewModel.SelectedNode as HierarchyViewModel;
 
                     if(selectedNode != null)
                     {
@@ -51,11 +51,11 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         protected override void OnInitialized()
         {
-            DataContext.HierarchyViewModel.PropertyChanged += OnPropertyChanged;
+            DataContext.HierarchyEditorViewModel.PropertyChanged += OnPropertyChanged;
 
             _documentViewType = DynamicConfigurationManager.GetComponentType("DocumentView",
                                                                              GetType().FullName,
-                                                                             DataContext.HierarchyViewModel.RootResourceClassKey
+                                                                             DataContext.HierarchyEditorViewModel.RootNode.RootResourceClassKey
                                                                             );
 
             

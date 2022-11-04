@@ -4,11 +4,11 @@
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Document
 @using SplitJs.Blazor.Components
 @using MDD4All.UI.BlazorComponents.Dialog
-@if (HierarchyViewModel != null)
+@if (HierarchyEditorViewModel != null)
 {
     <div class="mainPanel">
         
-        <MainToolBar HierarchyViewModel="@DataContext.HierarchyViewModel"></MainToolBar>
+        <MainToolBar HierarchyEditorViewModel="@DataContext.HierarchyEditorViewModel"></MainToolBar>
 
         <div class="editorPanel">
             <SplitZone Style="height:100%;">
@@ -41,15 +41,7 @@
             </SplitZone>
         </div>
     </div>
-    @if(HierarchyViewModel.EditorActive)
-    {
-        <ModalDialog Title="Edit Resource"
-                     DialogType="ModalDialog.ModalDialogType.OkCancel"
-                     OnClose="@OnEditDialogClose">
-                     <p>Platzhalter</p>
-                 </ModalDialog>
-
-    }
+    
 }
 else
 {

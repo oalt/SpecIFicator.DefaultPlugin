@@ -17,6 +17,8 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public Key SelectedResourceClassKey { get; set; } = new Key();
 
+        [Parameter]
+        public string CssStyles { get; set; } = "form-control";
         private ISpecIfMetadataReader MetadataReader { get; set; }
 
         

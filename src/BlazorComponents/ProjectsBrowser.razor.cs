@@ -31,7 +31,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private ResourceViewModel NewHierarchyViewModel { get; set; }
 
-        private Key SelectedHierarchyKey { get; set; }
+        private Key SelectedResourceClassKey { get; set; }
 
         private List<ResourceClass> AvailableResourceClasses
         {
@@ -53,14 +53,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
             ResourceClass firstResourceClass = AvailableResourceClasses[0];
 
-            SelectedHierarchyKey = new Key(firstResourceClass.ID, firstResourceClass.Revision);
+            SelectedResourceClassKey = new Key(firstResourceClass.ID, firstResourceClass.Revision);
 
             _projectsViewModel = new ProjectsViewModel(MetadataReader, DataWriter, DataReader);
         }
 
         private void OnNewHierarchyButtonClicked()
         {
-            Resource hierarchyResource = SpecIfDataFactory.CreateResource(SelectedHierarchyKey, MetadataReader);
+            Resource hierarchyResource = SpecIfDataFactory.CreateResource(SelectedResourceClassKey, MetadataReader);
 
             NewHierarchyViewModel = new ResourceViewModel(MetadataReader, DataReader, DataWriter, hierarchyResource);
             NewHierarchyViewModel.IsInEditMode = true;
@@ -97,7 +97,8 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             string selection = args.Value.ToString();
             if (!string.IsNullOrEmpty(selection))
             {
-                SelectedHierarchyKey.InitailizeFromKeyString(selection);
+                SelectedResourceClassKey = new Key();
+                SelectedResourceClassKey.InitailizeFromKeyString(selection);
             }
         }
 

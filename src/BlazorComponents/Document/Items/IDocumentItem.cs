@@ -7,7 +7,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
     public interface IDocumentItem
     {
         [CascadingParameter]
-        public HierarchyEditorContext DataContext { get; set; }
+        public HierarchyContext DataContext { get; set; }
 
         string Type { get; }
     }

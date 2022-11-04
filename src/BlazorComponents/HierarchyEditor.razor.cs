@@ -35,17 +35,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [CascadingParameter]
         public HierarchyEditorContext DataContext { get; set; }
 
-        public HierarchyViewModel HierarchyViewModel { get; set; }
+        public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
 
         private HierarchyViewModel SelectedNode { get; set; }
-
-        
 
         private Type _treeType;
 
         private Type _hierarchyViewType;
 
-        
 
         protected override void OnInitialized()
         {
@@ -53,27 +50,28 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             DataReader = DataProviderFactory.DataReader;
             DataWriter = DataProviderFactory.DataWriter;
 
-            HierarchyViewModel = DataContext.HierarchyViewModel;
+            HierarchyEditorViewModel = DataContext.HierarchyEditorViewModel;
+
+            HierarchyEditorViewModel.PropertyChanged += OnStateChanged;
 
             _treeType = DynamicConfigurationManager.GetComponentType("Tree",
                                                                      GetType().FullName,
-                                                                     DataContext.HierarchyViewModel.RootResourceClassKey);
+                                                                     DataContext.HierarchyEditorViewModel
+                                                                        .RootNode.RootResourceClassKey);
 
             _hierarchyViewType = DynamicConfigurationManager.GetComponentType("HierarchyView",
                                                                               GetType().FullName,
-                                                                              HierarchyViewModel.RootResourceClassKey);
+                                                                              HierarchyEditorViewModel.RootNode.RootResourceClassKey);
 
             
         }
 
-
-
-        private async Task OnEditDialogClose(bool accepted)
+        private void OnStateChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            HierarchyViewModel.EditorActive = false;
-            StateHasChanged();
+            if (e.PropertyName == "StateChanged")
+            {
+                StateHasChanged();
+            }
         }
-
-
     }
 }

@@ -4,13 +4,11 @@ using SpecIFicator.Framework.CascadingValues;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
-    public partial class RequirementDocumentItem : IDocumentItem
+    public partial class HeadingDocumentItem : IDocumentItem
     {
-
-
-        public string Type => "IREB:Requirement";
+        public string Type => "SpecIF:Heading";
 
         [CascadingParameter]
-        public HierarchyEditorContext DataContext { get; set; }
+        public HierarchyContext DataContext { get; set; }
     }
 }

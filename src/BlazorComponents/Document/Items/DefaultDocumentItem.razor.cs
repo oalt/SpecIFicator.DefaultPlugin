@@ -7,7 +7,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
     public partial class DefaultDocumentItem : IDocumentItem
     {
         [CascadingParameter]
-        public HierarchyEditorContext DataContext { get; set; }
+        public HierarchyContext DataContext { get; set; }
 
         public string Type => "default";
     }

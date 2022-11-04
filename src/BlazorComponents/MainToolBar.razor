@@ -1,11 +1,13 @@
 ﻿@using MDD4All.UI.BlazorComponents.Ribbon
 @using MDD4All.UI.BlazorComponents.Tooltip
+@using MDD4All.UI.BlazorComponents.Dialog
 <div class="toolbarPanel">
     <RibbonCategory>
         <RibbonPanel PanelTitle="@L["Label.NewResource"]">
             <div class="toolStackPanel">
 
-                <ResourceClassSelector SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
+                <ResourceClassSelector SelectedResourceClassKey="SelectedResourceClassKey"
+                                       CssStyles="form-select form-select-sm"></ResourceClassSelector>
 
                 <div class="p-1">
                     <Tooltip Text="@L["Tooltip.NewChildResource"]">
@@ -39,7 +41,7 @@
                 <div>
                     <button type="button"
                             class="btn btn-outline-primary  btn-lg"
-                            @onclick="() => OpenEditDialog()">
+                            @onclick="() => EditResource()">
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </div>
@@ -48,3 +50,12 @@
         </RibbonPanel>
     </RibbonCategory>
 </div>
+@if (HierarchyEditorViewModel.EditorActive)
+{
+    <ModalDialog Title="Edit Resource"
+                 DialogType="ModalDialog.ModalDialogType.OkCancel"
+                 OnClose="@OnEditDialogClose">
+        <ResourcePanel ResourceViewModel="@HierarchyEditorViewModel.ResourceUnderEdit" />
+    </ModalDialog>
+
+}

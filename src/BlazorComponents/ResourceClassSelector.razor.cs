@@ -14,11 +14,17 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Inject]
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
+        private Key _selectedResourceClass;
+
         [Parameter]
-        public Key SelectedResourceClassKey { get; set; } = new Key();
+        public Key SelectedResourceClassKey { get; set; }
+
+        [Parameter]
+        public EventCallback<Key> SelectedResourceClassKeyChanged { get; set; }
 
         [Parameter]
         public string CssStyles { get; set; } = "form-control";
+
         private ISpecIfMetadataReader MetadataReader { get; set; }
 
         
@@ -35,9 +41,15 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             }
         }
 
-        protected override void OnInitialized()
+        protected async override Task OnInitializedAsync()
         {
             MetadataReader = DataProviderFactory.MetadataReader;
+
+            ResourceClass firstResourceClass = AvailableResourceClasses[0];
+
+            _selectedResourceClass = new Key(firstResourceClass.ID, firstResourceClass.Revision);
+
+            await SelectedResourceClassKeyChanged.InvokeAsync(_selectedResourceClass);
         }
 
         private async Task OnHierarchySelectionChange(ChangeEventArgs args)
@@ -46,9 +58,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             string selection = args.Value.ToString();
             if (!string.IsNullOrEmpty(selection))
             {
-                SelectedResourceClassKey = new Key();
-                SelectedResourceClassKey.InitailizeFromKeyString(selection);
+                _selectedResourceClass = new Key();
+                _selectedResourceClass.InitailizeFromKeyString(selection);
+
+                await SelectedResourceClassKeyChanged.InvokeAsync(_selectedResourceClass);
             }
+
+
         }
 
     }

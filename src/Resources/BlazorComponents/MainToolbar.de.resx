@@ -126,6 +126,12 @@
   <data name="Label.NewResource" xml:space="preserve">
     <value>Neue Ressource</value>
   </data>
+  <data name="Title.EditResource" xml:space="preserve">
+    <value>Ressource bearbeiten...</value>
+  </data>
+  <data name="Title.NewResource" xml:space="preserve">
+    <value>Neue Ressource...</value>
+  </data>
   <data name="Tooltip.NewChildResource" xml:space="preserve">
     <value>Neue Kindressource</value>
   </data>

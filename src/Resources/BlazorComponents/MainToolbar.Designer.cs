@@ -88,6 +88,24 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Resource... ähnelt.
+        /// </summary>
+        internal static string Title_EditResource {
+            get {
+                return ResourceManager.GetString("Title.EditResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Resource... ähnelt.
+        /// </summary>
+        internal static string Title_NewResource {
+            get {
+                return ResourceManager.GetString("Title.NewResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die New child resource ähnelt.
         /// </summary>
         internal static string Tooltip_NewChildResource {

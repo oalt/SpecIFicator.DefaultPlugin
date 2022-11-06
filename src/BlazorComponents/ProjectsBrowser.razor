@@ -4,7 +4,7 @@
 <h1>@L["Label.Projects"]</h1>
 
 <div class="input-group mb-3">
-    <ResourceClassSelector SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
+    <ResourceClassSelector @bind-SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
 
     <div class="input-group-append">
         <button class="btn btn-success" @onclick="() => OnNewHierarchyButtonClicked()">@L["Button.NewHierarchy"]</button>

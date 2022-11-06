@@ -19,17 +19,40 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
 
         
-        private Key SelectedResourceClassKey { get; set; }
+        
 
         protected override void OnInitialized()
         {
             
         }
 
-        private void EditResource()
+        private void OnEditResourceClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(null);
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.EDIT_EXISTING);
             StateHasChanged();
+        }
+
+        private void OnNewChildResourceClicked()
+        {
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_CHILD);
+            StateHasChanged();
+        }
+
+        private void OnNewResourceBelowClicked()
+        {
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_BELOW);
+            StateHasChanged();
+        }
+
+        private void OnNewResourceAboveClicked()
+        {
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_ABOVE);
+            StateHasChanged();
+        }
+
+        private void OnDeleteResourceClicked()
+        {
+            
         }
 
         private async Task OnEditDialogClose(bool accepted)

@@ -126,6 +126,12 @@
   <data name="Label.NewResource" xml:space="preserve">
     <value>New Resource</value>
   </data>
+  <data name="Text.DeleteResource" xml:space="preserve">
+    <value>The selected Resource and all child elements are removed. Are you sure?</value>
+  </data>
+  <data name="Title.DeleteResource" xml:space="preserve">
+    <value>Delete Resource</value>
+  </data>
   <data name="Title.EditResource" xml:space="preserve">
     <value>Edit Resource...</value>
   </data>

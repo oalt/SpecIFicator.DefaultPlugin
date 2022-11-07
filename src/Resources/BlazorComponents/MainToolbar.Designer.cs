@@ -88,6 +88,24 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The selected Resource and all child elements are removed. Are you sure? ähnelt.
+        /// </summary>
+        internal static string Text_DeleteResource {
+            get {
+                return ResourceManager.GetString("Text.DeleteResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete Resource ähnelt.
+        /// </summary>
+        internal static string Title_DeleteResource {
+            get {
+                return ResourceManager.GetString("Title.DeleteResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Edit Resource... ähnelt.
         /// </summary>
         internal static string Title_EditResource {

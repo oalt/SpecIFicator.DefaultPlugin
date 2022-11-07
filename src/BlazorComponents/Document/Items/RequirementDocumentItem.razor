@@ -8,7 +8,7 @@
             <td>
                 <div>
                     <strong>
-                        @DataContext.HierarchyViewModel.Level @((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Icon)
+                        @DataContext.HierarchyViewModel.Level <ResourceIcon Icon="@DataContext.HierarchyViewModel.ReferencedResource.Icon"></ResourceIcon>
                         @DataContext.HierarchyViewModel.Title
                     </strong>
                 </div>

@@ -11,21 +11,21 @@
 
                 <div class="p-1">
                     <Tooltip Text="@L["Tooltip.NewChildResource"]">
-                        <button type="button" 
+                        <button type="button"
                                 class="btn btn-outline-primary"
                                 @onclick="() => OnNewChildResourceClicked()">
                             <i class="bi bi-box-arrow-down-right"></i>
                         </button>
                     </Tooltip>
                     <Tooltip Text="@L["Tooltip.NewResourceBelow"]">
-                        <button type="button" 
+                        <button type="button"
                                 class="btn btn-outline-info"
                                 @onclick="() => OnNewResourceBelowClicked()">
                             <i class="bi bi-box-arrow-down"></i>
                         </button>
                     </Tooltip>
                     <Tooltip Text="@L["Tooltip.NewResourceAbove"]">
-                        <button type="button" 
+                        <button type="button"
                                 class="btn btn-outline-secondary"
                                 @onclick="() => OnNewResourceAboveClicked()">
                             <i class="bi bi-box-arrow-up"></i>
@@ -37,10 +37,11 @@
         <RibbonPanel PanelTitle="@L["Label.DeleteResource"]">
             <div class="toolStackPanel">
                 <div>
-                    <button type="button" 
+                    <button type="button"
                             class="btn btn-outline-danger  btn-lg"
                             @onclick="() => OnDeleteResourceClicked()">
-                        <i class="bi bi-trash"></i></button>
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
             </div>
 
@@ -62,9 +63,16 @@
 @if (HierarchyEditorViewModel.EditorActive)
 {
     <ModalDialog Title="@L[HierarchyEditorViewModel.EditDialogTitleKey]"
-                 DialogType="ModalDialog.ModalDialogType.OkCancel"
-                 OnClose="@OnEditDialogClose">
+             DialogType="ModalDialog.ModalDialogType.OkCancel"
+             OnClose="@OnEditDialogClose">
         <ResourcePanel ResourceViewModel="@HierarchyEditorViewModel.ResourceUnderEdit" />
     </ModalDialog>
-
+}
+@if (HierarchyEditorViewModel.ShowDeleteConfirm)
+{
+    <ModalDialog Title="@L["Title.DeleteResource"]"
+             DialogType="ModalDialog.ModalDialogType.DeleteCancel"
+             OnClose="@OnDeleteDialogClose">
+        <div>@L["Text.DeleteResource"]</div>
+    </ModalDialog>
 }

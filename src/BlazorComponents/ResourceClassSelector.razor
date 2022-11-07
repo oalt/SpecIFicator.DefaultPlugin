@@ -2,7 +2,7 @@
     @foreach (ResourceClass resourceClass in AvailableResourceClasses)
     {
         Key key = new Key(resourceClass.ID, resourceClass.Revision);
-        <option value="@key.ToString()"><strong>@((MarkupString)resourceClass.Icon)</strong> @resourceClass.Title</option>
+        <option value="@key.ToString()"><ResourceIcon Icon="@resourceClass.Icon"></ResourceIcon> @resourceClass.Title</option>
     }
 </select>
 

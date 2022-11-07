@@ -35,7 +35,7 @@
                 @foreach (HierarchyViewModel hierarchyViewModel in projectViewModel.Hierarchies)
                 {
                     <tr>
-                        <td>@((MarkupString)hierarchyViewModel.ReferencedResource.Icon)</td>
+                        <td><ResourceIcon Icon="@hierarchyViewModel.ReferencedResource.Icon"></ResourceIcon></td>
                         <td>@hierarchyViewModel.Title</td>
                         <td>[@hierarchyViewModel.ClassTitle]</td>
                         <td><a href="/hierarchy/@hierarchyViewModel.HierarchyKey.ToString()">@L["Button.EditHierarchy"]</a></td>

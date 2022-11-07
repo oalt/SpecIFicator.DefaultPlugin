@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.ViewModels;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using System.Reflection.Metadata;
@@ -17,9 +16,6 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         [Parameter]
         public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
-
-        
-        
 
         protected override void OnInitialized()
         {
@@ -52,7 +48,8 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private void OnDeleteResourceClicked()
         {
-            
+            HierarchyEditorViewModel.StartDeleteResourceCommand.Execute(null);
+            StateHasChanged();
         }
 
         private async Task OnEditDialogClose(bool accepted)
@@ -64,6 +61,19 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             else
             {
                 HierarchyEditorViewModel.CancelEditResourceCommand.Execute(null);
+            }
+            StateHasChanged();
+        }
+
+        private async Task OnDeleteDialogClose(bool accepted)
+        {
+            if(accepted)
+            {
+                HierarchyEditorViewModel.DeleteResourceCommand.Execute(null);
+            }
+            else
+            {
+                HierarchyEditorViewModel.CancelDeleteResourceCommand.Execute(null);
             }
             StateHasChanged();
         }

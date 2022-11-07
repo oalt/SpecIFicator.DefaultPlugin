@@ -1,9 +1,23 @@
 ﻿@using MDD4All.UI.BlazorComponents.Tree
 @using Microsoft.AspNetCore.Components
 
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-bar-left"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-bar-right"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-bar-up"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-bar-down"></i>
+    </button>
+</div>
 <MvvmTree TNode="HierarchyViewModel" 
           Nodes="HierarchyViewModel.RootNodes"
           SelectedNodeChanged="OnSelectionChanged">
 
-    <TitleTemplate>@context.Level <strong>@((MarkupString)context.ReferencedResource.Icon)</strong> @context.Title</TitleTemplate>
+    <TitleTemplate>@context.Level <ResourceIcon Icon="@context.ReferencedResource.Icon"></ResourceIcon> @context.Title</TitleTemplate>
 </MvvmTree>

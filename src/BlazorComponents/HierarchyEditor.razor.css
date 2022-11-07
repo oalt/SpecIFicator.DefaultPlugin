@@ -12,7 +12,7 @@
 
 
 .editorPanel {
-    height: 100%;
+    height: height: calc(100vh - 201px);
     min-height: 0;
     width: 100%;
     min-width: 0;

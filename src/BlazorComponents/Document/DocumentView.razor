@@ -2,27 +2,31 @@
 @using SpecIFicator.Framework.CascadingValues
 @if (HierarchyViewModel.LinearResourceList != null)
 {
-    foreach(HierarchyViewModel item in HierarchyViewModel.LinearResourceList)
-    {
-        Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
-                                                                     GetType().FullName,
-                                                                     item.RootResourceClassKey);
+    <div id="backgroundPanel">
+        <div id="documentPanel">
+            @foreach (HierarchyViewModel item in HierarchyViewModel.LinearResourceList)
+            {
+                Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
+                GetType().FullName,
+                item.RootResourceClassKey);
 
-        if(itemType != null)
-        {
-            HierarchyContext itemDataContext = new HierarchyContext();
-            itemDataContext.HierarchyViewModel = item;
+                if (itemType != null)
+                {
+                    HierarchyContext itemDataContext = new HierarchyContext();
+                    itemDataContext.HierarchyViewModel = item;
 
-            <div @onclick="@(() => OnSelectResource(item))"
-                 class="@(item.IsSelected ? ResourceSelectedStyle : ResourceUnselectedStyle)">
-                <CascadingValue Value="@itemDataContext">
-                    <DynamicComponent Type="@itemType"></DynamicComponent>
-                </CascadingValue>
-            </div>           
-        }
-        else
-        {
-            <strong>Item type not found.</strong>
-        }
-    }
+                    <div @onclick="@(() => OnSelectResource(item))"
+             class="@(item.IsSelected ? ResourceSelectedStyle : ResourceUnselectedStyle) documentItem">
+                        <CascadingValue Value="@itemDataContext">
+                            <DynamicComponent Type="@itemType"></DynamicComponent>
+                        </CascadingValue>
+                    </div>
+                }
+                else
+                {
+                    <strong>Item type not found.</strong>
+                }
+            }
+        </div>
+    </div>
 }

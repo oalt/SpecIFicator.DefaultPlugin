@@ -1,4 +1,25 @@
-﻿.selected {
+﻿#backgroundPanel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+}
+
+#documentPanel {
+    flex: 1 1 auto;
+    margin: 20px;
+    background-color: white;
+    border: 1px solid darkgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.documentItem {
+    width: 100%;
+    padding: 5px;
+}
+
+.selected {
     background-color: gold;
 }
 

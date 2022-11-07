@@ -1,7 +1,7 @@
 ﻿@using MDD4All.UI.BlazorComponents.Tree
 @using Microsoft.AspNetCore.Components
 
-<div class="btn-group" role="group">
+<div class="btn-group" role="group" id="toolbar">
     <button type="button" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-arrow-bar-left"></i>
     </button>
@@ -15,9 +15,11 @@
         <i class="bi bi-arrow-bar-down"></i>
     </button>
 </div>
+<div id="treepanel">
 <MvvmTree TNode="HierarchyViewModel" 
           Nodes="HierarchyViewModel.RootNodes"
           SelectedNodeChanged="OnSelectionChanged">
 
     <TitleTemplate>@context.Level <ResourceIcon Icon="@context.ReferencedResource.Icon"></ResourceIcon> @context.Title</TitleTemplate>
 </MvvmTree>
+</div>

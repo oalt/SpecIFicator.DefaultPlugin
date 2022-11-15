@@ -1,2 +1,5 @@
 ﻿<p>@DataContext.HierarchyViewModel.Level <ResourceIcon Icon="@DataContext.HierarchyViewModel.ReferencedResource.Icon"></ResourceIcon> @DataContext.HierarchyViewModel.Title [@DataContext.HierarchyViewModel.Type]</p>
-
+@if(!string.IsNullOrEmpty(DataContext.HierarchyViewModel.ReferencedResource.Description))
+{
+    <div>@((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Description)</div>
+}

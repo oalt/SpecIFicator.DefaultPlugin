@@ -70,6 +70,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Raw data ähnelt.
+        /// </summary>
+        internal static string Label_RawViewTab {
+            get {
+                return ResourceManager.GetString("Label.RawViewTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Resource ähnelt.
         /// </summary>
         internal static string Label_ResourceTab {

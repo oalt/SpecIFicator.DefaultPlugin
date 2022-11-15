@@ -23,7 +23,7 @@
     </TabPage>
     <TabPage>
         <Header>
-            @L["Label.ResourceTab"]
+            <i class="bi bi-card-text"></i> @L["Label.ResourceTab"]
         </Header>
         <ChildContent>
             <div class="tabPanel">
@@ -36,6 +36,25 @@
             else
             {
                 <div>No matching resource viewer found.</div>
+            }
+            </div>
+        </ChildContent>
+    </TabPage>
+    <TabPage>
+        <Header>
+            <i class="bi bi-filetype-json"></i> @L["Label.RawViewTab"]
+        </Header>
+        <ChildContent>
+            <div class="tabPanel">
+            @if (_rawViewType != null)
+            {
+                <CascadingValue Value="@DataContext">
+                    <DynamicComponent Type="@_rawViewType"></DynamicComponent>
+                </CascadingValue>
+            }
+            else
+            {
+                <div>No matching raw data viewer found.</div>
             }
             </div>
         </ChildContent>

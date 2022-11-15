@@ -1,0 +1,10 @@
+﻿@if (SelectedResource != null)
+{
+    <div class="rawView">
+        <pre>@SelectedResource.FormattedJson</pre>
+    </div>
+}
+else
+{
+    <div class="noSelctionPanel">No Resource selected.</div>
+}

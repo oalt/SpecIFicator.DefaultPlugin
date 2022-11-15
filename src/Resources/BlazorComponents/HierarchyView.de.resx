@@ -120,6 +120,9 @@
   <data name="Label.DocumentTab" xml:space="preserve">
     <value>Dokument</value>
   </data>
+  <data name="Label.RawViewTab" xml:space="preserve">
+    <value>JSON</value>
+  </data>
   <data name="Label.ResourceTab" xml:space="preserve">
     <value>Ressource</value>
   </data>

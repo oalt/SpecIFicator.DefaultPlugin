@@ -58,7 +58,10 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
                                                                              DataContext.HierarchyEditorViewModel.RootNode.RootResourceClassKey
                                                                             );
 
-            
+            _rawViewType = DynamicConfigurationManager.GetComponentType("RawView",
+                                                                        GetType().FullName,
+                                                                        DataContext.HierarchyEditorViewModel.RootNode.RootResourceClassKey
+                                                                        );
         }
 
         private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs arguments)

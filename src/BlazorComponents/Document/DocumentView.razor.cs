@@ -14,14 +14,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
         [CascadingParameter]
         public HierarchyEditorContext DataContext { get; set; }
 
-        private HierarchyViewModel HierarchyViewModel { get; set; }
+        private NodeViewModel HierarchyViewModel { get; set; }
 
         protected override void OnInitialized()
         {
             HierarchyViewModel = DataContext.HierarchyEditorViewModel.RootNode;
         }
 
-        private void OnSelectResource(HierarchyViewModel node)
+        private void OnSelectResource(NodeViewModel node)
         {
             DataContext.HierarchyEditorViewModel.SelectedNode = node;
         }

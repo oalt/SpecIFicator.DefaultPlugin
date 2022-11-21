@@ -2,21 +2,29 @@
 @using Microsoft.AspNetCore.Components
 
 <div class="btn-group" role="group" id="toolbar">
-    <button type="button" class="btn btn-outline-secondary btn-sm">
+    <button type="button" 
+            class="btn btn-outline-secondary btn-sm"
+            @onclick="() => DataContext.HierarchyEditorViewModel.NodeOneLevelLowerCommand.Execute(null)">
         <i class="bi bi-arrow-bar-left"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary btn-sm">
+    <button type="button" 
+            class="btn btn-outline-secondary btn-sm"
+            @onclick="() => DataContext.HierarchyEditorViewModel.NodeOneLevelHigherCommand.Execute(null)">
         <i class="bi bi-arrow-bar-right"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary btn-sm">
+    <button type="button" 
+            class="btn btn-outline-secondary btn-sm"
+            @onclick="() => DataContext.HierarchyEditorViewModel.MoveNodeUpCommand.Execute(null)">
         <i class="bi bi-arrow-bar-up"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary btn-sm">
+    <button type="button" 
+            class="btn btn-outline-secondary btn-sm"
+            @onclick="() => DataContext.HierarchyEditorViewModel.MoveNodeDownCommand.Execute(null)">
         <i class="bi bi-arrow-bar-down"></i>
     </button>
 </div>
 <div id="treepanel">
-<MvvmTree TNode="HierarchyViewModel" 
+<MvvmTree TNode="NodeViewModel" 
           Nodes="HierarchyViewModel.RootNodes"
           SelectedNodeChanged="OnSelectionChanged">
 

@@ -11,7 +11,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         public HierarchyEditorContext DataContext { get; set; }
 
 
-        public HierarchyViewModel HierarchyViewModel { get; set; }
+        public NodeViewModel HierarchyViewModel { get; set; }
 
         protected override void OnInitialized()
         {
@@ -22,7 +22,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         void OnSelectionChanged(ITreeNode node)
         {
-            DataContext.HierarchyEditorViewModel.SelectedNode = node as HierarchyViewModel;
+            DataContext.HierarchyEditorViewModel.SelectedNode = node as NodeViewModel;
         }
 
         private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs arguments)

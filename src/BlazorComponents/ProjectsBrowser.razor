@@ -32,7 +32,7 @@
             </thead>
             <tbody>
 
-                @foreach (HierarchyViewModel hierarchyViewModel in projectViewModel.Hierarchies)
+                @foreach (NodeViewModel hierarchyViewModel in projectViewModel.Hierarchies)
                 {
                     <tr>
                         <td><ResourceIcon Icon="@hierarchyViewModel.ReferencedResource.Icon"></ResourceIcon></td>

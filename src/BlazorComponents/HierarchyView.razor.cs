@@ -31,7 +31,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
                 if(DataContext.HierarchyEditorViewModel.SelectedNode != null)
                 {
-                    HierarchyViewModel selectedNode = DataContext.HierarchyEditorViewModel.SelectedNode as HierarchyViewModel;
+                    NodeViewModel selectedNode = DataContext.HierarchyEditorViewModel.SelectedNode as NodeViewModel;
 
                     if(selectedNode != null)
                     {

@@ -16,7 +16,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
                 ResourceViewModel result = null;
                 if (DataContext != null && DataContext.HierarchyEditorViewModel.SelectedNode != null)
                 {
-                    HierarchyViewModel selectedNode = DataContext.HierarchyEditorViewModel.SelectedNode as HierarchyViewModel;
+                    NodeViewModel selectedNode = DataContext.HierarchyEditorViewModel.SelectedNode as NodeViewModel;
 
                     result = selectedNode.ReferencedResource;
                 }

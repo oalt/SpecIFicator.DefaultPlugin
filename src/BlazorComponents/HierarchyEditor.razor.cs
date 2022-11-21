@@ -35,9 +35,9 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [CascadingParameter]
         public HierarchyEditorContext DataContext { get; set; }
 
-        public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
+        public HierarchyViewModel HierarchyEditorViewModel { get; set; }
 
-        private HierarchyViewModel SelectedNode { get; set; }
+        private NodeViewModel SelectedNode { get; set; }
 
         private Type _treeType;
 

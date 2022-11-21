@@ -15,7 +15,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
         [Parameter]
-        public HierarchyEditorViewModel HierarchyEditorViewModel { get; set; }
+        public HierarchyViewModel HierarchyEditorViewModel { get; set; }
 
         protected override void OnInitialized()
         {
@@ -24,25 +24,25 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private void OnEditResourceClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.EDIT_EXISTING);
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.EDIT_EXISTING);
             StateHasChanged();
         }
 
         private void OnNewChildResourceClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_CHILD);
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_CHILD);
             StateHasChanged();
         }
 
         private void OnNewResourceBelowClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_BELOW);
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_BELOW);
             StateHasChanged();
         }
 
         private void OnNewResourceAboveClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyEditorViewModel.NEW_ABOVE);
+            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_ABOVE);
             StateHasChanged();
         }
 

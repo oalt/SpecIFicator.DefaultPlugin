@@ -4,7 +4,7 @@
 {
     <div id="backgroundPanel">
         <div id="documentPanel">
-            @foreach (HierarchyViewModel item in HierarchyViewModel.LinearResourceList)
+            @foreach (NodeViewModel item in HierarchyViewModel.LinearResourceList)
             {
                 Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
                 GetType().FullName,

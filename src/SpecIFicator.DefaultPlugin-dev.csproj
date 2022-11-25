@@ -29,6 +29,7 @@
         <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
         <ProjectReference Include="..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
+        <ProjectReference Include="..\..\Summernote\BlazingComponents.Summernote.csproj" />
     </ItemGroup>
 
     <ItemGroup>

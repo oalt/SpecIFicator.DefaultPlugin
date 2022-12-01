@@ -1,6 +1,6 @@
 ﻿@using MDD4All.SpecIF.ViewModels
 @using MDD4All.SpecIF.DataModels.Manipulation
-<div id="@DataContext.HierarchyViewModel.ReferencedResource.Resource.ID">
+<div id="@DataContext.NodeViewModel.ReferencedResource.Resource.ID">
     <table width="100%" style="border:solid;border-width:1px">
         <tr style="border:solid;border-width:1px">
 
@@ -8,8 +8,8 @@
             <td>
                 <div>
                     <strong>
-                        @DataContext.HierarchyViewModel.Level <ResourceIcon Icon="@DataContext.HierarchyViewModel.ReferencedResource.Icon"></ResourceIcon>
-                        @DataContext.HierarchyViewModel.Title
+                        @DataContext.NodeViewModel.Level <ResourceIcon Icon="@DataContext.NodeViewModel.ReferencedResource.Icon"></ResourceIcon>
+                        @DataContext.NodeViewModel.Title
                     </strong>
                 </div>
             </td>
@@ -17,7 +17,7 @@
         <tr style="border:solid;border-width:1px">
            
             <td>
-                <div>@((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.HierarchyViewModel.MetadataReader))</div>
+                <div>@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.NodeViewModel.MetadataReader))</div>
             </td>
         </tr>
 

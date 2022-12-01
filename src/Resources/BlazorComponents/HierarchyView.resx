@@ -126,4 +126,10 @@
   <data name="Label.ResourceTab" xml:space="preserve">
     <value>Resource</value>
   </data>
+  <data name="Text.NoResourceSelected" xml:space="preserve">
+    <value>No resource selected.</value>
+  </data>
+  <data name="Text.NoResourceViewerFound" xml:space="preserve">
+    <value>No matching resource viewer found.</value>
+  </data>
 </root>

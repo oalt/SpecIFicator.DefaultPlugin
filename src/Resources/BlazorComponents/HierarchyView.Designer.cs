@@ -86,5 +86,23 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
                 return ResourceManager.GetString("Label.ResourceTab", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No resource selected. ähnelt.
+        /// </summary>
+        internal static string Text_NoResourceSelected {
+            get {
+                return ResourceManager.GetString("Text.NoResourceSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No matching resource viewer found. ähnelt.
+        /// </summary>
+        internal static string Text_NoResourceViewerFound {
+            get {
+                return ResourceManager.GetString("Text.NoResourceViewerFound", resourceCulture);
+            }
+        }
     }
 }

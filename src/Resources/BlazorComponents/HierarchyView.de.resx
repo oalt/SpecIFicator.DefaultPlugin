@@ -126,4 +126,10 @@
   <data name="Label.ResourceTab" xml:space="preserve">
     <value>Ressource</value>
   </data>
+  <data name="Text.NoResourceSelected" xml:space="preserve">
+    <value>Keine Ressource ausgewählt.</value>
+  </data>
+  <data name="Text.NoResourceViewerFound" xml:space="preserve">
+    <value>Kein passende Komponente zum Anzeigen der Ressource gefunden.</value>
+  </data>
 </root>

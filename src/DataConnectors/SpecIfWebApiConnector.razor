@@ -1,0 +1,14 @@
+﻿<h2>
+    <i class="bi bi-hexagon-fill" style="color: rgb(92,180,0)"></i> @L["Label.ConnectorTitle"]
+</h2>
+<div>
+    <fieldset>
+        <legend>@L["Label.ApiURL"]</legend>
+        <input type="text" class="form-control" @bind="ApiURL" />
+        <legend>@L["Label.ApiKey"]</legend>
+        <input type="password" class="form-control" @bind="ApiKey" />
+    </fieldset>
+</div>
+<div class="mt-4">
+    <button class="btn btn-success" @onclick="HandleConnectClick">@L["Label.Connect"]</button>
+</div>

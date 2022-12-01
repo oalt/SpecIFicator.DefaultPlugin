@@ -1,0 +1,30 @@
+﻿@using SpecIFicator.Framework.Shared
+@layout MetadataLayout
+<div id="main-panel">
+    <div id="navbar">
+        <MetadataNavigation @bind-SelectedComponentType="@ActiveType" />
+    </div>
+    <div id="main-content">
+        <div id="content-panel">
+            @if (ActiveType == null)
+            {
+                <h3>SpecIF-Metadata Management</h3>
+                <div>
+                    Browse and edit the SpecIF-Metadata:
+                    <ul>
+                        <li>Resource Classes</li>
+                        <li>Statement Classes</li>
+                        <li>Property Classes</li>
+                        <li>Data Types</li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <DynamicComponent Type="@ActiveType" />
+            }
+
+        </div>
+
+    </div>
+</div>

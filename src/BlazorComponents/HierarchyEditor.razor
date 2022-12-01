@@ -8,7 +8,7 @@
 {
     <div class="mainPanel">
         
-        <MainToolBar HierarchyEditorViewModel="@DataContext.HierarchyEditorViewModel"></MainToolBar>
+        <MainToolBar HierarchyEditorViewModel="@HierarchyEditorViewModel"></MainToolBar>
 
         <div class="editorPanel">
             <SplitZone Style="height:100%;">
@@ -16,7 +16,7 @@
                     <Split MinSizePx="100" Size="20">
                         @if (_treeType != null)
                         {
-                            <CascadingValue Value="@DataContext">
+                            <CascadingValue Value="@HierarchyEditorContext">
                                 <DynamicComponent Type="@_treeType"></DynamicComponent>
                             </CascadingValue>
                         }
@@ -28,7 +28,7 @@
                     <Split Size="80">
                         @if (_hierarchyViewType != null)
                         {
-                            <CascadingValue Value="@DataContext">
+                            <CascadingValue Value="@HierarchyEditorContext">
                                 <DynamicComponent Type="@_hierarchyViewType"></DynamicComponent>
                             </CascadingValue>
                         }

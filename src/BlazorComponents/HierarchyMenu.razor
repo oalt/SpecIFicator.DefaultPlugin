@@ -1,0 +1,22 @@
+﻿<span class="dropdown">
+    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" 
+            type="button" aria-haspopup="true" 
+            aria-expanded="false" 
+        @onclick="e => this.show = !this.show" 
+        @onfocusout="OutFocus">
+        <i class="bi bi-menu-button-fill"></i>
+    </button>
+    <div class="dropdown-menu pre-scrollable @(show? "show":"")" >
+        <a class="dropdown-item" href="/pluginPage/D770BA8B-2F2A-44CF-A739-81AEF8F3F9B2/1234" type="button" >
+            Export
+        </a>
+        @*<button class="dropdown-item" type="button" >
+            Item2
+        </button>
+        <button class="dropdown-item" type="button" >
+            Item3
+        </button>*@
+    </div>
+</span>
+
+

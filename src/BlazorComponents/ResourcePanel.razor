@@ -2,35 +2,47 @@
 
 @if (ResourceViewModel != null)
 {
-<div class="resourcePanel">
-    <fieldset class="resourceFieldset">
-        <legend>
-            <strong>Resource [@ResourceViewModel.Type]</strong>
-        </legend>
+    <div class="resourcePanel">
+        <fieldset class="resourceFieldset">
+            <legend>
+                <strong>Resource [@ResourceViewModel.Type]</strong>
+            </legend>
 
 
-        <fieldset class="propertyField">
-            <legend>Key</legend>
-            <p style="font-family: 'Courier New', monospace;">@ResourceViewModel.Resource.Key()</p>
+            <fieldset class="propertyField">
+                <legend>Key</legend>
+                <p style="font-family: 'Courier New', monospace;">
+                    @ResourceViewModel.Resource.Key()
+                    @if (ClipboardDataProvider != null)
+                    {
+                        <span>&nbsp;
+                            <button class="btn btn-secondary btn-rounded btn-icon btn-small"
+                            @onclick="CopyKeyToClipboardAsync">
+                                <i class="@CopyButtonIconClass"></i>
+                            </button>
+                        </span>
+                    }
+
+                </p>
+            </fieldset>
+
+            @foreach (PropertyViewModel propertyViewModel in ResourceViewModel.Properties)
+            {
+                @if (ResourceViewModel.IsInEditMode)
+                {
+                    <PropertyEditor PropertyViewModel="@propertyViewModel" />
+                }
+                else
+                {
+                    <PropertyViewer PropertyViewModel="@propertyViewModel" />
+                }
+            }
         </fieldset>
-
-        @foreach (PropertyViewModel propertyViewModel in ResourceViewModel.Properties)
-        {
-            @if (ResourceViewModel.IsInEditMode)
-            {
-                <PropertyEditor PropertyViewModel="@propertyViewModel" />
-            }
-            else
-            {
-                <PropertyViewer PropertyViewModel="@propertyViewModel" />
-            }
-        }
-    </fieldset>
-</div>
+    </div>
 }
 else
 {
-<div class="noSelctionPanel">No Resource selected.</div>
+    <div class="noSelctionPanel">No Resource selected.</div>
 }
 
 

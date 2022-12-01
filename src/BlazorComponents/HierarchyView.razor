@@ -4,20 +4,20 @@
 <TabControl>
     <TabPage>
         <Header>
-           <i class="bi bi-file-earmark-richtext"></i> @L["Label.DocumentTab"]
+            <i class="bi bi-file-earmark-richtext"></i> @L["Label.DocumentTab"]
         </Header>
         <ChildContent>
             <div class="tabPanel">
-            @if (_documentViewType != null)
-            {
-                <CascadingValue Value="@DataContext">
-                    <DynamicComponent Type="@_documentViewType"></DynamicComponent>
-                </CascadingValue>
-            }
-            else
-            {
-                <h1>No matching document view found!</h1>
-            }
+                @if (_documentViewType != null)
+                {
+                    <CascadingValue Value="@DataContext">
+                        <DynamicComponent Type="@_documentViewType"></DynamicComponent>
+                    </CascadingValue>
+                }
+                else
+                {
+                    <h1>No matching document view found!</h1>
+                }
             </div>
         </ChildContent>
     </TabPage>
@@ -27,16 +27,23 @@
         </Header>
         <ChildContent>
             <div class="tabPanel">
-            @if (ResourceViewType != null)
-            {
-                <CascadingValue Value="@DataContext">
-                    <DynamicComponent Type="@ResourceViewType"></DynamicComponent>
-                </CascadingValue>
-            }
-            else
-            {
-                <div>No matching resource viewer found.</div>
-            }
+                @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
+                {
+                    <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
+                }
+                else
+                {
+                    @if (ResourceViewType != null)
+                    {
+                        <CascadingValue Value="@DataContext">
+                            <DynamicComponent Type="@ResourceViewType"></DynamicComponent>
+                        </CascadingValue>
+                    }
+                    else
+                    {
+                        <div class="noSelctionPanel">@L["Text.NoResourceViewerFound"]</div>
+                    }
+                }
             </div>
         </ChildContent>
     </TabPage>
@@ -46,16 +53,16 @@
         </Header>
         <ChildContent>
             <div class="tabPanel">
-            @if (_rawViewType != null)
-            {
-                <CascadingValue Value="@DataContext">
-                    <DynamicComponent Type="@_rawViewType"></DynamicComponent>
-                </CascadingValue>
-            }
-            else
-            {
-                <div>No matching raw data viewer found.</div>
-            }
+                @if (_rawViewType != null)
+                {
+                    <CascadingValue Value="@DataContext">
+                        <DynamicComponent Type="@_rawViewType"></DynamicComponent>
+                    </CascadingValue>
+                }
+                else
+                {
+                    <div>No matching raw data viewer found.</div>
+                }
             </div>
         </ChildContent>
     </TabPage>

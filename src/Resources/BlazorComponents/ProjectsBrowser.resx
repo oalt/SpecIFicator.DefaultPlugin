@@ -126,7 +126,16 @@
   <data name="Label.Projects" xml:space="preserve">
     <value>Projects</value>
   </data>
+  <data name="Label.Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Label.Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="Title.CreateNewHierarchy" xml:space="preserve">
     <value>Create new Hierarchy...</value>
+  </data>
+  <data name="Title.ProjectsBrowser" xml:space="preserve">
+    <value>Projects</value>
   </data>
 </root>

@@ -1,5 +1,5 @@
-﻿<h1>@DataContext.HierarchyViewModel.Level <ResourceIcon Icon="@DataContext.HierarchyViewModel.ReferencedResource.Icon"></ResourceIcon> @DataContext.HierarchyViewModel.Title</h1>
-@if(!string.IsNullOrEmpty(DataContext.HierarchyViewModel.ReferencedResource.Description))
+﻿<h1>@DataContext.NodeViewModel.Level <ResourceIcon Icon="@DataContext.NodeViewModel.ReferencedResource.Icon"></ResourceIcon> @DataContext.NodeViewModel.Title</h1>
+@if(!string.IsNullOrEmpty(DataContext.NodeViewModel.ReferencedResource.Description))
 {
-    <div>@((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Description)</div>
+    <div>@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Description)</div>
 }

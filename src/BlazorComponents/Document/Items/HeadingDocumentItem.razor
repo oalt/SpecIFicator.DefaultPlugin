@@ -1,5 +1,5 @@
-﻿<div class="@CssClass">@DataContext.HierarchyViewModel.Level @DataContext.HierarchyViewModel.Title</div>
-@if (!string.IsNullOrEmpty(DataContext.HierarchyViewModel.ReferencedResource.Description))
+﻿<div class="@CssClass">@DataContext.NodeViewModel.Level @DataContext.NodeViewModel.Title</div>
+@if (!string.IsNullOrEmpty(DataContext.NodeViewModel.ReferencedResource.Description))
 {
-    <div>@((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Description)</div>
+    <div>@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Description)</div>
 }

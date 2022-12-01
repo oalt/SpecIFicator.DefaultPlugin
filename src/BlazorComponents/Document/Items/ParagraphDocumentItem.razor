@@ -1,6 +1,6 @@
 ﻿@using MDD4All.UI.BlazorComponents.Tooltip
-<Tooltip Text="@DataContext.HierarchyViewModel.Title">
+<Tooltip Text="@DataContext.NodeViewModel.Title">
     <div>
-        @((MarkupString)DataContext.HierarchyViewModel.ReferencedResource.Description)
+        @((MarkupString)DataContext.NodeViewModel.ReferencedResource.Description)
     </div>
 </Tooltip>

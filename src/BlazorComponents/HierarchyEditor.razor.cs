@@ -32,8 +32,11 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         
         private ISpecIfDataWriter DataWriter { get; set; }
 
+        // the hierarchy key
         [CascadingParameter]
-        public HierarchyEditorContext DataContext { get; set; }
+        public string DataContext { get; set; }
+
+        private HierarchyEditorContext HierarchyEditorContext { get; set; }
 
         public HierarchyViewModel HierarchyEditorViewModel { get; set; }
 
@@ -50,20 +53,38 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             DataReader = DataProviderFactory.DataReader;
             DataWriter = DataProviderFactory.DataWriter;
 
-            HierarchyEditorViewModel = DataContext.HierarchyEditorViewModel;
+            if (DataContext != null)
+            {
+                Key key = new Key();
+                key.InitailizeFromKeyString(DataContext);
 
-            HierarchyEditorViewModel.PropertyChanged += OnStateChanged;
+                HierarchyViewModel hierarchyEditorViewModel = new HierarchyViewModel(DataProviderFactory.MetadataReader,
+                                                                               DataProviderFactory.DataReader,
+                                                                               DataProviderFactory.DataWriter,
+                                                                               key);
 
-            _treeType = DynamicConfigurationManager.GetComponentType("Tree",
-                                                                     GetType().FullName,
-                                                                     DataContext.HierarchyEditorViewModel
-                                                                        .RootNode.RootResourceClassKey);
 
-            _hierarchyViewType = DynamicConfigurationManager.GetComponentType("HierarchyView",
-                                                                              GetType().FullName,
-                                                                              HierarchyEditorViewModel.RootNode.RootResourceClassKey);
+                HierarchyEditorViewModel = hierarchyEditorViewModel;
 
-            
+                HierarchyEditorContext = new HierarchyEditorContext()
+                {
+                    HierarchyEditorViewModel = hierarchyEditorViewModel
+                };
+
+
+
+                HierarchyEditorViewModel.PropertyChanged += OnStateChanged;
+
+                _treeType = DynamicConfigurationManager.GetComponentType("Tree",
+                                                                         GetType().FullName,
+                                                                         HierarchyEditorViewModel
+                                                                            .RootNode.RootResourceClassKey);
+
+                _hierarchyViewType = DynamicConfigurationManager.GetComponentType("HierarchyView",
+                                                                                  GetType().FullName,
+                                                                                  HierarchyEditorViewModel.RootNode.RootResourceClassKey);
+
+            }
         }
 
         private void OnStateChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

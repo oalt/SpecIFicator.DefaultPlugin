@@ -88,11 +88,38 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Title ähnelt.
+        /// </summary>
+        internal static string Label_Title {
+            get {
+                return ResourceManager.GetString("Label.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Type ähnelt.
+        /// </summary>
+        internal static string Label_Type {
+            get {
+                return ResourceManager.GetString("Label.Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Create new Hierarchy... ähnelt.
         /// </summary>
         internal static string Title_CreateNewHierarchy {
             get {
                 return ResourceManager.GetString("Title.CreateNewHierarchy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
+        /// </summary>
+        internal static string Title_ProjectsBrowser {
+            get {
+                return ResourceManager.GetString("Title.ProjectsBrowser", resourceCulture);
             }
         }
     }

@@ -24,12 +24,20 @@
     <ItemGroup>
         <ProjectReference Include="..\..\MDD4All.Configuration\src\MDD4All.Configuration\MDD4All.Configuration-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.EA\src\MDD4All.SpecIF.DataProvider.EA\MDD4All.SpecIF.DataProvider.EA-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
         <ProjectReference Include="..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
         <ProjectReference Include="..\..\Summernote\BlazingComponents.Summernote.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Interop.EA">
+        <HintPath>..\..\libs\Interop.EA.dll</HintPath>
+        <EmbedInteropTypes>False</EmbedInteropTypes>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
@@ -66,6 +74,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Update="wwwroot\images\EA_Logo.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
       <EmbeddedResource Update="Resources\BlazorComponents\MainToolbar.de.resx">
         <LastGenOutput>MainToolbar.de.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +95,14 @@
       <EmbeddedResource Update="Resources\BlazorComponents\ProjectsBrowser.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>ProjectsBrowser.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.resx">
+        <LastGenOutput>SpecIfEaConnector.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SpecIfEaConnector.de.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\DataConnectors\SpecIfMultiFileConnector.resx">
         <Generator></Generator>

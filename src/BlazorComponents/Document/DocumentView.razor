@@ -13,7 +13,7 @@
                 if (itemType != null)
                 {
                     HierarchyContext itemDataContext = new HierarchyContext();
-                    itemDataContext.HierarchyViewModel = item;
+                    itemDataContext.NodeViewModel = item;
 
                     <div @onclick="@(() => OnSelectResource(item))"
              class="@(item.IsSelected ? ResourceSelectedStyle : ResourceUnselectedStyle) documentItem">

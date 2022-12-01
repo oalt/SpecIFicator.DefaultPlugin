@@ -1,57 +1,68 @@
 ﻿@using System.Collections.ObjectModel
 @using MDD4All.SpecIF.ViewModels
 @using MDD4All.UI.BlazorComponents.Dialog
-<h1>@L["Label.Projects"]</h1>
+@using MDD4All.UI.BlazorComponents.Tooltip
+<div class="page">
+    <h1>@L["Label.Projects"]</h1>
 
-<div class="input-group mb-3">
-    <ResourceClassSelector @bind-SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
+    <div class="input-group mb-3">
+        <ResourceClassSelector @bind-SelectedResourceClassKey="SelectedResourceClassKey"></ResourceClassSelector>
 
-    <div class="input-group-append">
-        <button class="btn btn-success" @onclick="() => OnNewHierarchyButtonClicked()">@L["Button.NewHierarchy"]</button>
+        <div class="input-group-append">
+            <button class="btn btn-success" @onclick="() => OnNewHierarchyButtonClicked()">@L["Button.NewHierarchy"]</button>
+        </div>
     </div>
-</div>
 
 
 
-<div>
+    <div>
 
-    @foreach (ProjectViewModel projectViewModel in _projectsViewModel.Projects)
-    {
+        @foreach (ProjectViewModel projectViewModel in _projectsViewModel.Projects)
+        {
 
-        <h4>@projectViewModel.ProjectTitle</h4>
-        <p>ID: @projectViewModel.ProjectID</p>
+            <h4>@projectViewModel.ProjectTitle</h4>
+            <p>ID: @projectViewModel.ProjectID</p>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Type</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (NodeViewModel hierarchyViewModel in projectViewModel.Hierarchies)
-                {
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><ResourceIcon Icon="@hierarchyViewModel.ReferencedResource.Icon"></ResourceIcon></td>
-                        <td>@hierarchyViewModel.Title</td>
-                        <td>[@hierarchyViewModel.ClassTitle]</td>
-                        <td><a href="/hierarchy/@hierarchyViewModel.HierarchyKey.ToString()">@L["Button.EditHierarchy"]</a></td>
+                        <th></th>
+                        <th scope="col">@L["Label.Title"]</th>
+                        <th scope="col">@L["Label.Type"]</th>
+                        <th scope="col"></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    }
+                </thead>
+                <tbody>
+
+                    @foreach (NodeViewModel hierarchyViewModel in projectViewModel.Hierarchies)
+                    {
+                        <tr>
+                            <td><ResourceIcon Icon="@hierarchyViewModel.ReferencedResource.Icon"></ResourceIcon></td>
+                            <td>@hierarchyViewModel.Title</td>
+                            <td>[@hierarchyViewModel.ClassTitle]</td>
+                            <td>
+                                <Tooltip Text="@L["Button.EditHierarchy"]">
+                                    <a href="/pluginPage/3462ACA8-1AB1-442F-971B-975AF96E0017/@hierarchyViewModel.HierarchyKey.ToString()"
+                               class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </Tooltip>
+                                <HierarchyMenu />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
 </div>
 
 @if (ShowNewHierarchyDialog)
 {
 
     <ModalDialog OnClose="@OnNewHierarchyDialogClose"
-                 DialogType="ModalDialog.ModalDialogType.OkCancel"
-                 Title="@L["Title.CreateNewHierarchy"]">
+             DialogType="ModalDialog.ModalDialogType.OkCancel"
+             Title="@L["Title.CreateNewHierarchy"]">
         <ResourcePanel ResourceViewModel="@NewHierarchyViewModel" />
     </ModalDialog>
 

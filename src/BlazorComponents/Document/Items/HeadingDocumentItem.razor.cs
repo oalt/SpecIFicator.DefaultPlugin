@@ -18,7 +18,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 
                 if(DataContext != null)
                 {
-                    switch(DataContext.HierarchyViewModel.Depth)
+                    switch(DataContext.NodeViewModel.Depth)
                     {
                         case 1:
                             result = "h1";

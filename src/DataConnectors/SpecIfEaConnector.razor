@@ -1,0 +1,13 @@
+﻿<h2> <img src="/images/EA_Logo.png" height="50" /></h2>
+
+<div>
+    <fieldset>
+        <legend>@L["Label.MongoDbConnectionString"]</legend>
+        <input type="text" class="form-control" @bind="MongoDbConnectionString" />
+        <legend>@L["Label.ConnectionString"]</legend>
+        <input type="text" class="form-control" @bind="ConnectionString" />
+    </fieldset>
+</div>
+<div class="mt-4">
+    <button class="btn btn-success" @onclick="HandleConnectClick">@L["Label.Connect"]</button>
+</div>

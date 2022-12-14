@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using MDD4All.SpecIF.ViewModels.Models
+@using MDD4All.UI.BlazorComponents.Dialog
+
+@if(!string.IsNullOrEmpty(DataContext.SuccessMessageKey))
+{
+    <ModalDialog DialogType="@ModalDialog.ModalDialogType.Ok"
+                 Title=@L["Title.Success"]
+                 OnClose="OnSuccessDialogClose">
+        @L[DataContext.SuccessMessageKey]
+    </ModalDialog>
+}
+else
+{
+    <EditForm Model="@DataContext">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+
+                <div class="col-10 my-2">
+                    <h3>@L["Title.ExportHierarchy"]</h3>
+                    <h4>@L["Label.Title"]: @DataContext.Title</h4>
+                </div>
+
+                <div class="col">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-10">
+                    <label class="form-check-label">@L["Label.ExportFormat"]</label>
+                    <br />
+                    <InputRadioGroup Name="ExportFormatRadioGroup" @bind-Value="@DataContext.FileFormat">
+                        <InputRadio Name="ExportFormatRadioGroup"
+                                    id="specifRadioButton"
+                                
+                                    Value="@SpecIfFileFormat.Specif" />
+                        <label class="form-check-label" for="specifRadioButton">
+                            .specif
+                        </label>
+
+                        <InputRadio Name="ExportFormatRadioGroup"
+                                    id="specifzRadioButton"
+                                
+                                    Value="@SpecIfFileFormat.Specifz" />
+                        <label class="form-check-label" for="specifzRadioButton">
+                            .specifz
+                        </label>
+                    </InputRadioGroup>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="row align-items-end my-2">
+                <div class="col">
+                </div>
+                <div class="col-10">
+
+                    <label class="form-check-label" for="filenameTextBox">@L["Label.Filename"]</label>
+                    <input type="text"
+                           id="filenameTextBox"
+                           class="form-control"
+                           aria-label="Filename"
+                           @bind-value="DataContext.FileName">
+                </div>
+                <div class="col">
+                    <span>@DataContext.FileExtension</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                </div>
+
+                <div class="col-10 my-2">
+                
+                    <label>
+                        <InputCheckbox class="form-check-input" @bind-Value="DataContext.IncludeMetadata" />
+                        @L["Label.IncludeMetadata"]
+                    </label>
+                    <br />
+                    <label>
+                        <InputCheckbox class="form-check-input" @bind-Value="DataContext.IncludeStatements" />
+                        @L["Label.IncludeStatements"]
+                    </label>
+                    <br />
+                    <label>
+                        <InputCheckbox class="form-check-input" @bind-Value="DataContext.IncludeRevisions" />
+                        @L["Label.IncludeRevisions"]
+                    </label>
+                </div>
+
+                <div class="col">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                </div>
+
+                <div class="col-10 my-2">
+                    <button type="button" 
+                            class="btn btn-primary"
+                            @onclick="OnHandleExportClicked"><i class="bi bi-file-earmark-arrow-down"></i> @L["Button.Export"]</button>
+
+                    <button type="button" 
+                            class="btn btn-secondary"
+                            @onclick="OnCancelClicked">@L["Button.Cancel"]</button>
+                </div>
+
+                <div class="col">
+                </div>
+
+            </div>
+        </div>
+    </EditForm>
+    @if(!string.IsNullOrEmpty(DataContext.ErrorMessage))
+    {
+        <div class="errorText">
+            @DataContext.ErrorMessage
+        </div>
+    }
+}

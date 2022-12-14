@@ -44,11 +44,31 @@
     }
     else
     {
-        <select class="form-control">
-            @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
-            {
-                <option value="@item.Value">@item.Title</option>
-            }
-        </select>
-     }
+        @if(PropertyViewModel.HasMultipleValues)
+        {
+           <select class="form-control" 
+                   multiple
+                   @bind="SelectedEnumValues">
+                   @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                   {
+                       <option value="@item.Value">@item.Title</option>
+                   }
+            </select>
+        }
+        else
+        {
+            <select class="form-control" 
+                @bind="SelectedEnumValue">
+
+                <option value=""></option>
+
+                @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                {
+                    <option value="@item.Value">@item.Title</option>
+                }
+            </select>
+        }
+
+
+    }
 </fieldset>

@@ -1,10 +1,6 @@
 ﻿using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MDD4All.SpecIF.DataModels.Manipulation;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
@@ -12,5 +8,38 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
     {
         [Parameter]
         public PropertyViewModel PropertyViewModel { get; set; }
+
+        private string SelectedEnumValue
+        {
+            get
+            {
+                return PropertyViewModel.Property.GetSingleEnumerationValue();
+            }
+
+            set
+            {
+                PropertyViewModel.Property.SetSingleEnumerationValue(value);
+            }
+        }
+
+        private string[] SelectedEnumValues
+        {
+
+            get
+            {
+                string[] result = { };
+
+                List<string> values = new List<string>();
+
+                values = PropertyViewModel.Property.GetMultipleEnumerationValue();
+                
+                return values.ToArray();
+            }
+
+            set
+            {
+                PropertyViewModel.Property.SetMultipleEnumerationValue(new List<string>(value));
+            }
+        }
     }
 }

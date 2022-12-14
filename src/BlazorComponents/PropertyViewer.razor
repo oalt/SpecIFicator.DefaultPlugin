@@ -1,4 +1,5 @@
-﻿<fieldset class="propertyField">
+﻿@using MDD4All.SpecIF.ViewModels.Models
+<fieldset class="propertyField">
     <legend>
         <span>@PropertyViewModel.Title</span>
         @{
@@ -20,14 +21,15 @@
             }
             else
             {
-                List<List<string>> values = PropertyViewModel.EnumerationValues;
-                for (int counter = 0; counter < values.Count; counter++)
-                {
-
-
-                    <p>[@counter]: @values[counter][0]</p>
-
-                }
+                <select class="form-control" 
+                   multiple
+                   disabled
+                   @bind="SelectedEnumValues">
+                   @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                   {
+                       <option value="@item.Value">@item.Title</option>
+                   }
+            </select>
             }
 
         }

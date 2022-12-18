@@ -26,6 +26,13 @@
                 </p>
             </fieldset>
 
+            <fieldset class="propertyField">
+                <legend>ChangedAt</legend>
+                <p>
+                    @ResourceViewModel.Resource.ChangedAt.ToString()
+                </p>
+            </fieldset>
+
             @foreach (PropertyViewModel propertyViewModel in ResourceViewModel.Properties)
             {
                 @if (ResourceViewModel.IsInEditMode)

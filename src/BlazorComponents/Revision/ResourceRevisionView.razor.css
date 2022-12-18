@@ -1,0 +1,20 @@
+﻿#container {
+    display: grid; /* with this we declare our container as a grid */
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+}
+
+#revision-graph {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#content-area {
+    grid-column: 1;
+    grid-row: 2;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 305px);
+}

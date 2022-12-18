@@ -9,25 +9,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public PropertyViewModel PropertyViewModel { get; set; }
 
-        private string[] SelectedEnumValues
-        {
-
-            get
-            {
-                string[] result = { };
-
-                List<string> values = new List<string>();
-
-                values = PropertyViewModel.Property.GetMultipleEnumerationValue();
-
-                return values.ToArray();
-            }
-
-            set
-            {
-                
-            }
-        }
+        
 
     }
 }

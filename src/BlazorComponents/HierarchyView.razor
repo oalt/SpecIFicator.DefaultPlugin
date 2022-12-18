@@ -1,5 +1,6 @@
 ﻿@using MDD4All.UI.BlazorComponents.TabControl
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Document
+@using SpecIFicator.DefaultPlugin.BlazorComponents.Revision
 @using SplitJs.Blazor.Components
 <TabControl>
     <TabPage>
@@ -49,6 +50,23 @@
     </TabPage>
     <TabPage>
         <Header>
+            <i class="bi bi-file-diff"></i> Revisions
+        </Header>
+        <ChildContent>
+            <div class="tabPanel">
+            @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
+            {
+                <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
+            }
+            else
+            {
+                <ResourceRevisionView DataContext="@DataContext.HierarchyEditorViewModel.SelectedNode.ReferencedResource" />
+            }
+            </div>
+        </ChildContent>
+    </TabPage>
+    <TabPage>
+        <Header>
             <i class="bi bi-filetype-json"></i> @L["Label.RawViewTab"]
         </Header>
         <ChildContent>
@@ -66,7 +84,7 @@
             </div>
         </ChildContent>
     </TabPage>
-
+    
 </TabControl>
 
 

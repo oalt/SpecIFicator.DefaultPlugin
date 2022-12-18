@@ -1,0 +1,53 @@
+﻿@using MDD4All.SpecIF.ViewModels.Revisioning
+@if (DataContext != null)
+{
+    if (Diffs != null && Diffs.Count > 0)
+    {
+        <table class="table table-sm table-bordered"
+       style="width: 100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@DataContext.Resource.ChangedAt.ToShortDateString() <br /> @DataContext.Resource.ChangedAt.ToString("HH:mm:ss")</th>
+                    <th>@ResourceRevisionToCompare.Resource.ChangedAt.ToShortDateString() <br /> @ResourceRevisionToCompare.Resource.ChangedAt.ToString("HH:mm:ss")</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (PropertyDiffViewModel diff in Diffs)
+                {
+                    <tr>
+                        <th class="align-middle">
+                            @diff.Title
+                        </th>
+                        <td>
+                            @if (diff.PropertyRevisionOne == null)
+                            {
+                                <span>n/a</span>
+                            }
+                            else
+                            {
+                                <PropertyContentViewer PropertyViewModel="@diff.PropertyRevisionOne" />
+                            }
+                        </td>
+                        <td>
+                            @if (diff.PropertyRevisionTwo == null)
+                            {
+                                <span>n/a</span>
+                            }
+                            else
+                            {
+                                <PropertyContentViewer PropertyViewModel="@diff.PropertyRevisionTwo" />
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No differences.</p>
+    }
+}

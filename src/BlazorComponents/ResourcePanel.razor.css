@@ -5,8 +5,8 @@
 }
 
 .resourceFieldset {
-    height: calc(100% - 20px);
-    width: calc(100% - 30px);
+    /*height: calc(100% - 20px);*/
+    /*width: calc(100% - 30px);*/
     overflow: auto;
     min-height: 0;
 }

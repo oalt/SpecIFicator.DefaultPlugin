@@ -1,0 +1,54 @@
+﻿@using MDD4All.SpecIF.ViewModels.Models
+@if (PropertyViewModel.HasMultipleValues) // multiple property
+{
+    @if (PropertyViewModel.IsEnumeration)
+    {
+        if (PropertyViewModel.IsMultipleEnumeration)
+        {
+                            <p>Not Implemented!</p>
+        }
+        else
+        {
+           <select class="form-control" 
+                   multiple
+                   disabled
+                   @bind="SelectedEnumValues">
+                @foreach (EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                {
+                    <option value="@item.Value">@item.Title</option>
+                }
+           </select>
+        }
+
+    }
+    else // no enumeration
+    {
+        List<string> values = PropertyViewModel.Values;
+        for (int counter = 0; counter < values.Count; counter++)
+        {
+
+
+            <p>[@counter]: @values[counter]</p>
+
+        }
+    }
+
+}
+else // no multiple property
+{
+    @if (PropertyViewModel.IsEnumeration)
+    {
+                    <p>@PropertyViewModel.EnumerationValue</p>
+    }
+    else // no enumeration
+    {
+        if (PropertyViewModel.DataTypeType == "xs:duration")
+        {
+            <p>@PropertyViewModel.DurationValue</p>
+        }
+        else
+        {
+            <div>@((MarkupString)PropertyViewModel.Value)</div>
+        }
+    }
+}

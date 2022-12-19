@@ -88,6 +88,24 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Revisions ähnelt.
+        /// </summary>
+        internal static string Label_Revisions {
+            get {
+                return ResourceManager.GetString("Label.Revisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Statements ähnelt.
+        /// </summary>
+        internal static string Label_Statements {
+            get {
+                return ResourceManager.GetString("Label.Statements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No resource selected. ähnelt.
         /// </summary>
         internal static string Text_NoResourceSelected {

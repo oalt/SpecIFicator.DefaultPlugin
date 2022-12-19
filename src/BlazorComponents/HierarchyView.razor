@@ -1,5 +1,6 @@
 ﻿@using MDD4All.UI.BlazorComponents.TabControl
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Document
+@using SpecIFicator.DefaultPlugin.BlazorComponents.StatementBrowser
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Revision
 @using SplitJs.Blazor.Components
 <TabControl>
@@ -50,7 +51,33 @@
     </TabPage>
     <TabPage>
         <Header>
-            <i class="bi bi-file-diff"></i> Revisions
+            <i class="bi bi-arrow-left-right"></i> @L["Label.Statements"]
+        </Header>
+        <ChildContent>
+            <div class="tabPanel">
+            @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
+                {
+                    <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
+                }
+                else
+                {
+                    @if (ResourceViewType != null)
+                    {
+                        <CascadingValue Value="@DataContext">
+                            <StatementBrowser />
+                        </CascadingValue>
+                    }
+                    else
+                    {
+                        <div class="noSelctionPanel">@L["Text.NoResourceViewerFound"]</div>
+                    }
+                }
+            </div>
+        </ChildContent>
+    </TabPage>
+    <TabPage>
+        <Header>
+            <i class="bi bi-file-diff"></i> @L["Label.Revisions"]
         </Header>
         <ChildContent>
             <div class="tabPanel">

@@ -34,18 +34,6 @@
                 </div>
             </div>
         </RibbonPanel>
-        <RibbonPanel PanelTitle="@L["Label.DeleteResource"]">
-            <div class="toolStackPanel">
-                <div>
-                    <button type="button"
-                            class="btn btn-outline-danger  btn-lg"
-                            @onclick="() => OnDeleteResourceClicked()">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </div>
-
-        </RibbonPanel>
         <RibbonPanel PanelTitle="@L["Label.EditResource"]">
             <div class="toolStackPanel">
                 <div>
@@ -58,6 +46,19 @@
             </div>
 
         </RibbonPanel>
+        <RibbonPanel PanelTitle="@L["Label.DeleteResource"]">
+            <div class="toolStackPanel">
+                <div>
+                    <button type="button"
+                            class="btn btn-outline-danger  btn-lg"
+                            @onclick="() => OnDeleteResourceClicked()">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+        </RibbonPanel>
+        
     </RibbonCategory>
 </div>
 @if (HierarchyEditorViewModel.EditorActive)

@@ -126,6 +126,12 @@
   <data name="Label.ResourceTab" xml:space="preserve">
     <value>Ressource</value>
   </data>
+  <data name="Label.Revisions" xml:space="preserve">
+    <value>Versionen</value>
+  </data>
+  <data name="Label.Statements" xml:space="preserve">
+    <value>Aussagen</value>
+  </data>
   <data name="Text.NoResourceSelected" xml:space="preserve">
     <value>Keine Ressource ausgewählt.</value>
   </data>

@@ -106,6 +106,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading... ähnelt.
+        /// </summary>
+        internal static string Text_Loading {
+            get {
+                return ResourceManager.GetString("Text.Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Create new Hierarchy... ähnelt.
         /// </summary>
         internal static string Title_CreateNewHierarchy {

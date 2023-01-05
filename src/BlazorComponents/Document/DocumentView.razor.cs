@@ -1,34 +1,31 @@
 ﻿using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
-using SpecIFicator.Framework.CascadingValues;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
 {
     public partial class DocumentView
     {
         [CascadingParameter]
-        public HierarchyEditorContext DataContext { get; set; }
-
-        private NodeViewModel HierarchyViewModel { get; set; }
+        public HierarchyViewModel DataContext { get; set; }
 
         protected override void OnInitialized()
         {
-            HierarchyViewModel = DataContext.HierarchyEditorViewModel.RootNode;
+            DataContext.PropertyChanged += OnPropertyChanged;
         }
 
-        private void OnSelectResource(NodeViewModel node)
+        private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            DataContext.HierarchyEditorViewModel.SelectedNode = node;
+            if(e.PropertyName == "SelectedNode")
+            {
+                InvokeAsync(() => StateHasChanged());
+            }
         }
 
-        private string ResourceSelectedStyle = "selected";
-
-        private string ResourceUnselectedStyle = "unselected";
+        protected void OnLoadingFinished()
+        {
+            InvokeAsync(() => StateHasChanged());
+        }
 
     }
 }

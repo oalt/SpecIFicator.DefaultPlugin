@@ -1,9 +1,9 @@
-﻿<p>@DataContext.NodeViewModel.Level <ResourceIcon Icon="@DataContext.NodeViewModel.ReferencedResource.Icon"></ResourceIcon> @DataContext.NodeViewModel.Title</p>
-@if(!string.IsNullOrEmpty(DataContext.NodeViewModel.ReferencedResource.Diagram))
+﻿<p>@DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon> @DataContext.Title</p>
+@if(!string.IsNullOrEmpty(DataContext.ReferencedResource.Diagram))
 {
-    <div class="diagram">@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Diagram)</div>
+    <div class="diagram">@((MarkupString)DataContext.ReferencedResource.Diagram)</div>
 }
-@if(!string.IsNullOrEmpty(DataContext.NodeViewModel.ReferencedResource.Description))
+@if(!string.IsNullOrEmpty(DataContext.ReferencedResource.Description))
 {
-    <div>@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Description)</div>
+    <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
 }

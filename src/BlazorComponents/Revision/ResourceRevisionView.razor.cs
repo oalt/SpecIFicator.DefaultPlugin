@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using VisNetwork.Blazor.Models;
@@ -10,8 +6,26 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Revision
 {
     public partial class ResourceRevisionView
     {
-        [Parameter]
-        public ResourceViewModel DataContext { get; set; }
+        [CascadingParameter]
+        public HierarchyViewModel DataContext { get; set; }
+
+        private ResourceViewModel SelectedResource
+        {
+            get
+            {
+                ResourceViewModel result = null;
+
+                if (DataContext.SelectedNode != null)
+                {
+                    NodeViewModel nodeViewModel = DataContext.SelectedNode as NodeViewModel;
+                    if (nodeViewModel != null)
+                    {
+                        result = nodeViewModel.ReferencedResource;
+                    }
+                }
+                return result;
+            }
+        }
 
         public List<string> SelectedNodes { get; set; }
 

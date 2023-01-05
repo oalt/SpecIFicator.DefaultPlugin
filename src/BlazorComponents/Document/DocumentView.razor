@@ -1,31 +1,10 @@
-﻿@using SpecIFicator.Framework.Configuration
-@using SpecIFicator.Framework.CascadingValues
-@if (HierarchyViewModel.LinearResourceList != null)
+﻿@if (DataContext.LinearResourceList != null)
 {
     <div id="backgroundPanel">
         <div id="documentPanel">
-            @foreach (NodeViewModel item in HierarchyViewModel.LinearResourceList)
+            @foreach (NodeViewModel item in DataContext.LinearResourceList)
             {
-                Type itemType = DynamicConfigurationManager.GetComponentType("DocumentItem",
-                GetType().FullName,
-                item.RootResourceClassKey);
-
-                if (itemType != null)
-                {
-                    HierarchyContext itemDataContext = new HierarchyContext();
-                    itemDataContext.NodeViewModel = item;
-
-                    <div @onclick="@(() => OnSelectResource(item))"
-             class="@(item.IsSelected ? ResourceSelectedStyle : ResourceUnselectedStyle) documentItem">
-                        <CascadingValue Value="@itemDataContext">
-                            <DynamicComponent Type="@itemType"></DynamicComponent>
-                        </CascadingValue>
-                    </div>
-                }
-                else
-                {
-                    <strong>Item type not found.</strong>
-                }
+                <DocumentItemContainer DataContext="@item" OnLoadingFinished="OnLoadingFinished" />
             }
         </div>
     </div>

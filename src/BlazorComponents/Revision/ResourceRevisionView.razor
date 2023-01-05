@@ -1,8 +1,10 @@
 ﻿@using SpecIFicator.DefaultPlugin.BlazorComponents.Revision
+@using MDD4All.SpecIF.ViewModels
+
 
 <div id="container">
     <div id="revision-graph">
-        <RevisionGraph DataContext="@DataContext"
+        <RevisionGraph DataContext="@SelectedResource"
                        OnNodeSelectionChangeCallback="OnNodeSelectionChanged"></RevisionGraph>
     </div>
 
@@ -14,7 +16,7 @@
             if(SelectedNodes.Count == 1)
             {
                 // property viewer
-                ResourceViewModel resourceViewModel = DataContext.ResourceRevisionViewModel.GetSelectedResourceRevision(SelectedNodes[0]);
+                ResourceViewModel resourceViewModel = SelectedResource.ResourceRevisionViewModel.GetSelectedResourceRevision(SelectedNodes[0]);
 
                 <ResourcePanel ResourceViewModel="@resourceViewModel" />
             }
@@ -22,7 +24,7 @@
             {
                 
                 // diff viewer
-                ResourceViewModel resourceViewModel = DataContext.ResourceRevisionViewModel.GetSelectedResourceRevision(SelectedNodes[0]);
+                ResourceViewModel resourceViewModel = SelectedResource.ResourceRevisionViewModel.GetSelectedResourceRevision(SelectedNodes[0]);
 
                 <ResourceDiffViewer DataContext="@resourceViewModel" RevisionToCompare="@SelectedNodes[1]" />
                 

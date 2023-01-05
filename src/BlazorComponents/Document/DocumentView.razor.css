@@ -14,15 +14,4 @@
     flex-direction: column;
 }
 
-.documentItem {
-    width: 100%;
-    padding: 5px;
-}
 
-.selected {
-    background-color: gold;
-}
-
-.unselected {
-    background-color: transparent;
-}

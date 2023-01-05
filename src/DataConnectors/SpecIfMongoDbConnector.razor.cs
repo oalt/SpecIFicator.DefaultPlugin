@@ -1,10 +1,10 @@
 using MDD4All.Configuration;
 using MDD4All.Configuration.Contracts;
 using MDD4All.SpecIF.DataProvider.MongoDB;
+using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using SpecIFicator.DefaultPlugin.Configuration;
-using SpecIFicator.Framework.CascadingValues;
 using SpecIFicator.Framework.Contracts;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
@@ -37,7 +37,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
         }
 
         [CascadingParameter]
-        private SpecIfDataConnectorContext _dataContext { get; set; }
+        private DataConnectorViewModel DataContext { get; set; }
 
         private void HandleConnectClick()
         {
@@ -48,14 +48,14 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
                 configurationReaderWriter.StoreConfiguration(configuration);
             }
 
-            _dataContext.SpecIfDataProviderFactory.MetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
-            _dataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);
-            _dataContext.SpecIfDataProviderFactory.DataReader = new SpecIfMongoDbDataReader(ConnectionString);
-            _dataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfMongoDbDataWriter(ConnectionString,
-                                                                                                  _dataContext.SpecIfDataProviderFactory.MetadataReader,
-                                                                                                  _dataContext.SpecIfDataProviderFactory.DataReader);
+            DataContext.SpecIfDataProviderFactory.MetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
+            DataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);
+            DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfMongoDbDataReader(ConnectionString);
+            DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfMongoDbDataWriter(ConnectionString,
+                                                                                                  DataContext.SpecIfDataProviderFactory.MetadataReader,
+                                                                                                  DataContext.SpecIfDataProviderFactory.DataReader);
 
-            _dataContext.ConnectAction?.Invoke();
+            DataContext.ConnectCommand.Execute(null);
         }
     }
 }

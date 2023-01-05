@@ -102,6 +102,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             }
         }
 
+        private void IsLoadingChanged(bool value)
+        {
+            if (value == false)
+            {
+                InvokeAsync(() => StateHasChanged());
+            }
+        }
     }
 
     

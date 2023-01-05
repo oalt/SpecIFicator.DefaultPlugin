@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using SpecIFicator.Framework.Contracts;
-using SpecIFicator.Framework.CascadingValues;
 using MDD4All.SpecIF.DataProvider.File;
 using MDD4All.Configuration.Contracts;
 using SpecIFicator.DefaultPlugin.Configuration;
 using MDD4All.Configuration;
 using Microsoft.Extensions.Localization;
+using MDD4All.SpecIF.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
@@ -49,7 +44,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
         }
 
         [CascadingParameter]
-        private SpecIfDataConnectorContext _dataContext { get; set; }
+        private DataConnectorViewModel DataContext { get; set; }
 
         private void HandleConnectClick()
         {
@@ -64,11 +59,11 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
             ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(MetadataPath);
             ISpecIfDataReader dataReader = new SpecIfFileDataReader(DataPath);
 
-            _dataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
-            _dataContext.SpecIfDataProviderFactory.DataReader = dataReader;
-            _dataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
+            DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+            DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
+            DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
             
-            _dataContext.ConnectAction?.Invoke();
+            DataContext.ConnectCommand.Execute(null);
         }
 
 

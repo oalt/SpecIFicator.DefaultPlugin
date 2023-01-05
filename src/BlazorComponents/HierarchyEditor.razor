@@ -1,14 +1,13 @@
-﻿
-@using MDD4All.UI.BlazorComponents.TabControl
+﻿@using MDD4All.UI.BlazorComponents.TabControl
 @using MDD4All.UI.BlazorComponents.Tooltip
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Document
 @using SplitJs.Blazor.Components
 @using MDD4All.UI.BlazorComponents.Dialog
-@if (HierarchyEditorViewModel != null)
+@if (HierarchyViewModel != null)
 {
     <div class="mainPanel">
         
-        <MainToolBar HierarchyEditorViewModel="@HierarchyEditorViewModel"></MainToolBar>
+        <MainToolBar HierarchyEditorViewModel="@HierarchyViewModel"></MainToolBar>
 
         <div class="editorPanel">
             <SplitZone Style="height:100%;">
@@ -16,7 +15,7 @@
                     <Split MinSizePx="100" Size="20">
                         @if (_treeType != null)
                         {
-                            <CascadingValue Value="@HierarchyEditorContext">
+                            <CascadingValue Value="@HierarchyViewModel">
                                 <DynamicComponent Type="@_treeType"></DynamicComponent>
                             </CascadingValue>
                         }
@@ -28,7 +27,7 @@
                     <Split Size="80">
                         @if (_hierarchyViewType != null)
                         {
-                            <CascadingValue Value="@HierarchyEditorContext">
+                            <CascadingValue Value="@HierarchyViewModel">
                                 <DynamicComponent Type="@_hierarchyViewType"></DynamicComponent>
                             </CascadingValue>
                         }

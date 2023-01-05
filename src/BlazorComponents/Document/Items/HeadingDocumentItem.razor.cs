@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using SpecIFicator.Framework.CascadingValues;
+﻿using MDD4All.SpecIF.ViewModels;
+using Microsoft.AspNetCore.Components;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
@@ -8,7 +8,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
         public string Type => "SpecIF:Heading";
 
         [CascadingParameter]
-        public HierarchyContext DataContext { get; set; }
+        public NodeViewModel DataContext { get; set; }
 
         private string CssClass
         {
@@ -18,7 +18,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 
                 if(DataContext != null)
                 {
-                    switch(DataContext.NodeViewModel.Depth)
+                    switch(DataContext.Depth)
                     {
                         case 1:
                             result = "h1";

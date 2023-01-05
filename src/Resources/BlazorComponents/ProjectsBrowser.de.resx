@@ -132,6 +132,9 @@
   <data name="Label.Type" xml:space="preserve">
     <value>Typ</value>
   </data>
+  <data name="Text.Loading" xml:space="preserve">
+    <value>Lade Daten...</value>
+  </data>
   <data name="Title.CreateNewHierarchy" xml:space="preserve">
     <value>Neue Hierarchie...</value>
   </data>

@@ -1,15 +1,15 @@
 ﻿@using MDD4All.SpecIF.ViewModels
 @using MDD4All.SpecIF.DataModels.Manipulation
-<div id="@DataContext.NodeViewModel.ReferencedResource.Resource.ID">
+<div id="@DataContext.ReferencedResource.Resource.ID">
     <table width="100%" style="border:solid;border-width:1px">
         <tr style="border:solid;border-width:1px">
 
-            <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.NodeViewModel.ReferencedResource.StatusColor;"></td>
+            <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
             <td>
                 <div>
                     <strong>
-                        @DataContext.NodeViewModel.Level <ResourceIcon Icon="@DataContext.NodeViewModel.ReferencedResource.Icon"></ResourceIcon>
-                        @DataContext.NodeViewModel.Title
+                        @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
+                        @DataContext.Title
                     </strong>
                 </div>
             </td>
@@ -17,7 +17,7 @@
         <tr style="border:solid;border-width:1px">
            
             <td>
-                <div>@((MarkupString)DataContext.NodeViewModel.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.NodeViewModel.MetadataReader))</div>
+                <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader))</div>
             </td>
         </tr>
 

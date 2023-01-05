@@ -18,7 +18,6 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
         <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.6" />
-        <PackageReference Include="SplitJs.Blazor" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,6 +30,7 @@
         <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
         <ProjectReference Include="..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
+        <ProjectReference Include="..\..\SplitJs.Blazor\src\SplitJs.Blazor\SplitJs.Blazor.csproj" />
         <ProjectReference Include="..\..\Summernote\BlazingComponents.Summernote.csproj" />
     </ItemGroup>
 
@@ -42,6 +42,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Resources\BlazorComponents\Document\DocumentView.de.Designer.cs">
+        <DependentUpon>DocumentView.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\DocumentView.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DocumentView.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\FileExport.de.Designer.cs">
         <DependentUpon>FileExport.de.resx</DependentUpon>
         <DesignTime>True</DesignTime>
@@ -92,6 +102,46 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>ProjectsBrowser.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\RawViewer.de.Designer.cs">
+        <DependentUpon>RawViewer.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\ResourceView.de.Designer.cs">
+        <DependentUpon>ResourceView.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\ResourceView.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ResourceView.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Revision\ResourceRevisionView.de.Designer.cs">
+        <DependentUpon>ResourceRevisionView.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Revision\ResourceRevisionView.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ResourceRevisionView.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\StatementBrowser\StatementBrowser.de.Designer.cs">
+        <DependentUpon>StatementBrowser.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\StatementBrowser\StatementBrowser.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>StatementBrowser.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\RawViewer.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>RawViewer.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -101,6 +151,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\DocumentView.de.resx">
+        <LastGenOutput>DocumentView.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\DocumentView.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>DocumentView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\FileExport.de.resx">
         <LastGenOutput>FileExport.de.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
@@ -133,6 +191,34 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>ProjectsBrowser.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\RawViewer.de.resx">
+        <LastGenOutput>RawViewer.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\ResourceView.de.resx">
+        <LastGenOutput>ResourceView.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\ResourceView.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ResourceView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Revision\ResourceRevisionView.de.resx">
+        <LastGenOutput>ResourceRevisionView.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Revision\ResourceRevisionView.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ResourceRevisionView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\StatementBrowser\StatementBrowser.de.resx">
+        <LastGenOutput>StatementBrowser.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\StatementBrowser\StatementBrowser.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>StatementBrowser.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.resx">
         <LastGenOutput>SpecIfEaConnector.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
@@ -154,6 +240,10 @@
       <EmbeddedResource Update="Resources\BlazorComponents\HierarchyView.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>HierarchyView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\RawViewer.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>RawViewer.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 

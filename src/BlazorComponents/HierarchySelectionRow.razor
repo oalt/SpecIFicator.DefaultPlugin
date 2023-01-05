@@ -1,0 +1,27 @@
+﻿@if (IsLoading)
+{
+    <tr>
+        <td></td>
+        <td>@L["Text.Loading"]</td>
+        <td></td>
+        <td></td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td><ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon></td>
+        <td>@DataContext.Title</td>
+        <td>[@DataContext.ClassTitle]</td>
+        <td>
+            <Tooltip Text="@L["Button.EditHierarchy"]">
+                <a href="/pluginPage/3462ACA8-1AB1-442F-971B-975AF96E0017/@DataContext.HierarchyKey.ToString()"
+                   class="btn btn-sm btn-primary">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            </Tooltip>
+
+            <HierarchyMenu HierarchyKeyString=@DataContext.HierarchyKey.ToString() />
+        </td>
+    </tr>
+}

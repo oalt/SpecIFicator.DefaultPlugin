@@ -4,11 +4,11 @@ using SpecIFicator.Framework.Contracts;
 using MDD4All.Configuration.Contracts;
 using SpecIFicator.DefaultPlugin.Configuration;
 using MDD4All.Configuration;
-using SpecIFicator.Framework.CascadingValues;
 using EAAPI = EA;
 using MDD4All.SpecIF.DataProvider.EA;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.DataProvider.MongoDB;
+using MDD4All.SpecIF.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
@@ -58,7 +58,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
         }
 
         [CascadingParameter]
-        private SpecIfDataConnectorContext DataContext { get; set; }
+        private DataConnectorViewModel DataContext { get; set; }
 
         private void HandleConnectClick()
         {
@@ -105,7 +105,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
             }
 
-            DataContext.ConnectAction?.Invoke();
+            DataContext.ConnectCommand.Execute(null);
         }
     }
 }

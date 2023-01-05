@@ -2,117 +2,59 @@
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Document
 @using SpecIFicator.DefaultPlugin.BlazorComponents.StatementBrowser
 @using SpecIFicator.DefaultPlugin.BlazorComponents.Revision
+@using SpecIFicator.Framework.Configuration
+@using SpecIFicator.Framework.Configuration.DataModels
 @using SplitJs.Blazor.Components
+@using MDD4All.SpecIF.ViewModels;
 <TabControl>
-    <TabPage>
-        <Header>
-            <i class="bi bi-file-earmark-richtext"></i> @L["Label.DocumentTab"]
-        </Header>
-        <ChildContent>
-            <div class="tabPanel">
-                @if (_documentViewType != null)
+    @foreach(ComponentDefinition componentDefinition in ComponentDefinitions)
+    {
+        Key classKey = null;
+        IStringLocalizer stringLocalizer = L;
+        Type type = null;
+        string title = componentDefinition.Title;
+
+        if(SelectedNode != null)
+        {
+            classKey = SelectedNode.RootResourceClassKey;
+            type = DynamicConfigurationManager.GetComponentType(componentDefinition.Title, 
+                                                                GetType().FullName, 
+                                                                classKey);
+                
+            stringLocalizer = LocalizerFactory.Create(type);
+            title = stringLocalizer[componentDefinition.TitleKey];
+        }
+        <TabPage>
+            <Header>
+                <i class="@componentDefinition.Icon"></i> @title
+            </Header>
+            <ChildContent>
+                <div class="tabPanel">
+                @if(SelectedNode != null)
                 {
-                    <CascadingValue Value="@DataContext">
-                        <DynamicComponent Type="@_documentViewType"></DynamicComponent>
-                    </CascadingValue>
-                }
-                else
-                {
-                    <h1>No matching document view found!</h1>
-                }
-            </div>
-        </ChildContent>
-    </TabPage>
-    <TabPage>
-        <Header>
-            <i class="bi bi-card-text"></i> @L["Label.ResourceTab"]
-        </Header>
-        <ChildContent>
-            <div class="tabPanel">
-                @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
-                {
-                    <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
-                }
-                else
-                {
-                    @if (ResourceViewType != null)
+                    @if (type != null)
                     {
                         <CascadingValue Value="@DataContext">
-                            <DynamicComponent Type="@ResourceViewType"></DynamicComponent>
+                            <DynamicComponent Type="@type"></DynamicComponent>
                         </CascadingValue>
                     }
                     else
                     {
-                        <div class="noSelctionPanel">@L["Text.NoResourceViewerFound"]</div>
+                        <h1>No matching UI component found!</h1>
                     }
                 }
-            </div>
-        </ChildContent>
-    </TabPage>
-    <TabPage>
-        <Header>
-            <i class="bi bi-arrow-left-right"></i> @L["Label.Statements"]
-        </Header>
-        <ChildContent>
-            <div class="tabPanel">
-            @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
+                else
                 {
                     <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
                 }
-                else
-                {
-                    @if (ResourceViewType != null)
-                    {
-                        <CascadingValue Value="@DataContext">
-                            <StatementBrowser />
-                        </CascadingValue>
-                    }
-                    else
-                    {
-                        <div class="noSelctionPanel">@L["Text.NoResourceViewerFound"]</div>
-                    }
-                }
-            </div>
-        </ChildContent>
-    </TabPage>
-    <TabPage>
-        <Header>
-            <i class="bi bi-file-diff"></i> @L["Label.Revisions"]
-        </Header>
-        <ChildContent>
-            <div class="tabPanel">
-            @if (DataContext.HierarchyEditorViewModel.SelectedNode == null)
-            {
-                <div class="noSelctionPanel">@L["Text.NoResourceSelected"]</div>
-            }
-            else
-            {
-                <ResourceRevisionView DataContext="@DataContext.HierarchyEditorViewModel.SelectedNode.ReferencedResource" />
-            }
-            </div>
-        </ChildContent>
-    </TabPage>
-    <TabPage>
-        <Header>
-            <i class="bi bi-filetype-json"></i> @L["Label.RawViewTab"]
-        </Header>
-        <ChildContent>
-            <div class="tabPanel">
-                @if (_rawViewType != null)
-                {
-                    <CascadingValue Value="@DataContext">
-                        <DynamicComponent Type="@_rawViewType"></DynamicComponent>
-                    </CascadingValue>
-                }
-                else
-                {
-                    <div>No matching raw data viewer found.</div>
-                }
-            </div>
-        </ChildContent>
-    </TabPage>
-    
-</TabControl>
+                
+                </div>
+            </ChildContent>
+        </TabPage>
+    }
+     
+</TabControl>   
+
 
 
 

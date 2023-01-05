@@ -4,7 +4,7 @@ using SpecIFicator.Framework.Contracts;
 using MDD4All.Configuration.Contracts;
 using SpecIFicator.DefaultPlugin.Configuration;
 using MDD4All.Configuration;
-using SpecIFicator.Framework.CascadingValues;
+using MDD4All.SpecIF.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
@@ -43,7 +43,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
 
         [CascadingParameter]
-        private SpecIfDataConnectorContext DataContext { get; set; }
+        private DataConnectorViewModel DataContext { get; set; }
 
         private void HandleConnectClick()
         {
@@ -62,7 +62,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
             //DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
             //DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
 
-            DataContext.ConnectAction?.Invoke();
+            DataContext.ConnectCommand.Execute(null);
         }
     }
 }

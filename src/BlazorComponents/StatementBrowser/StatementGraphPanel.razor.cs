@@ -36,9 +36,23 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.StatementBrowser
 
         protected override void OnInitialized()
         {
+
             CurrentResourceViewModel = DataContext;
             GraphData = DataContext.StatementGraph;
             _networkOptions = DataContext.StatementGraphOptions;
+            CurrentResourceViewModel.PropertyChanged += OnPropertyChanged;
+
+        }
+
+        private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "StatementsInitialized")
+            {
+                InvokeAsync(() =>
+                {
+                    StateHasChanged();
+                });
+            }
         }
 
         private void OnNodeDoubleClick(ClickEvent clickEvent)
@@ -71,8 +85,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.StatementBrowser
 
         private void UpdateGraph(ResourceViewModel newViewModel)
         {
+            if (CurrentResourceViewModel != null)
+            {
+                CurrentResourceViewModel.PropertyChanged -= OnPropertyChanged;
+            }
             CurrentResourceViewModel = newViewModel;
             GraphData = CurrentResourceViewModel.StatementGraph;
+            CurrentResourceViewModel.PropertyChanged += OnPropertyChanged;
         }
     }
 }

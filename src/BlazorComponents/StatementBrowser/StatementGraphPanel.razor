@@ -1,4 +1,11 @@
 ﻿@using VisNetwork.Blazor
-<Network Id="StatementGraph" Data="@GraphData" 
-         Options="@NetworkOptions" 
-         OnDoubleClick="OnNodeDoubleClick" />
+@if(CurrentResourceViewModel.StatementsInitialized)
+{
+    <Network Id="StatementGraph" Data="@GraphData" 
+             Options="@NetworkOptions" 
+             OnDoubleClick="OnNodeDoubleClick" />
+}
+else
+{
+    <h2>Loading...</h2>
+}

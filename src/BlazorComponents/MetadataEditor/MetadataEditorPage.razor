@@ -1,4 +1,5 @@
 ﻿@using SpecIFicator.Framework.Shared
+@using SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
 @layout MetadataLayout
 <div id="main-panel">
     <div id="navbar">
@@ -8,16 +9,7 @@
         <div id="content-panel">
             @if (ActiveType == null)
             {
-                <h3>SpecIF-Metadata Management</h3>
-                <div>
-                    Browse and edit the SpecIF-Metadata:
-                    <ul>
-                        <li>Resource Classes</li>
-                        <li>Statement Classes</li>
-                        <li>Property Classes</li>
-                        <li>Data Types</li>
-                    </ul>
-                </div>
+                <DataImporter />
             }
             else
             {

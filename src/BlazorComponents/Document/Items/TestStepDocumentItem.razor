@@ -1,0 +1,22 @@
+﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions
+
+<table border="1" class="testStepTable">
+    <tr>
+        <td style="width: 50px">
+            @DataContext.Level
+            <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+        </td>
+        <td style="width:34%;">
+            <strong>@DataContext.ReferencedResource.Title</strong><br />
+            <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+        </td>
+
+        <td style="white-space: pre; width:30%">@((MarkupString)DataContext.ReferencedResource.TestData())</td>
+
+        <td style="width:30%;">@((MarkupString)DataContext.ReferencedResource.ExpectedResult())</td>
+
+    </tr>
+
+
+</table>
+

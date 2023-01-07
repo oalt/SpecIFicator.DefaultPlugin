@@ -1,0 +1,36 @@
+﻿<h3>@L["Label.ImportMetadata"]</h3>
+<div class="input-group mb-3">
+    <span class="input-group-text">@L["Label.FromGithub"]</span>
+    <select class="form-control" @onchange="OnFileSelectionChange">
+        <option value="">@L["Label.NothingSelected"]</option>
+        @foreach (KeyValuePair<string, string> fileEntry in DataContext.MetadataFiles)
+        {
+            <option value="@fileEntry.Value">@L[fileEntry.Key]</option>
+        }
+    </select>
+</div>
+<div class="input-group mb-3">
+    <span class="input-group-text">URL:</span>
+    <input class="form-control" @bind="DataContext.MetadataFileURL" />
+    <button type="button"
+            class="btn btn-success"
+            @onclick="() => DataContext.ImportSpecIfFromUrlCommand.Execute(null)">
+        @L["Button.Import"]
+    </button>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="flexCheckDefault" @bind="DataContext.OverrideExistingData">
+  <label class="form-check-label" for="flexCheckDefault">
+    @L["Label.OverrideExisting"]
+  </label>
+</div>
+@if (DataContext.IsImportingData)
+{
+    <div>
+        <span class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+
+        </span>
+        <span>&nbsp;@L[DataContext.ProgressMessageKey]</span>
+    </div>
+}

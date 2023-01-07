@@ -1,0 +1,29 @@
+﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions
+<h3>
+    <span>@DataContext.Level</span>
+    <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+    <span>@DataContext.ReferencedResource.Title</span>
+</h3>
+
+<table class="testCaseTable">
+    <tr style="background-color: #DADAFF;">
+        <td rowspan="3" style="width: 10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+
+        <td><strong>Test Case ID:</strong> @DataContext.ReferencedResource.Identifier</td>
+        <td><strong>Priority:</strong> @DataContext.ReferencedResource.Priority</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <strong>Description:</strong><br />
+            <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <strong>Precondition:</strong><br />
+            <div style="white-space: pre;">@DataContext.ReferencedResource.TestPrecondition()</div>
+        </td>
+    </tr>
+</table>
+
+

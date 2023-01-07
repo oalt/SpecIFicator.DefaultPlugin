@@ -2,7 +2,14 @@
     @foreach (ResourceClass resourceClass in AvailableResourceClasses)
     {
         Key key = new Key(resourceClass.ID, resourceClass.Revision);
-        <option value="@key.ToString()"><ResourceIcon Icon="@resourceClass.Icon"></ResourceIcon> @resourceClass.Title</option>
+        string resourceClassRevision = @resourceClass.Revision;
+        if(resourceClassRevision.Length > 10)
+        {
+            resourceClassRevision = resourceClassRevision.Substring(0, 9) + "…";
+        }
+        string displayedValue = resourceClass.Title + " [" + resourceClassRevision + "]";
+
+        <option value="@key.ToString()"><ResourceIcon Icon="@resourceClass.Icon"></ResourceIcon> @displayedValue</option>
     }
 </select>
 

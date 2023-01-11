@@ -1,3 +1,4 @@
+using MDD4All.FileAccess.Contracts;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
@@ -16,13 +17,17 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
         [Inject]
         private ISpecIfDataProviderFactory SpecIfDataProviderFactory { get; set; }
 
+        [Inject]
+        private IFileLoader FileLoader { get; set; }
+
         private DataImportViewModel DataContext { get; set; }
 
         protected override void OnInitialized()
         {
             DataContext = new DataImportViewModel(HttpClientFactory, 
                                                   SpecIfDataProviderFactory.MetadataWriter, 
-                                                  SpecIfDataProviderFactory.DataWriter);
+                                                  SpecIfDataProviderFactory.DataWriter,
+                                                  FileLoader);
 
             DataContext.PropertyChanged += OnPropertyChanged;
         }
@@ -40,6 +45,17 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
             DataContext.MetadataFileURL = changeEventArguments.Value.ToString();   
         }
 
-        
+        private void OnSelectFileClicked()
+        {
+            // Show a modal dialog after the current event handler is completed,
+            // to avoid potential reentrancy caused by running a nested message loop in the WebView2 event handler.
+            // https://github.com/MicrosoftEdge/WebView2Feedback/issues/2542
+            SynchronizationContext.Current?.Post((_) =>
+            {
+                DataContext.SelectFileCommand.Execute(null);
+                StateHasChanged();
+            }, null);
+        }
+
     }
 }

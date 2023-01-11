@@ -120,4 +120,52 @@
   <data name="Button.Import" xml:space="preserve">
     <value>Import</value>
   </data>
+  <data name="Button.SelectFile" xml:space="preserve">
+    <value>Select file...</value>
+  </data>
+  <data name="Error.Download" xml:space="preserve">
+    <value>Error downloading data.</value>
+  </data>
+  <data name="Error.ImportError" xml:space="preserve">
+    <value>Error importing data.</value>
+  </data>
+  <data name="Error.SpecIfParsing" xml:space="preserve">
+    <value>Error parsing SpecIF data.</value>
+  </data>
+  <data name="File.SpecIF1_1Release" xml:space="preserve">
+    <value>SpecIF 1.1 - Released</value>
+  </data>
+  <data name="File.SpecIF1_2Dev" xml:space="preserve">
+    <value>SpecIF 1.2 - Development</value>
+  </data>
+  <data name="File.SpecIF1_2DevNonNormative" xml:space="preserve">
+    <value>SpecIF 1.2 - Development, Non normative</value>
+  </data>
+  <data name="Label.FromGithub" xml:space="preserve">
+    <value>Metadata on GitHub</value>
+  </data>
+  <data name="Label.ImportData" xml:space="preserve">
+    <value>Import SpecIF data</value>
+  </data>
+  <data name="Label.ImportFromFile" xml:space="preserve">
+    <value>Import data from SpecIF file</value>
+  </data>
+  <data name="Label.ImportFromURL" xml:space="preserve">
+    <value>Import data from URL (download)</value>
+  </data>
+  <data name="Label.NothingSelected" xml:space="preserve">
+    <value>Nothing selected</value>
+  </data>
+  <data name="Label.OverrideExisting" xml:space="preserve">
+    <value>Override existing elements with same key</value>
+  </data>
+  <data name="Message.Downloading" xml:space="preserve">
+    <value>Downloading data...</value>
+  </data>
+  <data name="Message.ImportingData" xml:space="preserve">
+    <value>Importing data...</value>
+  </data>
+  <data name="Message.ImportSuccess" xml:space="preserve">
+    <value>Data successfully imported.</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<h3>@L["Label.ImportMetadata"]</h3>
+﻿<h3>@L["Label.ImportData"]</h3>
 <div class="input-group mb-3">
     <span class="input-group-text">@L["Label.FromGithub"]</span>
     <select class="form-control" @onchange="OnFileSelectionChange">
@@ -9,21 +9,49 @@
         }
     </select>
 </div>
-<div class="input-group mb-3">
-    <span class="input-group-text">URL:</span>
-    <input class="form-control" @bind="DataContext.MetadataFileURL" />
-    <button type="button"
-            class="btn btn-success"
-            @onclick="() => DataContext.ImportSpecIfFromUrlCommand.Execute(null)">
-        @L["Button.Import"]
-    </button>
+
+<div class="mb-3">
+    <label for="formUrl" class="form-label">@L["Label.ImportFromURL"]</label>
+    <div class="input-group mb-3">
+        <span class="input-group-text">URL:</span>
+        <input class="form-control"
+               id="formUrl"
+               @bind="DataContext.MetadataFileURL" />
+        <button type="button"
+                class="btn btn-success"
+                @onclick="() => DataContext.ImportSpecIfFromUrlCommand.Execute(null)">
+            @L["Button.Import"]
+        </button>
+    </div>
 </div>
+
+<div class="mb-3">
+    <label for="formFile" class="form-label">@L["Label.ImportFromFile"]</label>
+    <div class="input-group mb-3">
+        <button type="button"
+                class="btn btn-primary"
+                @onclick="OnSelectFileClicked">
+            @L["Button.SelectFile"]
+        </button>
+        <input class="form-control"
+               id="formFile"
+               @bind="DataContext.LocalFilename"
+               readonly>
+        <button type="button"
+                class="btn btn-success"
+                @onclick="() => DataContext.ImportSpecIfFromFileCommand.Execute(null)">
+            @L["Button.Import"]
+        </button>
+    </div>
+</div>
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="flexCheckDefault" @bind="DataContext.OverrideExistingData">
-  <label class="form-check-label" for="flexCheckDefault">
-    @L["Label.OverrideExisting"]
-  </label>
+    <input class="form-check-input" type="checkbox" id="flexCheckDefault" @bind="DataContext.OverrideExistingData">
+    <label class="form-check-label" for="flexCheckDefault">
+        @L["Label.OverrideExisting"]
+    </label>
 </div>
+
 @if (DataContext.IsImportingData)
 {
     <div>
@@ -33,4 +61,25 @@
         </span>
         <span>&nbsp;@L[DataContext.ProgressMessageKey]</span>
     </div>
+}
+
+@if(!string.IsNullOrEmpty(DataContext.SuccessMessageKey))
+{
+    <div class="successMessage">
+        <span>@L[DataContext.SuccessMessageKey]</span>
+    </div>
+}
+
+@if(!string.IsNullOrEmpty(DataContext.ErrorMessageKey))
+{
+    <div class="errorMessage">
+        <span>@L[DataContext.ErrorMessageKey]</span>
+    </div>
+    @if(@DataContext.Exception != null)
+    {
+        <div>
+            <span>@DataContext.Exception.ToString()</span><br />
+            <span>@DataContext.Exception.StackTrace</span>
+        </div>
+    }
 }

@@ -69,5 +69,149 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.MetadataEditor {
                 return ResourceManager.GetString("Button.Import", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select file... ähnelt.
+        /// </summary>
+        internal static string Button_SelectFile {
+            get {
+                return ResourceManager.GetString("Button.SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error downloading data. ähnelt.
+        /// </summary>
+        internal static string Error_Download {
+            get {
+                return ResourceManager.GetString("Error.Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error importing data. ähnelt.
+        /// </summary>
+        internal static string Error_ImportError {
+            get {
+                return ResourceManager.GetString("Error.ImportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error parsing SpecIF data. ähnelt.
+        /// </summary>
+        internal static string Error_SpecIfParsing {
+            get {
+                return ResourceManager.GetString("Error.SpecIfParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SpecIF 1.1 - Released ähnelt.
+        /// </summary>
+        internal static string File_SpecIF1_1Release {
+            get {
+                return ResourceManager.GetString("File.SpecIF1_1Release", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SpecIF 1.2 - Development ähnelt.
+        /// </summary>
+        internal static string File_SpecIF1_2Dev {
+            get {
+                return ResourceManager.GetString("File.SpecIF1_2Dev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SpecIF 1.2 - Development, Non normative ähnelt.
+        /// </summary>
+        internal static string File_SpecIF1_2DevNonNormative {
+            get {
+                return ResourceManager.GetString("File.SpecIF1_2DevNonNormative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Metadata on GitHub ähnelt.
+        /// </summary>
+        internal static string Label_FromGithub {
+            get {
+                return ResourceManager.GetString("Label.FromGithub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import SpecIF data ähnelt.
+        /// </summary>
+        internal static string Label_ImportData {
+            get {
+                return ResourceManager.GetString("Label.ImportData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import data from SpecIF file ähnelt.
+        /// </summary>
+        internal static string Label_ImportFromFile {
+            get {
+                return ResourceManager.GetString("Label.ImportFromFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import data from URL (download) ähnelt.
+        /// </summary>
+        internal static string Label_ImportFromURL {
+            get {
+                return ResourceManager.GetString("Label.ImportFromURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nothing selected ähnelt.
+        /// </summary>
+        internal static string Label_NothingSelected {
+            get {
+                return ResourceManager.GetString("Label.NothingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Override existing elements with same key ähnelt.
+        /// </summary>
+        internal static string Label_OverrideExisting {
+            get {
+                return ResourceManager.GetString("Label.OverrideExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Downloading data... ähnelt.
+        /// </summary>
+        internal static string Message_Downloading {
+            get {
+                return ResourceManager.GetString("Message.Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Importing data... ähnelt.
+        /// </summary>
+        internal static string Message_ImportingData {
+            get {
+                return ResourceManager.GetString("Message.ImportingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Data successfully imported. ähnelt.
+        /// </summary>
+        internal static string Message_ImportSuccess {
+            get {
+                return ResourceManager.GetString("Message.ImportSuccess", resourceCulture);
+            }
+        }
     }
 }

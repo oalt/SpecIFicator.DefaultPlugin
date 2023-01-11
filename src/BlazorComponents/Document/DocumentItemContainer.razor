@@ -1,8 +1,12 @@
 ﻿@using SpecIFicator.Framework.Configuration
+<div @ref=ElementReference>
 @if (DataContext.IsLoading)
 {
-    <div class="placeholder-glow">
+    <div>
+        @DataContext.Level
+    <span class="placeholder-glow">
       <span class="placeholder col-7"></span>
+    </span>
     </div>
 }
 else
@@ -26,3 +30,4 @@ else
     }
 
 }
+</div>

@@ -1,15 +1,24 @@
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.ComponentModel;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
 {
     public partial class DocumentItemContainer
     {
+        [Inject]
+        IJSRuntime JsRuntime { get; set; }
+
         [Parameter]
         public NodeViewModel DataContext { get; set; }
 
-        [Parameter] 
+        private HierarchyViewModel ParentViewModel { get; set; }
+
+        [Parameter]
         public EventCallback OnLoadingFinished { get; set; }
+
+        ElementReference ElementReference { get; set; }
 
         private void OnSelectResource(NodeViewModel node)
         {
@@ -23,13 +32,36 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
         protected override void OnInitialized()
         {
             DataContext.PropertyChanged += DataContextPropertyChanged;
+
+            if (DataContext.Tree != null && DataContext.Tree is HierarchyViewModel)
+            {
+                ParentViewModel = (HierarchyViewModel)DataContext.Tree;
+                ParentViewModel.PropertyChanged += OnSelectionChanged;
+            }
+        }
+
+        private void OnSelectionChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (DataContext.IsSelected)
+            {
+                InvokeAsync(() =>
+                {
+                    ScrollToElementAsync();
+                });
+
+            }
+        }
+
+        private async Task ScrollToElementAsync()
+        {
+            await JsRuntime.InvokeVoidAsync("ScrollElementIntoView", ElementReference);
         }
 
         private void DataContextPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "IsLoading")
+            if (e.PropertyName == "IsLoading")
             {
-                if(DataContext.IsLoading == false)
+                if (DataContext.IsLoading == false)
                 {
                     InvokeAsync(() =>
                     {
@@ -37,7 +69,9 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
                     });
                 }
             }
-            
+
+
+
         }
     }
 }

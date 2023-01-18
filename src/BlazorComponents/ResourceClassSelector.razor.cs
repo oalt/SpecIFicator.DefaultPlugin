@@ -45,11 +45,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         {
             MetadataReader = DataProviderFactory.MetadataReader;
 
-            ResourceClass firstResourceClass = AvailableResourceClasses[0];
+            if (AvailableResourceClasses != null && AvailableResourceClasses.Any())
+            {
+                ResourceClass firstResourceClass = AvailableResourceClasses[0];
 
-            _selectedResourceClass = new Key(firstResourceClass.ID, firstResourceClass.Revision);
+                _selectedResourceClass = new Key(firstResourceClass.ID, firstResourceClass.Revision);
 
-            await SelectedResourceClassKeyChanged.InvokeAsync(_selectedResourceClass);
+                await SelectedResourceClassKeyChanged.InvokeAsync(_selectedResourceClass);
+            }
         }
 
         private async Task OnHierarchySelectionChange(ChangeEventArgs args)

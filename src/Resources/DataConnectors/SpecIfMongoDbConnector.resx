@@ -123,4 +123,10 @@
   <data name="Label.ConnectionString" xml:space="preserve">
     <value>Connection string</value>
   </data>
+  <data name="Message.Connecting" xml:space="preserve">
+    <value>Connecting to data base...</value>
+  </data>
+  <data name="Message.Initializing" xml:space="preserve">
+    <value>Initializing database for SpecIF...</value>
+  </data>
 </root>

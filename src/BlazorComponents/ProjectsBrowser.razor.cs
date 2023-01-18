@@ -51,9 +51,12 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             DataReader = DataProviderFactory.DataReader;
             DataWriter = DataProviderFactory.DataWriter;
 
-            ResourceClass firstResourceClass = AvailableResourceClasses[0];
+            if (AvailableResourceClasses != null && AvailableResourceClasses.Any())
+            {
+                ResourceClass firstResourceClass = AvailableResourceClasses[0];
 
-            SelectedResourceClassKey = new Key(firstResourceClass.ID, firstResourceClass.Revision);
+                SelectedResourceClassKey = new Key(firstResourceClass.ID, firstResourceClass.Revision);
+            }
 
             _projectsViewModel = new ProjectsViewModel(MetadataReader, DataWriter, DataReader);
         }

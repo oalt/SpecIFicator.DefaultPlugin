@@ -1,6 +1,7 @@
 using MDD4All.Configuration;
 using MDD4All.Configuration.Contracts;
 using MDD4All.SpecIF.DataProvider.MongoDB;
+using MDD4All.SpecIF.DataProvider.MongoDB.Setup;
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
@@ -14,48 +15,76 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
         [Inject]
         private IStringLocalizer<SpecIfMongoDbConnector> L { get; set; }
 
-        public static string Title = "MongoDB";
-
-        public string ConnectionString { get; set; } = "mongodb://127.0.0.1:27017";
-
-        private IConfigurationReaderWriter<MongoDbConnectorConfiguration> configurationReaderWriter;
-
-        private MongoDbConnectorConfiguration configuration;
-
-        protected override void OnInitialized()
-        {
-            configurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>();
-
-            configuration = configurationReaderWriter.GetConfiguration();
-
-            if (configuration == null)
-            {
-                configuration = new MongoDbConnectorConfiguration();
-            }
-
-            ConnectionString = configuration.ConnectionString;
-        }
-
         [CascadingParameter]
         private DataConnectorViewModel DataContext { get; set; }
 
-        private void HandleConnectClick()
-        {
+        public static string Title = "MongoDB";
 
-            if (configuration != null && configurationReaderWriter != null)
+        private string ConnectionString { get; set; } = "mongodb://127.0.0.1:27017";
+
+        private IConfigurationReaderWriter<MongoDbConnectorConfiguration> _configurationReaderWriter;
+
+        private MongoDbConnectorConfiguration _configuration;
+
+        protected override void OnInitialized()
+        {
+            _configurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>();
+
+            _configuration = _configurationReaderWriter.GetConfiguration();
+
+            if (_configuration == null)
             {
-                configuration.ConnectionString = ConnectionString;
-                configurationReaderWriter.StoreConfiguration(configuration);
+                _configuration = new MongoDbConnectorConfiguration();
             }
 
-            DataContext.SpecIfDataProviderFactory.MetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
-            DataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);
-            DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfMongoDbDataReader(ConnectionString);
-            DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfMongoDbDataWriter(ConnectionString,
-                                                                                                  DataContext.SpecIfDataProviderFactory.MetadataReader,
-                                                                                                  DataContext.SpecIfDataProviderFactory.DataReader);
+            ConnectionString = _configuration.ConnectionString;
 
-            DataContext.ConnectCommand.Execute(null);
+            DataContext.PropertyChanged += OnPropertyChanged;
         }
+
+        private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        }
+
+        private async void HandleConnectClickAsync()
+        {
+            await Task.Run(() =>
+            {
+                DataContext.IsConnecting = true;
+
+                DataContext.StatusMessageKey = "Message.Connecting";
+
+                if (_configuration != null && _configurationReaderWriter != null)
+                {
+                    _configuration.ConnectionString = ConnectionString;
+                    _configurationReaderWriter.StoreConfiguration(_configuration);
+                }
+
+                DataContext.SpecIfDataProviderFactory.MetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
+                DataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);
+                DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfMongoDbDataReader(ConnectionString);
+                DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfMongoDbDataWriter(ConnectionString,
+                                                                                               DataContext.SpecIfDataProviderFactory.MetadataReader,
+                                                                                               DataContext.SpecIfDataProviderFactory.DataReader);
+
+                AdminDatabaseInitializer adminDatabaseInitializer = new AdminDatabaseInitializer(ConnectionString);
+
+                if (!adminDatabaseInitializer.AdminDbExists())
+                {
+                    DataContext.StatusMessageKey = "Message.Initializing";
+                    adminDatabaseInitializer.InitalizeAdminData();
+                }
+
+                DataContext.IsConnecting = false;
+
+                DataContext.ConnectCommand.Execute(null);
+            });
+
+        }
+
     }
 }

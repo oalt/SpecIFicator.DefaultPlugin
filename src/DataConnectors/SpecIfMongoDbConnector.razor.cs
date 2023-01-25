@@ -1,5 +1,7 @@
 using MDD4All.Configuration;
 using MDD4All.Configuration.Contracts;
+using MDD4All.SpecIF.DataProvider.Base.Cache;
+using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.DataProvider.MongoDB;
 using MDD4All.SpecIF.DataProvider.MongoDB.Setup;
 using MDD4All.SpecIF.ViewModels;
@@ -64,7 +66,11 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
                     _configurationReaderWriter.StoreConfiguration(_configuration);
                 }
 
-                DataContext.SpecIfDataProviderFactory.MetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
+                ISpecIfMetadataReader mongoDbMetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
+
+                ISpecIfMetadataReader cachedMetadaReader = new CachedSpecIfMetadataReader(mongoDbMetadataReader);
+
+                DataContext.SpecIfDataProviderFactory.MetadataReader = cachedMetadaReader;
                 DataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);
                 DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfMongoDbDataReader(ConnectionString);
                 DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfMongoDbDataWriter(ConnectionString,

@@ -25,6 +25,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
         protected override void OnInitialized()
         {
             DataContext = new DataImportViewModel(HttpClientFactory, 
+                                                  SpecIfDataProviderFactory.MetadataReader,
                                                   SpecIfDataProviderFactory.MetadataWriter, 
                                                   SpecIfDataProviderFactory.DataWriter,
                                                   FileLoader);

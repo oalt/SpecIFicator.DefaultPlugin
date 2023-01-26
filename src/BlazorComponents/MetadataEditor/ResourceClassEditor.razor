@@ -1,24 +1,24 @@
 ﻿@using MDD4All.SpecIF.ViewModels.Metadata
-<h3><span class="bi bi-heptagon-fill" aria-hidden="true"></span>&nbsp;Edit Resource Class</h3>
+<h3><span class="bi bi-heptagon-fill" aria-hidden="true"></span>&nbsp;@L["Title.EditResourceClass"]</h3>
 
 <form>
     <div class="mb-3">
-        <label for="id" class="form-label">ID</label>
+        <label for="id" class="form-label">@L["Label.ID"]</label>
         <input type="text" class="form-control" id="id"
                @bind="DataContext.ResourceClassUnderEdit.ResourceClass.ID" />
     </div>
     <div class="mb-3">
-        <label for="revision" class="form-label">Revision</label>
+        <label for="revision" class="form-label">@L["Label.Revision"]</label>
         <input type="text" class="form-control" id="revision"
                @bind="DataContext.ResourceClassUnderEdit.ResourceClass.Revision">
     </div>
     <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="title" class="form-label">@L["Label.Title"]</label>
         <input type="text" class="form-control" id="title"
                @bind="DataContext.ResourceClassUnderEdit.ResourceClass.Title">
     </div>
     <div class="mb-3">
-        <label for="propertyClasses" class="form-label">Property Classes</label>
+        <label for="propertyClasses" class="form-label">@L["Title.PropertyClasses"]</label>
         <div class="input-group">
             <select class="form-select"
                     id="propertyClasses"
@@ -45,18 +45,18 @@
 
     </div>
     <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+        <label for="description" class="form-label">@L["Label.Description"]</label>
         <input type="text" class="form-control" id="description"
                @bind="DataContext.ResourceClassUnderEdit.Description">
     </div>
     <button type="submit" class="btn btn-primary"
             @onclick="() => DataContext.SaveResourceClassAsNewCommand.Execute(null)">
-        Save
+        @L["Button.Save"]
     </button>
 
     <button type="button" class="btn btn-light"
             @onclick="() => DataContext.CancelEditOperationCommand.Execute(null)">
-        Cancel
+        @L["Button.Cancel"]
     </button>
 
 </form>

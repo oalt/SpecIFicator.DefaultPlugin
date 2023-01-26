@@ -7,7 +7,7 @@
         {
             resourceClassRevision = resourceClassRevision.Substring(0, 9) + "…";
         }
-        string displayedValue = resourceClass.Title + " [" + resourceClassRevision + "]";
+        string displayedValue = resourceClass.Title + " (" + resourceClassRevision + ")";
 
         <option value="@key.ToString()"><ResourceIcon Icon="@resourceClass.Icon"></ResourceIcon> @displayedValue</option>
     }

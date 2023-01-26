@@ -2,11 +2,15 @@ using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
 using MDD4All.SpecIF.ViewModels.Metadata;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
 {
     public partial class ResourceClassEditor
     {
+        [Inject]
+        private IStringLocalizer<MetadataEditorPage> L { get; set; }
+
         [Parameter]
         public ResourceClassesViewModel DataContext { get; set; }
 

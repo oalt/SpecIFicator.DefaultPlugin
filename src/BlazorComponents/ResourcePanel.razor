@@ -2,10 +2,22 @@
 
 @if (ResourceViewModel != null)
 {
+    
+    string resourceClass = ResourceViewModel.ClassRevision;
+    if(!string.IsNullOrEmpty(resourceClass))
+    {
+        resourceClass = " (" + resourceClass + ")";
+    }
+    else
+    {
+        resourceClass = "";
+    }
+    
+
     <div class="resourcePanel">
         <fieldset class="resourceFieldset">
             <legend>
-                <strong>Resource [@ResourceViewModel.Type]</strong>
+                <strong>Resource <ResourceIcon Icon="@ResourceViewModel.Icon" /> [@ResourceViewModel.Type@resourceClass]</strong>
             </legend>
 
 

@@ -126,4 +126,10 @@
   <data name="Label.MongoDbConnectionString" xml:space="preserve">
     <value>MongoDB Connection</value>
   </data>
+  <data name="Message.OpeningModel" xml:space="preserve">
+    <value>Opening Enterprise Architect model...</value>
+  </data>
+  <data name="Message.ProvidingData" xml:space="preserve">
+    <value>Providing model data...</value>
+  </data>
 </root>

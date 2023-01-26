@@ -10,7 +10,6 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
     public partial class SpecIfWebApiConnector : ISpecIfDataConnector
     {
-
         [Inject]
         private IStringLocalizer<SpecIfWebApiConnector> L { get; set; }
 

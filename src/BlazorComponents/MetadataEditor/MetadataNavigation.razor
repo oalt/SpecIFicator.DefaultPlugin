@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 <div class="top-row ps-3 navbar">
     <div class="container-fluid">
-        <div class="navbar-title">SpecIF-Metadata</div>
+        <div class="navbar-title">@L["Title:SpecIfMetadata"]</div>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,22 +12,22 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" Match="NavLinkMatch.All" @onclick="() => UpdateSelectedTypeAsync(typeof(ResourceClassBrowser))">
-                <span class="bi bi-heptagon-fill" aria-hidden="true"></span>&nbsp; Resource Classes
+                <span class="bi bi-heptagon-fill" aria-hidden="true"></span>&nbsp; @L["Title.ResourceClasses"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" @onclick="() => UpdateSelectedTypeAsync(typeof(StatementClassBrowser))">
-                <span class="bi bi-arrow-left-right" aria-hidden="true"></span>&nbsp; Statement Classes
+                <span class="bi bi-arrow-left-right" aria-hidden="true"></span>&nbsp; @L["Title.StatementClasses"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" @onclick="() => UpdateSelectedTypeAsync(typeof(PropertyClassBrowser))">
-                <span class="bi bi-card-text" aria-hidden="true"></span>&nbsp; Property Classes
+                <span class="bi bi-card-text" aria-hidden="true"></span>&nbsp; @L["Title.PropertyClasses"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" @onclick="() => UpdateSelectedTypeAsync(typeof(DataTypesBrowser))">
-                <span class="bi bi-code-slash" aria-hidden="true"></span>&nbsp; Data Types
+                <span class="bi bi-code-slash" aria-hidden="true"></span>&nbsp; @L["Title.DataTypes"]
             </NavLink>
         </div>
     </nav>

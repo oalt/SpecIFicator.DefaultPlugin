@@ -1,6 +1,6 @@
 ﻿<h3>@L["Label.ImportData"]</h3>
 <div class="input-group mb-3">
-    <span class="input-group-text">@L["Label.FromGithub"]</span>
+    <span class="input-group-text"><i class="bi bi-github"></i>&nbsp;@L["Label.FromGithub"]</span>
     <select class="form-control" @onchange="OnFileSelectionChange">
         <option value="">@L["Label.NothingSelected"]</option>
         @foreach (KeyValuePair<string, string> fileEntry in DataContext.MetadataFiles)
@@ -13,7 +13,7 @@
 <div class="mb-3">
     <label for="formUrl" class="form-label">@L["Label.ImportFromURL"]</label>
     <div class="input-group mb-3">
-        <span class="input-group-text">URL:</span>
+        <span class="input-group-text"><i class="bi bi-download"></i>&nbsp;URL:</span>
         <input class="form-control"
                id="formUrl"
                @bind="DataContext.MetadataFileURL" />
@@ -44,7 +44,7 @@
         </button>
     </div>
 </div>
-
+<h4>@L["Title.Options"]</h4>
 <div class="form-check">
     <input class="form-check-input" type="checkbox" id="flexCheckDefault" @bind="DataContext.OverrideExistingData">
     <label class="form-check-label" for="flexCheckDefault">

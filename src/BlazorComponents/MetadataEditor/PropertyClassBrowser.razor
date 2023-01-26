@@ -8,7 +8,7 @@
 }
 else
 {
-<h3><span class="bi bi-card-text" aria-hidden="true"></span>&nbsp;Property Class Browser</h3>
+<h3><span class="bi bi-card-text" aria-hidden="true"></span>&nbsp;@L["Title.PropertyClassBrowser"]</h3>
 <div>
     <button type="button" class="btn btn-success"
             @onclick="() => DataContext.AddPropertyClassCommand.Execute(null)">
@@ -21,11 +21,12 @@ else
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Data Type</th>
-            <th>ID</th>
-            <th>Revision</th>
-            <th>Description</th>
+            <th>@L["Label.Title"]</th>
+            <th>@L["Label.DataType"]</th>
+            <th>@L["Label.ID"]</th>
+            <th>@L["Label.Revision"]</th>
+            <th>@L["Label.Description"]</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

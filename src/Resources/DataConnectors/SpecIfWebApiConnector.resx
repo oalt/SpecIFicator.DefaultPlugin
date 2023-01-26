@@ -117,73 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Button.Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="Label.ApiKey" xml:space="preserve">
+    <value>API Key</value>
   </data>
-  <data name="Button.NewPropertyClass" xml:space="preserve">
-    <value>New Property Class</value>
+  <data name="Label.ApiURL" xml:space="preserve">
+    <value>URL</value>
   </data>
-  <data name="Button.NewResourceClass" xml:space="preserve">
-    <value>New Resource Class</value>
+  <data name="Label.Connect" xml:space="preserve">
+    <value>Connect</value>
   </data>
-  <data name="Button.NewStatementClass" xml:space="preserve">
-    <value>New Statement Class</value>
-  </data>
-  <data name="Button.Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Label.DataType" xml:space="preserve">
-    <value>Data Type</value>
-  </data>
-  <data name="Label.Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Label.Icon" xml:space="preserve">
-    <value>Icon</value>
-  </data>
-  <data name="Label.ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="Label.Revision" xml:space="preserve">
-    <value>Revision</value>
-  </data>
-  <data name="Label.Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="Label.Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Title.DataTypes" xml:space="preserve">
-    <value>Data Types</value>
-  </data>
-  <data name="Title.EditPropertyClass" xml:space="preserve">
-    <value>Edit Property Class</value>
-  </data>
-  <data name="Title.EditResourceClass" xml:space="preserve">
-    <value>Edit Resource Class</value>
-  </data>
-  <data name="Title.MetadataEditor" xml:space="preserve">
-    <value>Metadata</value>
-  </data>
-  <data name="Title.PropertyClassBrowser" xml:space="preserve">
-    <value>Property Class Browser</value>
-  </data>
-  <data name="Title.PropertyClasses" xml:space="preserve">
-    <value>Property Classes</value>
-  </data>
-  <data name="Title.ResourceClassBrowser" xml:space="preserve">
-    <value>Resource Class Browser</value>
-  </data>
-  <data name="Title.ResourceClasses" xml:space="preserve">
-    <value>Resource Classes</value>
-  </data>
-  <data name="Title.StatementClassBrowser" xml:space="preserve">
-    <value>Statement Class Browser</value>
-  </data>
-  <data name="Title.StatementClasses" xml:space="preserve">
-    <value>Statement Classes</value>
-  </data>
-  <data name="Title:SpecIfMetadata" xml:space="preserve">
-    <value>SpecIF-Metadata</value>
+  <data name="Label.ConnectorTitle" xml:space="preserve">
+    <value>SpecIF Web-API</value>
   </data>
 </root>

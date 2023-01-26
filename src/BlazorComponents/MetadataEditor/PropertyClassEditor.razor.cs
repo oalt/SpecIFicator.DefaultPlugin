@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Components;
 using MDD4All.SpecIF.ViewModels.Metadata;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
+using Microsoft.Extensions.Localization;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
 {
     public partial class PropertyClassEditor
     {
+        [Inject]
+        private IStringLocalizer<MetadataEditorPage> L { get; set; }
 
         [Parameter]
         public PropertyClassesViewModel DataContext { get; set; }

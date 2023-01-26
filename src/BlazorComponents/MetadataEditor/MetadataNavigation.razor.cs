@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.MetadataEditor
 {
     public partial class MetadataNavigation
     {
+        [Inject]
+        private IStringLocalizer<MetadataEditorPage> L { get; set; }
+
         [Parameter]
         public Type SelectedComponentType { get; set; }
 

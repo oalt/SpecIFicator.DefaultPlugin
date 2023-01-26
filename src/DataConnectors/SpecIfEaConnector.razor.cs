@@ -9,6 +9,7 @@ using MDD4All.SpecIF.DataProvider.EA;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.DataProvider.MongoDB;
 using MDD4All.SpecIF.ViewModels;
+using System.ComponentModel;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
@@ -55,57 +56,79 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
             }
 
             MongoDbConnectionString = _mongoDbConnectorConfiguration.ConnectionString;
+
+            DataContext.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object? sender, PropertyChangedEventArgs arguments)
+        {
+            InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
         }
 
         [CascadingParameter]
         private DataConnectorViewModel DataContext { get; set; }
 
-        private void HandleConnectClick()
+        private async Task HandleConnectClickAsync()
         {
-
-            if (_configuration != null && _configurationReaderWriter != null)
+            await Task.Run(() =>
             {
-                _configuration.ConnectionString = ConnectionString;
-                _configurationReaderWriter.StoreConfiguration(_configuration);
-            }
+                DataContext.IsConnecting = true;
 
-
-            try
-            {
-                ISpecIfMetadataReader metadataReader = new SpecIfMongoDbMetadataReader(_mongoDbConnectorConfiguration.ConnectionString);
-
-                string progId = "EA.Repository";
-                Type type = Type.GetTypeFromProgID(progId);
-                EAAPI.Repository repository = Activator.CreateInstance(type) as EAAPI.Repository;
-
-                //_logger.LogInformation("Starting Enterprise Architect...");
-
-                bool openResult = repository.OpenFile(ConnectionString);
-
-                if (openResult)
+                if (_configuration != null && _configurationReaderWriter != null)
                 {
-
-                    repository.ShowWindow(1);
-
-                    //_logger.LogInformation("Model open.");
-
-
-                    // TODO: Fix this:
-                    //EaDataIntegrator eaDataIntegrator = new EaDataIntegrator(repository, metadataReader);
-
-
-
-                    DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfEaDataReader(repository, metadataReader);
-                    DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+                    _configuration.ConnectionString = ConnectionString;
+                    _configurationReaderWriter.StoreConfiguration(_configuration);
                 }
 
-            }
-            catch
-            {
 
-            }
+                try
+                {
+                    DataContext.StatusMessageKey = "Message.OpeningModel";
+                    ISpecIfMetadataReader metadataReader = new SpecIfMongoDbMetadataReader(_mongoDbConnectorConfiguration.ConnectionString);
 
-            DataContext.ConnectCommand.Execute(null);
+                    string progId = "EA.Repository";
+                    Type type = Type.GetTypeFromProgID(progId);
+                    EAAPI.Repository repository = Activator.CreateInstance(type) as EAAPI.Repository;
+
+                    //_logger.LogInformation("Starting Enterprise Architect...");
+
+                    bool openResult = repository.OpenFile(ConnectionString);
+
+                    if (openResult)
+                    {
+
+                        repository.ShowWindow(1);
+
+                        //_logger.LogInformation("Model open.");
+
+
+                        // TODO: Fix this:
+                        //EaDataIntegrator eaDataIntegrator = new EaDataIntegrator(repository, metadataReader);
+
+
+                        DataContext.StatusMessageKey = "Message.ProvidingData";
+
+                        DataContext.SpecIfDataProviderFactory.DataReader = new SpecIfEaDataReader(repository, metadataReader);
+                        DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+
+                        DataContext.ConnectCommand.Execute(null);
+                    }
+
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    DataContext.IsConnecting = false;
+                }
+
+
+            });
         }
     }
 }

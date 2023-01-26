@@ -18,7 +18,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
             set
             {
-                PropertyViewModel.Property.SetSingleEnumerationValue(value);
+                PropertyViewModel.SetSingleEnumerationValue(value);
             }
         }
 
@@ -38,7 +38,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
             set
             {
-                PropertyViewModel.Property.SetMultipleEnumerationValue(new List<string>(value));
+                PropertyViewModel.SetMultipleEnumerationValue(new List<string>(value));
             }
         }
     }

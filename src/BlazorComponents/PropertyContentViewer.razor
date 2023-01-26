@@ -5,19 +5,19 @@
     {
         if (PropertyViewModel.IsMultipleEnumeration)
         {
-                            <p>Not Implemented!</p>
+            <p>Not Implemented!</p>
         }
         else
         {
-           <select class="form-control" 
-                   multiple
-                   disabled
-                   @bind="SelectedEnumValues">
+            <select class="form-control"
+        multiple
+        disabled
+        @bind="SelectedEnumValues">
                 @foreach (EnumSelectItem item in PropertyViewModel.EnumerationOptions)
                 {
                     <option value="@item.Value">@item.Title</option>
                 }
-           </select>
+            </select>
         }
 
     }
@@ -38,7 +38,7 @@ else // no multiple property
 {
     @if (PropertyViewModel.IsEnumeration)
     {
-                    <p>@PropertyViewModel.EnumerationValue</p>
+        <p>@PropertyViewModel.EnumerationValue</p>
     }
     else // no enumeration
     {

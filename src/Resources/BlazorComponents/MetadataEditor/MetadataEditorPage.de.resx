@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Button.Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="Button.NewPropertyClass" xml:space="preserve">
-    <value>New Property Class</value>
+    <value>Neue Property-Klasse</value>
   </data>
   <data name="Button.NewResourceClass" xml:space="preserve">
-    <value>New Resource Class</value>
+    <value>Neue Ressource-Klasse</value>
   </data>
   <data name="Button.NewStatementClass" xml:space="preserve">
-    <value>New Statement Class</value>
+    <value>Neue Aussagen-Klasse</value>
   </data>
   <data name="Button.Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="Label.DataType" xml:space="preserve">
-    <value>Data Type</value>
+    <value>Datentyp</value>
   </data>
   <data name="Label.Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="Label.Icon" xml:space="preserve">
-    <value>Icon</value>
+    <value>Symbol</value>
   </data>
   <data name="Label.ID" xml:space="preserve">
     <value>ID</value>
@@ -148,42 +148,42 @@
     <value>Revision</value>
   </data>
   <data name="Label.Title" xml:space="preserve">
-    <value>Title</value>
+    <value>Titel</value>
   </data>
   <data name="Label.Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Typ</value>
   </data>
   <data name="Title.DataTypes" xml:space="preserve">
-    <value>Data Types</value>
+    <value>Datentypen</value>
   </data>
   <data name="Title.EditPropertyClass" xml:space="preserve">
-    <value>Edit Property Class</value>
+    <value>Property-Klasse bearbeiten</value>
   </data>
   <data name="Title.EditResourceClass" xml:space="preserve">
-    <value>Edit Resource Class</value>
+    <value>Ressource-Klasse bearbeiten</value>
   </data>
   <data name="Title.MetadataEditor" xml:space="preserve">
-    <value>Metadata</value>
+    <value>Metadaten</value>
   </data>
   <data name="Title.PropertyClassBrowser" xml:space="preserve">
-    <value>Property Class Browser</value>
+    <value>Property-Klassen Browser</value>
   </data>
   <data name="Title.PropertyClasses" xml:space="preserve">
-    <value>Property Classes</value>
+    <value>Property-Klassen</value>
   </data>
   <data name="Title.ResourceClassBrowser" xml:space="preserve">
-    <value>Resource Class Browser</value>
+    <value>Ressource-Klassen Browser</value>
   </data>
   <data name="Title.ResourceClasses" xml:space="preserve">
-    <value>Resource Classes</value>
+    <value>Ressource-Klassen</value>
   </data>
   <data name="Title.StatementClassBrowser" xml:space="preserve">
-    <value>Statement Class Browser</value>
+    <value>Aussagen-Klassen Browser</value>
   </data>
   <data name="Title.StatementClasses" xml:space="preserve">
-    <value>Statement Classes</value>
+    <value>Aussagen-Klassen</value>
   </data>
   <data name="Title:SpecIfMetadata" xml:space="preserve">
-    <value>SpecIF-Metadata</value>
+    <value>SpecIF-Metadaten</value>
   </data>
 </root>

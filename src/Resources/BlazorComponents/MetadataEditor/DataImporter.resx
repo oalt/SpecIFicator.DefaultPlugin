@@ -168,4 +168,7 @@
   <data name="Message.ImportSuccess" xml:space="preserve">
     <value>Data successfully imported.</value>
   </data>
+  <data name="Title.Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
 </root>

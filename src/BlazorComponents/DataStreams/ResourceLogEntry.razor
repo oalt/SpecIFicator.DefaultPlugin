@@ -1,0 +1,8 @@
+﻿<div>
+    <span class="badge rounded-pill bg-info">@ResourceViewModel.Timestamp</span>
+    @if (!string.IsNullOrEmpty(ResourceViewModel.Creator))
+    {
+        <span class="badge rounded-pill bg-warning">@ResourceViewModel.Creator</span>
+    }
+    <span class="badge rounded-pill bg-primary">@ResourceViewModel.Type (@ResourceViewModel.ClassRevision)</span><br />
+</div>

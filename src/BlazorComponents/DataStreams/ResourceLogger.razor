@@ -1,0 +1,48 @@
+﻿@using MDD4All.UI.BlazorComponents.TabControl
+@using SpecIFicator.DefaultPlugin.BlazorComponents.DataStreams
+<div class="logger-main-layout">
+
+    <div class="titlebar">
+        <div class="title-vertical-stack-panel">
+            <h2>Resource Logger</h2>
+            <button class="btn btn-primary btn-sm" @onclick="(() => OnClearClicked())">Clear log</button>
+        </div>
+        
+    </div>
+
+    <div class="logPanel">
+
+        @for (int counter = ResourceViewModels.Count - 1; counter >= 0; counter--)
+        {
+            ResourceViewModel item = ResourceViewModels[counter];
+
+            bool resourceSelected = item.Equals(SelectedResource);
+
+            <div @onclick="@(() => OnSelectResource(item))"
+                 class="@(resourceSelected ? ResourceSelectedStyle : ResourceUnselectedStyle)">
+                 
+                <ResourceLogEntry ResourceViewModel="item" />
+            </div>
+
+        }
+
+    </div>
+
+    <div class="panel">
+        <TabControl>
+            <TabPage>
+                <ChildContent>
+                    <ResourcePanel ResourceViewModel="SelectedResource" />
+                </ChildContent>
+                <Header><i class="bi bi-layout-text-sidebar-reverse"></i> Properties</Header>
+            </TabPage>
+            <TabPage>
+                <Header><i class="bi bi-code"></i> Raw</Header>
+                <ChildContent>                   
+                    <ResourceJsonPanel DataContext="@SelectedResource" />     
+                </ChildContent>
+            </TabPage>
+        </TabControl>
+    </div>
+
+</div>

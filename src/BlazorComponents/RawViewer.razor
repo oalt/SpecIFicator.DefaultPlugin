@@ -1,8 +1,6 @@
 ﻿@if (SelectedResource != null)
 {
-    <div class="rawView">
-        <pre>@SelectedResource.FormattedJson</pre>
-    </div>
+    <ResourceJsonPanel DataContext="@SelectedResource" />
 }
 else
 {

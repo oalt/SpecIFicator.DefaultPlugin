@@ -1,0 +1,49 @@
+﻿.logger-main-layout {
+    display: grid;
+    height: calc(100vh - 60px);
+    grid-template-columns: 4fr 8fr; /* two columns template */
+    grid-template-rows: 50px 1fr; /* use auto for infinity */
+    border: none;
+    min-width: 0;
+    min-height: 0;
+}
+
+.title-vertical-stack-panel {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.titlebar {
+    grid-column: 1 / span 2;
+    background-color: transparent;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.logPanel {
+    grid-column: 1;
+    grid-row: 2;
+    border: 2px groove;
+    margin: 20px;
+    margin-top:11px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.selected {
+    background-color: gold;
+}
+
+.unselected {
+    background-color: transparent;
+}
+
+.panel {
+    grid-column: 2;
+    grid-row: 2;
+/*    border: dashed;
+    border-width: 1px;
+    border-color: red;*/
+    overflow: auto;
+}

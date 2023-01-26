@@ -68,7 +68,9 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
                 ISpecIfMetadataReader mongoDbMetadataReader = new SpecIfMongoDbMetadataReader(ConnectionString);
 
-                ISpecIfMetadataReader cachedMetadaReader = new CachedSpecIfMetadataReader(mongoDbMetadataReader);
+                CachedSpecIfMetadataReader cachedMetadaReader = new CachedSpecIfMetadataReader(mongoDbMetadataReader);
+
+                cachedMetadaReader.ReinitializeCache();
 
                 DataContext.SpecIfDataProviderFactory.MetadataReader = cachedMetadaReader;
                 DataContext.SpecIfDataProviderFactory.MetadataWriter = new SpecIfMongoDbMetadataWriter(ConnectionString);

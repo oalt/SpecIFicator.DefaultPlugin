@@ -42,6 +42,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DataStreamLoggerPage.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\Document\DocumentView.de.Designer.cs">
         <DependentUpon>DocumentView.de.resx</DependentUpon>
         <DesignTime>True</DesignTime>
@@ -166,6 +171,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>DataStreamLoggerPage.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\Document\DocumentView.de.resx">
         <LastGenOutput>DocumentView.de.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>

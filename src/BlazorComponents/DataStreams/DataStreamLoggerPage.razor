@@ -1,0 +1,12 @@
+﻿@using SpecIFicator.Framework.RazorComponents
+@if(SpecIfStreamDataSubscriberProvider.StreamDataSubscriber != null)
+{
+    <ResourceLogger />
+}
+else
+{
+    <CascadingValue Value="@DataContext">
+        <SpecIfDataStreamConnector />
+    </CascadingValue>
+    
+}

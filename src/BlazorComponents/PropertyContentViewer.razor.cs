@@ -9,6 +9,9 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public PropertyViewModel PropertyViewModel { get; set; }
 
+        [Parameter]
+        public string Language { get; set; } = "en";
+
         private string[] SelectedEnumValues
         {
 

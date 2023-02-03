@@ -79,6 +79,24 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dual view ähnelt.
+        /// </summary>
+        internal static string Label_EnableMultilanguage {
+            get {
+                return ResourceManager.GetString("Label.EnableMultilanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Multilingualism ähnelt.
+        /// </summary>
+        internal static string Label_MultilanguageSupport {
+            get {
+                return ResourceManager.GetString("Label.MultilanguageSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die New Resource ähnelt.
         /// </summary>
         internal static string Label_NewResource {

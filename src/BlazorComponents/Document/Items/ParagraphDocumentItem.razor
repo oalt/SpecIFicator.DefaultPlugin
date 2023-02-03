@@ -1,6 +1,35 @@
 ﻿@using MDD4All.UI.BlazorComponents.Tooltip
-<Tooltip Text="@DataContext.Title">
-    <div>
-        @((MarkupString)DataContext.ReferencedResource.Description)
-    </div>
-</Tooltip>
+@if (DataContext.IsMultilanguageEnabled)
+{
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))
+        || !string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage)))
+    {
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <Tooltip Text="@DataContext.GetTitle(DataContext.PrimaryLanguage)">
+                        <div>
+                            @((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))
+                        </div>
+                    </Tooltip>
+                </td>
+                <td width="50%">
+                    <Tooltip Text="@DataContext.GetTitle(DataContext.SecondaryLanguage)">
+                        <div>
+                            @((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage))
+                        </div>
+                    </Tooltip>
+                </td>
+            </tr>
+        </table>
+
+    }
+}
+else
+{
+    <Tooltip Text="@DataContext.GetTitle(DataContext.PrimaryLanguage)">
+        <div>
+            @((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))
+        </div>
+    </Tooltip>
+}

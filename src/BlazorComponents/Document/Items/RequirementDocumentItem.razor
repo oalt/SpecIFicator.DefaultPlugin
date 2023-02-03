@@ -1,25 +1,81 @@
 ﻿@using MDD4All.SpecIF.ViewModels
 @using MDD4All.SpecIF.DataModels.Manipulation
 <div id="@DataContext.ReferencedResource.Resource.ID">
-    <table width="100%" style="border:solid;border-width:1px">
-        <tr style="border:solid;border-width:1px">
+    @if (DataContext.IsMultilanguageEnabled)
+    {
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <table width="100%" style="border:solid;border-width:1px">
+                        <tr style="border:solid;border-width:1px">
 
-            <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
-            <td>
-                <div>
-                    <strong>
-                        @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
-                        @DataContext.Title
-                    </strong>
-                </div>
-            </td>
-        </tr>
-        <tr style="border:solid;border-width:1px">
-           
-            <td>
-                <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader))</div>
-            </td>
-        </tr>
+                            <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+                            <td>
+                                <div>
+                                    <strong>
+                                        @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
+                                        @DataContext.GetTitle(DataContext.PrimaryLanguage)
+                                    </strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="border:solid;border-width:1px">
 
-    </table>
+                            <td>
+                                <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader, DataContext.PrimaryLanguage))</div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+                <td width="50%">
+                    <table width="100%" style="border:solid;border-width:1px">
+                        <tr style="border:solid;border-width:1px">
+
+                            <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+                            <td>
+                                <div>
+                                    <strong>
+                                        @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
+                                        @DataContext.GetTitle(DataContext.SecondaryLanguage)
+                                    </strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="border:solid;border-width:1px">
+
+                            <td>
+                                <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader, DataContext.SecondaryLanguage))</div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table width="100%" style="border:solid;border-width:1px">
+            <tr style="border:solid;border-width:1px">
+
+                <td rowspan="2" style="border:solid;border-width:1px;width:10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+                <td>
+                    <div>
+                        <strong>
+                            @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
+                            @DataContext.Title
+                        </strong>
+                    </div>
+                </td>
+            </tr>
+            <tr style="border:solid;border-width:1px">
+
+                <td>
+                    <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader))</div>
+                </td>
+            </tr>
+
+        </table>
+    }
 </div>

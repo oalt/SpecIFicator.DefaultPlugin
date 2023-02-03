@@ -107,6 +107,16 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>DataImporter.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\MultilanguageSelector.de.Designer.cs">
+        <DependentUpon>MultilanguageSelector.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\MultilanguageSelector.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>MultilanguageSelector.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\ProjectsBrowser.de.Designer.cs">
         <DependentUpon>ProjectsBrowser.de.resx</DependentUpon>
         <DesignTime>True</DesignTime>
@@ -214,6 +224,14 @@
       <EmbeddedResource Update="Resources\BlazorComponents\MetadataEditor\DataImporter.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>DataImporter.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\MultilanguageSelector.de.resx">
+        <LastGenOutput>MultilanguageSelector.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\MultilanguageSelector.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>MultilanguageSelector.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\ProjectsBrowser.de.resx">
         <LastGenOutput>ProjectsBrowser.de.Designer.cs</LastGenOutput>

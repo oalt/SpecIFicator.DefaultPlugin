@@ -6,7 +6,7 @@
         <RibbonPanel PanelTitle="@L["Label.NewResource"]">
             <div class="toolStackPanel">
 
-                <ResourceClassSelector @bind-SelectedResourceClassKey="@HierarchyEditorViewModel.SelectedResourceClassKey"
+                <ResourceClassSelector @bind-SelectedResourceClassKey="@DataContext.SelectedResourceClassKey"
                                        CssStyles="form-select form-select-sm"></ResourceClassSelector>
 
                 <div class="p-1">
@@ -58,18 +58,32 @@
             </div>
 
         </RibbonPanel>
-        
+        <RibbonPanel PanelTitle="@L["Label.MultilanguageSupport"]">
+            <div class="toolStackPanel">
+                <div>
+                    <MultilanguageSelector DataContext="@DataContext" />
+                </div>
+                <div class="form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" @bind="@DataContext.IsMultilanguageEnabled">
+                    <span>@L["Label.EnableMultilanguage"]</span>
+                </div>
+            </div>
+
+        </RibbonPanel>
     </RibbonCategory>
 </div>
-@if (HierarchyEditorViewModel.EditorActive)
+@if (DataContext.EditorActive)
 {
-    <ModalDialog Title="@L[HierarchyEditorViewModel.EditDialogTitleKey]"
+    <ModalDialog Title="@L[DataContext.EditDialogTitleKey]"
              DialogType="ModalDialog.ModalDialogType.OkCancel"
              OnClose="@OnEditDialogClose">
-        <ResourcePanel ResourceViewModel="@HierarchyEditorViewModel.ResourceUnderEdit" />
+        <ResourcePanel ResourceViewModel="@DataContext.ResourceUnderEdit"
+                       IsMultilinguismEnabled="@DataContext.IsMultilanguageEnabled"
+                       PrimaryLanguage="@DataContext.PrimaryLanguage"
+                       SecondaryLanguage="@DataContext.SecondaryLanguage" />
     </ModalDialog>
 }
-@if (HierarchyEditorViewModel.ShowDeleteConfirm)
+@if (DataContext.ShowDeleteConfirm)
 {
     <ModalDialog Title="@L["Title.DeleteResource"]"
              DialogType="ModalDialog.ModalDialogType.DeleteCancel"

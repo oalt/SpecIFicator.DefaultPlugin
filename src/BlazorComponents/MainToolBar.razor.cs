@@ -15,40 +15,45 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
         [Parameter]
-        public HierarchyViewModel HierarchyEditorViewModel { get; set; }
+        public HierarchyViewModel DataContext { get; set; }
 
         protected override void OnInitialized()
         {
-            
+            DataContext.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            StateHasChanged();
         }
 
         private void OnEditResourceClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.EDIT_EXISTING);
+            DataContext.StartEditResourceCommand.Execute(HierarchyViewModel.EDIT_EXISTING);
             StateHasChanged();
         }
 
         private void OnNewChildResourceClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_CHILD);
+            DataContext.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_CHILD);
             StateHasChanged();
         }
 
         private void OnNewResourceBelowClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_BELOW);
+            DataContext.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_BELOW);
             StateHasChanged();
         }
 
         private void OnNewResourceAboveClicked()
         {
-            HierarchyEditorViewModel.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_ABOVE);
+            DataContext.StartEditResourceCommand.Execute(HierarchyViewModel.NEW_ABOVE);
             StateHasChanged();
         }
 
         private void OnDeleteResourceClicked()
         {
-            HierarchyEditorViewModel.StartDeleteResourceCommand.Execute(null);
+            DataContext.StartDeleteResourceCommand.Execute(null);
             StateHasChanged();
         }
 
@@ -56,11 +61,11 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         {
             if(accepted)
             {
-                HierarchyEditorViewModel.ConfirmEditResourceCommand.Execute(null);
+                DataContext.ConfirmEditResourceCommand.Execute(null);
             }
             else
             {
-                HierarchyEditorViewModel.CancelEditResourceCommand.Execute(null);
+                DataContext.CancelEditResourceCommand.Execute(null);
             }
             StateHasChanged();
         }
@@ -69,11 +74,11 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         {
             if(accepted)
             {
-                HierarchyEditorViewModel.DeleteResourceCommand.Execute(null);
+                DataContext.DeleteResourceCommand.Execute(null);
             }
             else
             {
-                HierarchyEditorViewModel.CancelDeleteResourceCommand.Execute(null);
+                DataContext.CancelDeleteResourceCommand.Execute(null);
             }
             StateHasChanged();
         }

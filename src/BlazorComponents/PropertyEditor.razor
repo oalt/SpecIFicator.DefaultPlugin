@@ -18,14 +18,50 @@
         switch (type)
         {
             case "xs:string":
-                if (PropertyViewModel.Format == "plain")
+                if (IsMultilinguismEnabled)
                 {
-                    <textarea class="form-control" rows="2" @bind="PropertyViewModel.Value"></textarea>
+                    <table width="100%">
+                        <tr>
+                            <th>(@PropertyViewModel.PrimaryLanguage)</th>
+                            <th>(@PropertyViewModel.SecondaryLanguage)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if (PropertyViewModel.Format == "plain")
+                                {
+                                <textarea class="form-control" rows="2" @bind="PropertyViewModel.PrimaryLanguageStringValue"></textarea>
+                                }
+                                else // xhtml
+                                {
+                                <BlazingComponents.Summernote.Editor @bind-Content="PropertyViewModel.PrimaryLanguageStringValue"
+                                                     ShowEditButton="false" />
+                                }
+                            </td>
+                            <td>
+                                @if (PropertyViewModel.Format == "plain")
+                                {
+                                    <textarea class="form-control" rows="2" @bind="PropertyViewModel.SecondaryLanguageStringValue"></textarea>
+                                }
+                                else // xhtml
+                                {
+                                    <BlazingComponents.Summernote.Editor @bind-Content="PropertyViewModel.SecondaryLanguageStringValue"
+                                                                         ShowEditButton="false" />
+                                }
+                            </td>
+                        </tr>
+                    </table>
                 }
-                else // xhtml
+                else
                 {
-                    <BlazingComponents.Summernote.Editor @bind-Content="PropertyViewModel.Value"
-                                                         ShowEditButton="false" />
+                    if (PropertyViewModel.Format == "plain")
+                    {
+                        <textarea class="form-control" rows="2" @bind="PropertyViewModel.PrimaryLanguageStringValue"></textarea>
+                    }
+                    else // xhtml
+                    {
+                        <BlazingComponents.Summernote.Editor @bind-Content="PropertyViewModel.PrimaryLanguageStringValue"
+                                         ShowEditButton="false" />
+                    }
                 }
                 break;
 
@@ -44,25 +80,25 @@
     }
     else
     {
-        @if(PropertyViewModel.HasMultipleValues)
+        @if (PropertyViewModel.HasMultipleValues)
         {
-           <select class="form-control" 
-                   multiple
-                   @bind="SelectedEnumValues">
-                   @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
-                   {
-                       <option value="@item.Value">@item.Title</option>
-                   }
+            <select class="form-control"
+            multiple
+            @bind="SelectedEnumValues">
+                @foreach (EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                {
+                    <option value="@item.Value">@item.Title</option>
+                }
             </select>
         }
         else
         {
-            <select class="form-control" 
-                @bind="SelectedEnumValue">
+            <select class="form-control"
+            @bind="SelectedEnumValue">
 
                 <option value=""></option>
 
-                @foreach(EnumSelectItem item in PropertyViewModel.EnumerationOptions)
+                @foreach (EnumSelectItem item in PropertyViewModel.EnumerationOptions)
                 {
                     <option value="@item.Value">@item.Title</option>
                 }

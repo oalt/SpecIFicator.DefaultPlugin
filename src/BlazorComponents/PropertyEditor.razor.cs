@@ -9,6 +9,15 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public PropertyViewModel PropertyViewModel { get; set; }
 
+        [Parameter]
+        public bool IsMultilinguismEnabled { get; set; } = false;
+
+        [Parameter]
+        public string PrimaryLanguage { get; set; } = "en";
+
+        [Parameter]
+        public string SecondaryLanguage { get; set; } = "de";
+
         private string SelectedEnumValue
         {
             get
@@ -40,6 +49,12 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             {
                 PropertyViewModel.SetMultipleEnumerationValue(new List<string>(value));
             }
+        }
+
+        protected override void OnInitialized()
+        {
+            PropertyViewModel.PrimaryLanguage = PrimaryLanguage;
+            PropertyViewModel.SecondaryLanguage = SecondaryLanguage;
         }
     }
 }

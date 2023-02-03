@@ -123,6 +123,12 @@
   <data name="Label.EditResource" xml:space="preserve">
     <value>Ressource bearbeiten</value>
   </data>
+  <data name="Label.EnableMultilanguage" xml:space="preserve">
+    <value>Duale Anzeige</value>
+  </data>
+  <data name="Label.MultilanguageSupport" xml:space="preserve">
+    <value>Mehrsprachigkeit</value>
+  </data>
   <data name="Label.NewResource" xml:space="preserve">
     <value>Neue Ressource</value>
   </data>

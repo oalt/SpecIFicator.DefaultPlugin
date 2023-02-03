@@ -2,9 +2,9 @@
 
 @if (ResourceViewModel != null)
 {
-    
+
     string resourceClass = ResourceViewModel.ClassRevision;
-    if(!string.IsNullOrEmpty(resourceClass))
+    if (!string.IsNullOrEmpty(resourceClass))
     {
         resourceClass = " (" + resourceClass + ")";
     }
@@ -12,12 +12,13 @@
     {
         resourceClass = "";
     }
-    
+
 
     <div class="resourcePanel">
         <fieldset class="resourceFieldset">
             <legend>
                 <strong>Resource <ResourceIcon Icon="@ResourceViewModel.Icon" /> [@ResourceViewModel.Type@resourceClass]</strong>
+
             </legend>
 
 
@@ -27,7 +28,8 @@
                     @ResourceViewModel.Resource.Key()
                     @if (ClipboardDataProvider != null)
                     {
-                        <span>&nbsp;
+                        <span>
+                            &nbsp;
                             <button class="btn btn-secondary btn-rounded btn-icon btn-small"
                             @onclick="CopyKeyToClipboardAsync">
                                 <i class="@CopyButtonIconClass"></i>
@@ -49,11 +51,17 @@
             {
                 @if (ResourceViewModel.IsInEditMode)
                 {
-                    <PropertyEditor PropertyViewModel="@propertyViewModel" />
+                    <PropertyEditor PropertyViewModel="@propertyViewModel"
+                                    IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                    PrimaryLanguage="@PrimaryLanguage"
+                                    SecondaryLanguage="@SecondaryLanguage"/>
                 }
                 else
                 {
-                    <PropertyViewer PropertyViewModel="@propertyViewModel" />
+                    <PropertyViewer PropertyViewModel="@propertyViewModel"
+                                    IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                    PrimaryLanguage="@PrimaryLanguage"
+                                    SecondaryLanguage="@SecondaryLanguage" />
                 }
             }
         </fieldset>

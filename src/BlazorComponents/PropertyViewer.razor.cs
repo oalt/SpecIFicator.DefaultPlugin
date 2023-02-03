@@ -9,7 +9,14 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public PropertyViewModel PropertyViewModel { get; set; }
 
-        
+        [Parameter]
+        public bool IsMultilinguismEnabled { get; set; } = false;
+
+        [Parameter]
+        public string PrimaryLanguage { get; set; } = "en";
+
+        [Parameter]
+        public string SecondaryLanguage { get; set; } = "de";
 
     }
 }

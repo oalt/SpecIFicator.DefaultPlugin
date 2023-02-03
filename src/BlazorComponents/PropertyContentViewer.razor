@@ -48,7 +48,7 @@ else // no multiple property
         }
         else
         {
-            <div>@((MarkupString)PropertyViewModel.Value)</div>
+            <div>@((MarkupString)PropertyViewModel.GetStringValue(Language))</div>
         }
     }
 }

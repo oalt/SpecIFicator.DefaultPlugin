@@ -34,7 +34,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         protected override void OnInitialized()
         {
-            _configurationReaderWriter = new FileConfigurationReaderWriter<EaConnectorConfiguration>();
+            _configurationReaderWriter = new FileConfigurationReaderWriter<EaConnectorConfiguration>("SpecIFicator/plugins");
 
             _configuration = _configurationReaderWriter.GetConfiguration();
 
@@ -46,7 +46,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
             ConnectionString = _configuration.ConnectionString;
 
 
-            _mongoDbConfigurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>();
+            _mongoDbConfigurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>("SpecIFicator/plugins");
 
             _mongoDbConnectorConfiguration = _mongoDbConfigurationReaderWriter.GetConfiguration();
 

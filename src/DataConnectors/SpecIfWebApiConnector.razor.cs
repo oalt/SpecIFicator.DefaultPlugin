@@ -25,7 +25,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         protected override void OnInitialized()
         {
-            _configurationReaderWriter = new FileConfigurationReaderWriter<WebApiConnectorConfiguration>();
+            _configurationReaderWriter = new FileConfigurationReaderWriter<WebApiConnectorConfiguration>("SpecIFicator/plugins");
 
             _configuration = _configurationReaderWriter.GetConfiguration();
 

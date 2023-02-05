@@ -30,7 +30,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         protected override void OnInitialized()
         {
-            _configurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>();
+            _configurationReaderWriter = new FileConfigurationReaderWriter<MongoDbConnectorConfiguration>("SpecIFicator/plugins");
 
             _configuration = _configurationReaderWriter.GetConfiguration();
 

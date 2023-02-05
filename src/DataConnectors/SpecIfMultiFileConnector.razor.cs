@@ -29,7 +29,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         protected override void OnInitialized()
         {
-            configurationReaderWriter = new FileConfigurationReaderWriter<MultiFileConnectorConfiguration>();
+            configurationReaderWriter = new FileConfigurationReaderWriter<MultiFileConnectorConfiguration>("SpecIFicator/plugins");
 
             configuration = configurationReaderWriter.GetConfiguration();
 

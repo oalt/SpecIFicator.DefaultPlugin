@@ -1,0 +1,151 @@
+﻿@using MDD4All.SpecIF.ViewModels.Models
+@using MDD4All.UI.BlazorComponents.Dialog
+
+<div class="my-3 bigLabel">
+    <div class="bigLabel">@L["Text.NewStatementFor"]</div>
+</div>
+<div class="mb-3 selectedResource">
+    <ResourceIcon Icon="@DataContext.SelectedResource.Icon" />
+    <span>[@DataContext.SelectedResource.Type </span>
+    @if (!string.IsNullOrEmpty(DataContext.SelectedResource.ClassRevision))
+    {
+        <span> (@DataContext.SelectedResource.ClassRevision)</span>
+    }
+    <span>]</span>
+    <span> @DataContext.SelectedResource.GetTitle()</span>
+</div>
+
+<div class="mb-3">
+    <div class="smallLabel">@L["Label.Direction"]</div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="out" checked
+               @onchange="OnDirectionSelectionChange">
+        <label class="form-check-label" for="inlineRadio1">@L["Label.Out"]</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="in"
+                       @onchange="OnDirectionSelectionChange">
+        <label class="form-check-label" for="inlineRadio2">@L["Label.In"]</label>
+    </div>
+</div>
+
+<div class="mb-3">
+    <span class="bigLabel">@L["Label.ToFrom"]</span>
+    <button class="btn btn-primary"
+            @onclick="OnBrowseButtonClicked">
+        @L["Button.Browse"]
+    </button>
+</div>
+
+
+@if (DataContext.OppositeResource != null)
+{
+    <div class="mb-3 oppositeResource">
+        <ResourceIcon Icon="@DataContext.OppositeResource.Icon" />
+        <span>[@DataContext.OppositeResource.Type </span>
+        @if (!string.IsNullOrEmpty(DataContext.OppositeResource.ClassRevision))
+        {
+            <span> (@DataContext.OppositeResource.ClassRevision)</span>
+        }
+        <span>]</span>
+        <span> @DataContext.OppositeResource.GetTitle()</span>
+    </div>
+
+
+    <div class="mb-3">
+        <div class="smallLabel">@L["Label.StatementType"]</div>
+        <StatementClassSelector @bind-SelectedStatementClassKey="@DataContext.SelectedStatementClassKey" />
+    </div>
+}
+@if (DataContext.StatementClassViewModel != null && DataContext.StatementClassViewModel.HasProperties)
+{
+    <div class="mb-3">
+        <StatementPropertyPanel DataContext="@DataContext.StatementViewModel" />
+    </div>
+}
+@if (DataContext.OppositeResource != null && DataContext.SelectedStatementClassKey != null)
+{
+    <div class="my-5">
+        <h3>@L["Label.Result"]</h3>
+        @if (DataContext.DesiredDirection == StatementDirection.In)
+        {
+            <table width="100%">
+                <tr>
+                    <td>
+                        <div class="oppositeResource">
+                            <ResourceIcon Icon="@DataContext.OppositeResource.Icon" />
+                            <span>[@DataContext.OppositeResource.Type </span>
+                            @if (!string.IsNullOrEmpty(DataContext.OppositeResource.ClassRevision))
+                            {
+                                <span> (@DataContext.OppositeResource.ClassRevision)</span>
+                            }
+                            <span>]</span>
+                            <span> @DataContext.OppositeResource.GetTitle()</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="statement">
+                            @DataContext.StatementClassViewModel.Title
+                        </div>
+                    </td>
+                    <td>
+                        <div class="selectedResource">
+                            <ResourceIcon Icon="@DataContext.SelectedResource.Icon" />
+                            <span>[@DataContext.SelectedResource.Type </span>
+                            @if (!string.IsNullOrEmpty(DataContext.SelectedResource.ClassRevision))
+                            {
+                                <span> (@DataContext.SelectedResource.ClassRevision)</span>
+                            }
+                            <span>]</span>
+                            <span> @DataContext.SelectedResource.GetTitle()</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        }
+        else if (DataContext.DesiredDirection == StatementDirection.Out)
+        {
+            <table width="100%">
+                <tr>
+                    <td>
+                        <div class="selectedResource">
+                            <ResourceIcon Icon="@DataContext.SelectedResource.Icon" />
+                            <span>[@DataContext.SelectedResource.Type </span>
+                            @if (!string.IsNullOrEmpty(DataContext.SelectedResource.ClassRevision))
+                            {
+                                <span> (@DataContext.SelectedResource.ClassRevision)</span>
+                            }
+                            <span>]</span>
+                            <span> @DataContext.SelectedResource.GetTitle()</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="statement">
+                            @DataContext.StatementClassViewModel.Title
+                        </div>
+                    </td>
+                    <td>
+                        <div class="oppositeResource">
+                            <ResourceIcon Icon="@DataContext.OppositeResource.Icon" />
+                            <span>[@DataContext.OppositeResource.Type </span>
+                            @if (!string.IsNullOrEmpty(DataContext.OppositeResource.ClassRevision))
+                            {
+                                <span> (@DataContext.OppositeResource.ClassRevision)</span>
+                            }
+                            <span>]</span>
+                            <span> @DataContext.OppositeResource.GetTitle()</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+}
+@if (DataContext.ShowSearchDialog)
+{
+    <ModalDialog Title="@L["Title.Search"]"
+             DialogType="ModalDialog.ModalDialogType.OkCancel"
+             OnClose="@OnSearchDialogClose">
+        <ResourceSearch DataContext="DataContext.SearchDataContext" />
+    </ModalDialog>
+}

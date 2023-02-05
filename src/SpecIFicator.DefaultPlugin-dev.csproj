@@ -132,6 +132,16 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\ResourceSearch.de.Designer.cs">
+        <DependentUpon>ResourceSearch.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\ResourceSearch.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ResourceSearch.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\ResourceView.de.Designer.cs">
         <DependentUpon>ResourceView.de.resx</DependentUpon>
         <DesignTime>True</DesignTime>
@@ -166,6 +176,11 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>RawViewer.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\StatementCreator.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>StatementCreator.resx</DependentUpon>
       </Compile>
       <Compile Update="Resources\DataConnectors\SpecIfWebApiConnector.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -245,6 +260,14 @@
         <LastGenOutput>RawViewer.de.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
       </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\ResourceSearch.de.resx">
+        <LastGenOutput>ResourceSearch.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\ResourceSearch.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ResourceSearch.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\ResourceView.de.resx">
         <LastGenOutput>ResourceView.de.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
@@ -268,6 +291,10 @@
       <EmbeddedResource Update="Resources\BlazorComponents\StatementBrowser\StatementBrowser.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>StatementBrowser.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\StatementCreator.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>StatementCreator.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.resx">
         <LastGenOutput>SpecIfEaConnector.Designer.cs</LastGenOutput>

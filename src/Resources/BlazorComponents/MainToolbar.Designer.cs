@@ -61,6 +61,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add statement ähnelt.
+        /// </summary>
+        internal static string Label_AddStatement {
+            get {
+                return ResourceManager.GetString("Label.AddStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete Resource ähnelt.
         /// </summary>
         internal static string Label_DeleteResource {
@@ -111,6 +120,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         internal static string Text_DeleteResource {
             get {
                 return ResourceManager.GetString("Text.DeleteResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add new statement... ähnelt.
+        /// </summary>
+        internal static string Title_AddStatement {
+            get {
+                return ResourceManager.GetString("Title.AddStatement", resourceCulture);
             }
         }
         

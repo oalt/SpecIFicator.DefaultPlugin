@@ -1,0 +1,26 @@
+﻿.bigLabel {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.smallLabel {
+    font-size: 14px;
+}
+
+.selectedResource {
+    color: darkmagenta;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.oppositeResource {
+    color: darkblue;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.statement {
+    color: darkgreen;
+    font-size: 18px;
+    font-weight: bold;
+}

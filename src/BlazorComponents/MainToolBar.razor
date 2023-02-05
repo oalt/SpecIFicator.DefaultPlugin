@@ -58,6 +58,18 @@
             </div>
 
         </RibbonPanel>
+        <RibbonPanel PanelTitle="@L["Label.AddStatement"]">
+            <div class="toolStackPanel">
+                <div>
+                    <button type="button"
+                            class="btn btn-outline-dark  btn-lg"
+                            @onclick="() => OnAddStatementClicked()">
+                        <i class="bi bi-heart-arrow"></i>
+                    </button>
+                </div>
+            </div>
+
+        </RibbonPanel>
         <RibbonPanel PanelTitle="@L["Label.MultilanguageSupport"]">
             <div class="toolStackPanel">
                 <div>
@@ -89,5 +101,14 @@
              DialogType="ModalDialog.ModalDialogType.DeleteCancel"
              OnClose="@OnDeleteDialogClose">
         <div>@L["Text.DeleteResource"]</div>
+    </ModalDialog>
+}
+@if(DataContext.ShowAddStatementDialog)
+{
+    <ModalDialog Title="@L["Title.AddStatement"]"
+                 DialogType="ModalDialog.ModalDialogType.OkCancel"
+                 OnClose="@OnAddStatementDialogClose"
+                 CanConfirm="DataContext.CreateStatementViewModel.CanConfirmEditOperation">
+             <StatementCreator DataContext="@DataContext.CreateStatementViewModel"/>
     </ModalDialog>
 }

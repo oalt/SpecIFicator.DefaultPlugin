@@ -87,9 +87,9 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
                     adminDatabaseInitializer.InitalizeAdminData();
                 }
 
-                DataContext.IsConnecting = false;
-
                 DataContext.ConnectCommand.Execute(null);
+
+                DataContext.IsConnecting = false;
             });
 
         }

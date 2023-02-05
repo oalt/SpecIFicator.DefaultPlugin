@@ -1,5 +1,27 @@
-﻿<h1>@DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon> @DataContext.Title</h1>
-@if(!string.IsNullOrEmpty(DataContext.ReferencedResource.Description))
+﻿@if (DataContext.IsMultilanguageEnabled)
 {
-    <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+    <h1>@DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> @DataContext.GetTitle(DataContext.PrimaryLanguage) / @DataContext.GetTitle(DataContext.SecondaryLanguage)</h1>
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))
+         || !string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage)))
+    {
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+                </td>
+                <td width="50%">
+                    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage))</div>
+                </td>
+            </tr>
+        </table>
+        
+    }
+}
+else
+{
+    <h1>@DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> @DataContext.GetTitle(DataContext.PrimaryLanguage)</h1>
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage)))
+    {
+        <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+    }
 }

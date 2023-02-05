@@ -1,0 +1,14 @@
+﻿<select class="@CssStyles" @onchange="@OnStatementClassSelectionChange">
+    @foreach (StatementClass resourceClass in FilteredStatementClasses)
+    {
+        Key key = new Key(resourceClass.ID, resourceClass.Revision);
+        string resourceClassRevision = @resourceClass.Revision;
+        if(resourceClassRevision.Length > 10)
+        {
+            resourceClassRevision = resourceClassRevision.Substring(0, 9) + "…";
+        }
+        string displayedValue = resourceClass.Title + " (" + resourceClassRevision + ")";
+
+        <option value="@key.ToString()">@displayedValue</option>
+    }
+</select>

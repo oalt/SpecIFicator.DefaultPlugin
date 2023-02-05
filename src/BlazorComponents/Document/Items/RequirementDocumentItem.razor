@@ -64,7 +64,7 @@
                     <div>
                         <strong>
                             @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
-                            @DataContext.Title
+                            @DataContext.GetTitle(DataContext.PrimaryLanguage)
                         </strong>
                     </div>
                 </td>
@@ -72,7 +72,7 @@
             <tr style="border:solid;border-width:1px">
 
                 <td>
-                    <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader))</div>
+                    <div>@((MarkupString)DataContext.ReferencedResource.Resource.GetPropertyValue("dcterms:description", DataContext.MetadataReader, DataContext.PrimaryLanguage))</div>
                 </td>
             </tr>
 

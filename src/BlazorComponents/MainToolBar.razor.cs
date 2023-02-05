@@ -57,6 +57,25 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             StateHasChanged();
         }
 
+        private void OnAddStatementClicked()
+        {
+            DataContext.StartAddStatementCommand.Execute(null);
+            StateHasChanged();
+        }
+
+        private async Task OnAddStatementDialogClose(bool accepted)
+        {
+            if (accepted)
+            {
+                DataContext.ConfirmAddStatementCommand.Execute(null);
+            }
+            else
+            {
+                DataContext.CancelAddStatementCommand.Execute(null);
+            }
+            StateHasChanged();
+        }
+
         private async Task OnEditDialogClose(bool accepted)
         {
             if(accepted)

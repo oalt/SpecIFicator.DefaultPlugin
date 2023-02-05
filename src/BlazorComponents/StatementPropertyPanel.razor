@@ -1,0 +1,30 @@
+﻿@using MDD4All.SpecIF.DataModels.Manipulation
+
+@if (DataContext != null)
+{
+    <div class="resourcePanel">
+        <fieldset class="resourceFieldset">
+            <legend>
+                <strong>@L["Label.Properties"]</strong>
+            </legend>
+
+            @foreach (PropertyViewModel propertyViewModel in DataContext.Properties)
+            {
+                @if (DataContext.IsInEditMode)
+                {
+                    <PropertyEditor PropertyViewModel="@propertyViewModel"
+                                    IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                    PrimaryLanguage="@PrimaryLanguage"
+                                    SecondaryLanguage="@SecondaryLanguage" />
+                }
+                else
+                {
+                    <PropertyViewer PropertyViewModel="@propertyViewModel"
+                                    IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                    PrimaryLanguage="@PrimaryLanguage"
+                                    SecondaryLanguage="@SecondaryLanguage" />
+                }
+            }
+        </fieldset>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿<div class="input-group flex-nowrap">
+    <span class="input-group-text">@L["Label.Search"]</span>
+    <input type="text" 
+           class="form-control"
+           @bind="@DataContext.SerachTerm">
+    <button class="btn btn-secondary"
+            @onclick="OnSerachButtonClicked">
+        <i class="bi bi-search"></i>
+    </button>
+</div>
+<div>
+    <span>@L["Label.Scope"]</span>
+    <input class="form-check-input" type="radio" checked />
+    <span>@L["Label.CurrentHierarchy"]</span>
+</div>
+<div>
+    <select class="form-select" 
+            size="10"
+            @onchange="OnResourceSelectionChange">
+        @foreach(ResourceViewModel resourceViewModel in DataContext.SearchResults)
+        {
+            <option value="@resourceViewModel.Key">[@resourceViewModel.Type] @resourceViewModel.Title</option>
+        }
+        
+    </select>
+</div>
+

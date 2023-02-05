@@ -117,46 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Label.AddStatement" xml:space="preserve">
-    <value>Add statement</value>
+  <data name="Button.Browse" xml:space="preserve">
+    <value>Browse</value>
   </data>
-  <data name="Label.DeleteResource" xml:space="preserve">
-    <value>Delete Resource</value>
+  <data name="Label.Direction" xml:space="preserve">
+    <value>Statement direction</value>
   </data>
-  <data name="Label.EditResource" xml:space="preserve">
-    <value>Edit Resource</value>
+  <data name="Label.In" xml:space="preserve">
+    <value>incoming</value>
   </data>
-  <data name="Label.EnableMultilanguage" xml:space="preserve">
-    <value>Dual view</value>
+  <data name="Label.Out" xml:space="preserve">
+    <value>outgoing</value>
   </data>
-  <data name="Label.MultilanguageSupport" xml:space="preserve">
-    <value>Multilingualism</value>
+  <data name="Label.Result" xml:space="preserve">
+    <value>Result</value>
   </data>
-  <data name="Label.NewResource" xml:space="preserve">
-    <value>New Resource</value>
+  <data name="Label.StatementType" xml:space="preserve">
+    <value>Select statement type...</value>
   </data>
-  <data name="Text.DeleteResource" xml:space="preserve">
-    <value>The selected Resource and all child elements are removed. Are you sure?</value>
+  <data name="Label.ToFrom" xml:space="preserve">
+    <value>to / from</value>
   </data>
-  <data name="Title.AddStatement" xml:space="preserve">
-    <value>Add new statement...</value>
+  <data name="Text.NewStatementFor" xml:space="preserve">
+    <value>New statement for...</value>
   </data>
-  <data name="Title.DeleteResource" xml:space="preserve">
-    <value>Delete Resource</value>
-  </data>
-  <data name="Title.EditResource" xml:space="preserve">
-    <value>Edit Resource...</value>
-  </data>
-  <data name="Title.NewResource" xml:space="preserve">
-    <value>New Resource...</value>
-  </data>
-  <data name="Tooltip.NewChildResource" xml:space="preserve">
-    <value>New child resource</value>
-  </data>
-  <data name="Tooltip.NewResourceAbove" xml:space="preserve">
-    <value>New resource above</value>
-  </data>
-  <data name="Tooltip.NewResourceBelow" xml:space="preserve">
-    <value>New resource below</value>
+  <data name="Title.Search" xml:space="preserve">
+    <value>Search for element to connect...</value>
   </data>
 </root>

@@ -49,15 +49,8 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
                 Key key = new Key();
                 key.InitailizeFromKeyString(DataContext);
 
-                HierarchyViewModel hierarchyEditorViewModel = new HierarchyViewModel(DataProviderFactory.MetadataReader,
-                                                                               DataProviderFactory.DataReader,
-                                                                               DataProviderFactory.DataWriter,
-                                                                               key);
+                HierarchyViewModel = new HierarchyViewModel(DataProviderFactory, key);
 
-
-                HierarchyViewModel = hierarchyEditorViewModel;
-
-                
                 HierarchyViewModel.PropertyChanged += OnStateChanged;
 
                 _treeType = DynamicConfigurationManager.GetComponentType("Tree",

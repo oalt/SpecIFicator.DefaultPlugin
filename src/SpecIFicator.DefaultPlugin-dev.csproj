@@ -28,9 +28,9 @@
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.EA\src\MDD4All.SpecIF.DataProvider.EA\MDD4All.SpecIF.DataProvider.EA-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
+        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MockupDataStream\src\MDD4All.SpecIF.DataProvider.MockupDataStream\MDD4All.SpecIF.DataProvider.MockupDataStream-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
         <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
         <ProjectReference Include="..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
         <ProjectReference Include="..\..\SplitJs.Blazor\src\SplitJs.Blazor\SplitJs.Blazor.csproj" />
         <ProjectReference Include="..\..\Summernote\BlazingComponents.Summernote.csproj" />

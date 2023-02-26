@@ -57,11 +57,14 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
             }
 
             ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(MetadataPath);
+            ISpecIfMetadataWriter metadataWriter = new SpecIfFileMetadataWriter(MetadataPath);
             ISpecIfDataReader dataReader = new SpecIfFileDataReader(DataPath);
+            ISpecIfDataWriter dataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
 
             DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+            DataContext.SpecIfDataProviderFactory.MetadataWriter= metadataWriter;
             DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
-            DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
+            DataContext.SpecIfDataProviderFactory.DataWriter = dataWriter;
             
             DataContext.ConnectCommand.Execute(null);
         }

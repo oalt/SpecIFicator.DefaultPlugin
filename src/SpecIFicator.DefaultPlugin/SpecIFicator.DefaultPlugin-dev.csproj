@@ -18,27 +18,28 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.6" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.8" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\MDD4All.Configuration\src\MDD4All.Configuration\MDD4All.Configuration-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.FileAccess.Contracts\src\MDD4All.FileAccess.Contracts\MDD4All.FileAccess.Contracts-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.EA\src\MDD4All.SpecIF.DataProvider.EA\MDD4All.SpecIF.DataProvider.EA-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MockupDataStream\src\MDD4All.SpecIF.DataProvider.MockupDataStream\MDD4All.SpecIF.DataProvider.MockupDataStream-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
-        <ProjectReference Include="..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
-        <ProjectReference Include="..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
-        <ProjectReference Include="..\..\SplitJs.Blazor\src\SplitJs.Blazor\SplitJs.Blazor.csproj" />
-        <ProjectReference Include="..\..\Summernote\BlazingComponents.Summernote.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.Configuration\src\MDD4All.Configuration\MDD4All.Configuration-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.FileAccess.Contracts\src\MDD4All.FileAccess.Contracts\MDD4All.FileAccess.Contracts-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataFactory\src\MDD4All.SpecIF.DataFactory\MDD4All.SpecIF.DataFactory-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.EA\src\MDD4All.SpecIF.DataProvider.EA\MDD4All.SpecIF.DataProvider.EA-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.MockupDataStream\src\MDD4All.SpecIF.DataProvider.MockupDataStream\MDD4All.SpecIF.DataProvider.MockupDataStream-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.ViewModels\src\MDD4All.SpecIF.ViewModels\MDD4All.SpecIF.ViewModels-dev.csproj" />
+        <ProjectReference Include="..\..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
+        <ProjectReference Include="..\..\..\SplitJs.Blazor\src\SplitJs.Blazor\SplitJs.Blazor-dev.csproj" />
+        <ProjectReference Include="..\..\..\Summernote\BlazingComponents.Summernote.csproj" />
+        <ProjectReference Include="..\..\..\VisNetwork.Blazor\src\VisNetwork.Blazor\VisNetwork.Blazor-dev.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <Reference Include="Interop.EA">
-        <HintPath>..\..\libs\Interop.EA.dll</HintPath>
+        <HintPath>..\..\..\libs\Interop.EA.dll</HintPath>
         <EmbedInteropTypes>False</EmbedInteropTypes>
       </Reference>
     </ItemGroup>
@@ -362,7 +363,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
-      <Exec Command="xcopy /y $(OutputPath)SpecIFicator.DefaultPlugin.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)SpecIFicatorPlugin.json $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)\de\*.resources.dll $(PluginPath)\SpecIFicator.DefaultPlugin\de\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MockupDataStream.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(ProjectDir)\obj\$(Configuration)\net6.0\scopedcss\projectbundle\SpecIFicator.DefaultPlugin.bundle.scp.css $(SolutionDir)SpecIFicator.Framework\src\SpecIFicator.Framework\wwwroot\css\pluginStyles\ " />
+      <Exec Command="xcopy /y $(OutputPath)SpecIFicator.DefaultPlugin.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)SpecIFicatorPlugin.json $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)\de\*.resources.dll $(PluginPath)\SpecIFicator.DefaultPlugin\de\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MockupDataStream.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SplitJs.Blazor.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(ProjectDir)\obj\$(Configuration)\net6.0\scopedcss\projectbundle\SpecIFicator.DefaultPlugin.bundle.scp.css $(SolutionDir)SpecIFicator.Framework\src\SpecIFicator.Framework\wwwroot\css\pluginStyles\ " />
     </Target>
 
 

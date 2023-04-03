@@ -44,6 +44,7 @@ jobs:
       run: |
         mkdir output
         mkdir ${{env.DEFAULT_PLUGIN_PATH}} 
+        mkdir ${{env.DEFAULT_PLUGIN_PATH}}de
 
     - name: Copy SpecIFicator.DefaultPlugin files
       run: |

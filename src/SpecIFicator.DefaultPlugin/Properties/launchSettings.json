@@ -1,7 +1,10 @@
 {
   "profiles": {
     "SpecIFicator.DefaultPlugin-dev": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "nativeDebugging": false,
+      "jsWebView2Debugging": false
     }
   }
 }

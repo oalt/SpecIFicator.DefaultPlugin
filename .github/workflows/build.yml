@@ -1,0 +1,61 @@
+name: Plugin Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: SpecIFicator.DefaultPlugin
+      DEFAULT_PLUGIN_PUBLISH_DIRECTORY: ./src/SpecIFicator.DefaultPlugin/bin/Release/net6.0/publish/
+      DEFAULT_PLUGIN_CSS_BUNDLE_FILE: ./src/SpecIFicator.DefaultPlugin/obj/Release/net6.0/scopedcss/projectbundle/SpecIFicator.DefaultPlugin.bundle.scp.css
+      DEFAULT_PLUGIN_PATH: ./output/SpecIFicator.DefaultPlugin/
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Read VERSION file
+      id: fileVersion
+      run: echo "FILE_VERSION_OUT=$(cat src/version.txt)" >> $GITHUB_OUTPUT
+
+    - name: Set version as environment variable
+      run: echo "VERSION=$(echo $FILE_VERSION.$GITHUB_RUN_NUMBER)" >> $GITHUB_ENV
+      env:
+        FILE_VERSION: ${{steps.fileVersion.outputs.FILE_VERSION_OUT}}
+
+    - name: Echo version number
+      run: echo $VERSION
+
+    - name: Publish
+      run: dotnet publish -p:PublishProfile=FolderProfile -c Release /p:Version=${{env.VERSION}} ./src/${{env.SOLUTION_NAME}}
+
+    - name: Create output directories
+      run: |
+        mkdir output
+        mkdir ${{env.DEFAULT_PLUGIN_PATH}} 
+
+    - name: Copy SpecIFicator.DefaultPlugin files
+      run: |
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}SpecIFicator.DefaultPlugin.* ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}SpecIFicatorPlugin.json ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}de\*.resources.dll ${{env.DEFAULT_PLUGIN_PATH}}\de\
+        cp ${{env.DEFAULT_PLUGIN_CSS_BUNDLE_FILE}} ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.MockupDataStream.dll ${{env.DEFAULT_PLUGIN_PATH}}
+
+    - name: Upload SpecIFicator.DefaultPlugin artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SpecIFicator.DefaultPlugin_${{env.VERSION}}
+        path: output/
+      

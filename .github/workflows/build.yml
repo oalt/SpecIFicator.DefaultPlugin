@@ -49,7 +49,7 @@ jobs:
       run: |
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}SpecIFicator.DefaultPlugin.* ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}SpecIFicatorPlugin.json ${{env.DEFAULT_PLUGIN_PATH}}
-        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}de/*.resources.dll ${{env.DEFAULT_PLUGIN_PATH}}/de/
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}de/*.resources.dll ${{env.DEFAULT_PLUGIN_PATH}}de/
         cp ${{env.DEFAULT_PLUGIN_CSS_BUNDLE_FILE}} ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.MockupDataStream.dll ${{env.DEFAULT_PLUGIN_PATH}}
 

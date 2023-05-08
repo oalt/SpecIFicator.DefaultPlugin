@@ -1,4 +1,4 @@
-﻿namespace SpecIFicator.DefaultPlugin.Configuration
+﻿namespace SpecIFicator.DefaultPlugin.Configurations
 {
     public class MongoDbConnectorConfiguration
     {

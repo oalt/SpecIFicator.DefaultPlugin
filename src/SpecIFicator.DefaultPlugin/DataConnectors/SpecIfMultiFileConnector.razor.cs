@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using SpecIFicator.Framework.Contracts;
 using MDD4All.SpecIF.DataProvider.File;
 using MDD4All.Configuration.Contracts;
-using SpecIFicator.DefaultPlugin.Configuration;
+using SpecIFicator.DefaultPlugin.Configurations;
 using MDD4All.Configuration;
 using Microsoft.Extensions.Localization;
 using MDD4All.SpecIF.ViewModels;

@@ -7,7 +7,7 @@ using MDD4All.SpecIF.DataProvider.MongoDB.Setup;
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using SpecIFicator.DefaultPlugin.Configuration;
+using SpecIFicator.DefaultPlugin.Configurations;
 using SpecIFicator.Framework.Contracts;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors

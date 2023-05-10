@@ -57,7 +57,6 @@ jobs:
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.MongoDB.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}Interop.EA.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.EA.dll ${{env.DEFAULT_PLUGIN_PATH}}
-        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.WebAPI.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SplitJs.Blazor.dll ${{env.DEFAULT_PLUGIN_PATH}}
 
     - name: Upload SpecIFicator.DefaultPlugin artifact

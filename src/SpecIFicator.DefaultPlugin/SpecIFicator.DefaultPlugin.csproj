@@ -14,13 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="MDD4All.BlazingComponents.Summernote" Version="2.0.0.4" />
+      <PackageReference Include="MDD4All.BlazingComponents.Summernote" Version="2.0.1.6" />
       <PackageReference Include="MDD4All.SpecIF.DataProvider.EA" Version="3.0.0.17" />
       <PackageReference Include="MDD4All.SpecIF.DataProvider.File" Version="3.0.1.16" />
       <PackageReference Include="MDD4All.SpecIF.DataProvider.MockupDataStream" Version="2.0.0.2" />
       <PackageReference Include="MDD4All.SpecIF.DataProvider.MongoDB" Version="3.0.0.10" />
       <PackageReference Include="MDD4All.SplitJs.Blazor" Version="2.0.1.5" />
-      <PackageReference Include="MDD4All.VisNetwork.Blazor" Version="2.0.1.7" />
+      <PackageReference Include="MDD4All.VisNetwork.Blazor" Version="2.0.2.8" />
       <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.8" />
       <PackageReference Include="SpecIFicator.Framework" Version="2.1.1.5" />
   </ItemGroup>

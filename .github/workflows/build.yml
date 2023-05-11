@@ -55,12 +55,14 @@ jobs:
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.MockupDataStream.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.File.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.MongoDB.dll ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}DnsClient.dll ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.MongoDB.DataAccess.Generic.dll ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MongoDB.Driver.dll ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MongoDB.Driver.Core.dll ${{env.DEFAULT_PLUGIN_PATH}}
+        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MongoDB.Libmongocrypt.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}Interop.EA.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SpecIF.DataProvider.EA.dll ${{env.DEFAULT_PLUGIN_PATH}}
-        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.SplitJs.Blazor.dll ${{env.DEFAULT_PLUGIN_PATH}}
         cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.BlazingComponents.Summernote.dll ${{env.DEFAULT_PLUGIN_PATH}}
-        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.VisNetwork.Blazor.dll ${{env.DEFAULT_PLUGIN_PATH}}
-        cp ${{env.DEFAULT_PLUGIN_PUBLISH_DIRECTORY}}MDD4All.VisNetwork.Blazor.Models.dll ${{env.DEFAULT_PLUGIN_PATH}}
 
     - name: Upload SpecIFicator.DefaultPlugin artifact
       uses: actions/upload-artifact@v3

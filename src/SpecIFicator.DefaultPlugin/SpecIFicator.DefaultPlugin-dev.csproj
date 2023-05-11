@@ -9,7 +9,8 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <BaseOutputPath></BaseOutputPath>
         <AppDataLocalDir>$([System.Environment]::GetFolderPath(SpecialFolder.LocalApplicationData))</AppDataLocalDir>
-        <PluginPath>$(AppDataLocalDir)\SpecIFicator\plugins</PluginPath>
+        <PluginPath Condition="'$(Configuration)' == 'Debug'">$(AppDataLocalDir)\SpecIFicator\plugins\Debug</PluginPath>
+        <PluginPath Condition="'$(Configuration)' == 'Release'">$(AppDataLocalDir)\SpecIFicator\plugins</PluginPath>
     </PropertyGroup>
 
 

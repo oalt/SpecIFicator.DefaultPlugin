@@ -8,6 +8,16 @@
     <AssemblyOriginatorKeyFile>MDD4All_Github.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DataConnectors\SpecIfEaConnector.razor.cs" />
+    <Compile Remove="DataConnectors\SpecIfWebApiConnector.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="DataConnectors\SpecIfEaConnector.razor" />
+    <Content Remove="DataConnectors\SpecIfWebApiConnector.razor" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />

@@ -1,0 +1,68 @@
+﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions;
+
+@if (SelectedResource.ResourceClassID == "RC-TestStep")
+{
+    <h1>
+        @SelectedNode.Level
+        <ResourceIcon Icon="@SelectedNode.TestCaseIcon()" />
+        @SelectedNode.TestCaseTitle()
+    </h1>
+
+    <h1><ResourceIcon Icon="@SelectedNode.ReferencedResource.Icon" /> @SelectedResource.Title</h1>
+
+    <h3>Description:</h3>
+    <p>
+        @(
+            (MarkupString)SelectedResource.Description
+        )  
+    </p>
+    <h3>Test Data:</h3>
+    <p>
+        @((MarkupString)SelectedResource.TestData())        
+    </p>
+    <h3>Expected Result:</h3>
+    <p>
+        @((MarkupString)SelectedResource.ExpectedResult() )   
+    </p>
+    <br />
+
+    <h3><label >Verdict</label></h3>
+    <fieldset >
+        <input type="radio" id=" None" name="verdict" value="None" />
+        <label for="None" class="form-label">None</label>
+
+        <input  type="radio" id="Pass" name="verdict" value="Pass" />
+        <label  for="Pass" class="form-label">Pass</label>
+
+        <input  type="radio" id="Fail" name="verdict" value="Fail" />
+        <label  for="Fail" class="form-label">Fail</label>
+
+        <input  type="radio" id="Inconclusive" name="verdict" value="Inconclusive" />
+        <label  for="Inconclusive" class="form-lable">Inconclusive</label>
+
+        <input  type="radio" id="Error" name="verdict" value="Error" />
+        <label  for="Error" class="form-label">Error</label>
+    </fieldset>
+    @*<p>
+
+    @((MarkupString)SelectedResource.Verdict())
+    </p>*@
+
+    <br />
+    <h3><label>Reason Message:</label></h3>
+    <textarea></textarea>
+    @*<p>
+        @((MarkupString)SelectedResource.ReasonMessage())
+    </p>*@
+    <br /><br/>
+    <div button-group="button">
+        <button type="button" @onclick="OnBackButtonClick"><i class="bi bi-arrow-left"></i></button>
+        <button type="button" @onclick="OnNextButtonClick"><i class="bi bi-arrow-right"></i></button>
+        <button type="button" @onclick="OnSaveButtonClick"><i class="bi bi-save"></i> Save</button>
+    </div>
+}
+else if (SelectedResource.ResourceClassID == "RC-TestCase")
+{
+    <p>This is a testcase!</p>
+}
+

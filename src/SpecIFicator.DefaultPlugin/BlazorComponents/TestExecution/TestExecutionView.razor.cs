@@ -3,60 +3,34 @@ using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using SpecIFicator.DefaultPlugin.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
 {
     partial class TestExecutionView
     {
         [CascadingParameter]
-        public HierarchyViewModel? DataContext { get; set; }
+        public HierarchyViewModel HierarchyViewModel { get; set; }
 
-        ResourceViewModel SelectedResource
+        public TestExecutionViewModel DataContext { get; set; }
+
+        protected override void OnInitialized()
         {
-            get
-            {
-                ResourceViewModel result = null;
-                if (DataContext != null && DataContext.SelectedNode != null)
-                {
-                    NodeViewModel? selectedNode = DataContext.SelectedNode as NodeViewModel;
-
-                    result = selectedNode.ReferencedResource;
-                }
-
-                return result;
-            }
+            DataContext = new TestExecutionViewModel(HierarchyViewModel);
         }
-
-        NodeViewModel SelectedNode
-        {
-            get
-            {
-                NodeViewModel result = null;
-
-                result = DataContext.SelectedNode as NodeViewModel;
-
-                return result;
-            }
-        }
-
-        [CascadingParameter]
-        public HierarchyViewModel? ExceptedResult { get; set; }
-
-        [CascadingParameter]
-        public HierarchyViewModel? ReasonMessage { get; set; }
 
         private void OnSaveButtonClick()
         {
-            //DataContext.SaveCommand.Execute(null); 
-         
+            DataContext.SaveTestResultCommand.Execute(null); 
+
         }
         private void OnNextButtonClick()
         {
-            //DataContext.NextCommand.Execute(null);
+            DataContext.GoToNextCommand.Execute(null);
         }
         private void OnBackButtonClick()
         {
-            //DataContext.BackCommand.Execute(null);
+            DataContext.GoToPreviousCommand.Execute(null);
 
         }
 

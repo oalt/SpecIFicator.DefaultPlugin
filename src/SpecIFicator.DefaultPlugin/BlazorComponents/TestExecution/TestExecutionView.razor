@@ -1,68 +1,83 @@
 ﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions;
+@using Microsoft.AspNetCore.Components.Forms;
 
-@if (SelectedResource.ResourceClassID == "RC-TestStep")
+@if (DataContext.SelectedResource.ResourceClassID == "RC-TestStep")
 {
-    <h1>
-        @SelectedNode.Level
-        <ResourceIcon Icon="@SelectedNode.TestCaseIcon()" />
-        @SelectedNode.TestCaseTitle()
-    </h1>
-
-    <h1><ResourceIcon Icon="@SelectedNode.ReferencedResource.Icon" /> @SelectedResource.Title</h1>
-
-    <h3>Description:</h3>
-    <p>
-        @(
-            (MarkupString)SelectedResource.Description
-        )  
-    </p>
-    <h3>Test Data:</h3>
-    <p>
-        @((MarkupString)SelectedResource.TestData())        
-    </p>
-    <h3>Expected Result:</h3>
-    <p>
-        @((MarkupString)SelectedResource.ExpectedResult() )   
-    </p>
-    <br />
-
-    <h3><label >Verdict</label></h3>
-    <fieldset >
-        <input type="radio" id=" None" name="verdict" value="None" />
-        <label for="None" class="form-label">None</label>
-
-        <input  type="radio" id="Pass" name="verdict" value="Pass" />
-        <label  for="Pass" class="form-label">Pass</label>
-
-        <input  type="radio" id="Fail" name="verdict" value="Fail" />
-        <label  for="Fail" class="form-label">Fail</label>
-
-        <input  type="radio" id="Inconclusive" name="verdict" value="Inconclusive" />
-        <label  for="Inconclusive" class="form-lable">Inconclusive</label>
-
-        <input  type="radio" id="Error" name="verdict" value="Error" />
-        <label  for="Error" class="form-label">Error</label>
-    </fieldset>
-    @*<p>
-
-    @((MarkupString)SelectedResource.Verdict())
-    </p>*@
-
-    <br />
-    <h3><label>Reason Message:</label></h3>
-    <textarea></textarea>
-    @*<p>
-        @((MarkupString)SelectedResource.ReasonMessage())
-    </p>*@
-    <br /><br/>
-    <div button-group="button">
+    <div button-group="button" class="buttonGroup">
         <button type="button" @onclick="OnBackButtonClick"><i class="bi bi-arrow-left"></i></button>
         <button type="button" @onclick="OnNextButtonClick"><i class="bi bi-arrow-right"></i></button>
         <button type="button" @onclick="OnSaveButtonClick"><i class="bi bi-save"></i> Save</button>
-    </div>
+    </div> <br />
+ 
+    <h1 class="testStep">
+        @DataContext.SelectedNode.Level
+        <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
+        @DataContext.SelectedNode.TestCaseTitle()
+
+    </h1>
+
+    <h1 class="testStep2">
+        <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
+        @DataContext.SelectedResource.Title
+    </h1> <br />
+   
+    <h3 class="Description">Description:</h3>
+    <p>
+        @(
+            (MarkupString)DataContext.SelectedResource.Description
+            )
+    </p><br />
+
+    <h3 class="TestData">Test Data:</h3>
+    <p>
+        @(
+            (MarkupString)DataContext.SelectedResource.TestData()
+            )
+    </p><br />
+
+    <h3 class="Result">Expected Result:</h3>
+    <p>
+        @(
+            (MarkupString)DataContext.SelectedResource.ExpectedResult()
+            )
+    </p><br />
+
+    <EditForm Model="@DataContext">
+        <h3><label class="verdict">Verdict</label></h3>
+        <InputRadioGroup Name="VerdictRadioGroup" @bind-Value="@DataContext.Verdict">
+            @foreach (KeyValuePair<string, string> keyValuePair in DataContext.VerdictValues)
+            {
+                <InputRadio Value="@keyValuePair.Key"
+                    Name="VerdictRadioGroup" />
+                <label for="None" class="form-label">@keyValuePair.Value </label>
+                <span> </span>
+            }
+        </InputRadioGroup><br />
+
+        <h3><label>Reason Message:</label></h3>
+        <textarea @bind="DataContext.ReasonMessage"></textarea><br />
+    </EditForm><br />
 }
-else if (SelectedResource.ResourceClassID == "RC-TestCase")
+else if (DataContext.SelectedResource.ResourceClassID == "RC-TestCase")
 {
-    <p>This is a testcase!</p>
+     <div button-group="button" class="button">
+        <button type="button" @onclick="OnBackButtonClick"><i class="bi bi-arrow-left"></i></button>
+        <button type="button" @onclick="OnNextButtonClick"><i class="bi bi-arrow-right"></i></button>
+    </div>
+    <br />
+    <h1 class="testcase">
+        @DataContext.SelectedNode.Level
+        <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
+        @DataContext.SelectedNode.TestCaseTitle()
+    </h1>
+    <strong>
+        <p>
+            @(
+                (MarkupString)DataContext.SelectedResource.Description
+                )
+        </p>
+    </strong>
+    <label>Test Result:</label>
 }
+
 

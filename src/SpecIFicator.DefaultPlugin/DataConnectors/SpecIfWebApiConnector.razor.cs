@@ -5,6 +5,13 @@ using MDD4All.Configuration.Contracts;
 using SpecIFicator.DefaultPlugin.Configurations;
 using MDD4All.Configuration;
 using MDD4All.SpecIF.ViewModels;
+using MDD4All.SpecIF.DataProvider.Contracts;
+using MDD4All.SpecIF.DataProvider.WebAPI;
+using MDD4All.SpecIF.DataProvider.MongoDB.Setup;
+using MongoDB.Driver.Core.Configuration;
+using System.ComponentModel;
+using MDD4All.SpecIF.DataProvider.MongoDB;
+using MDD4All.SpecIF.DataProvider.Base.Cache;
 
 namespace SpecIFicator.DefaultPlugin.DataConnectors
 {
@@ -12,6 +19,8 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
     {
         [Inject]
         private IStringLocalizer<SpecIfWebApiConnector> L { get; set; }
+        [Inject]
+        private IHttpClientFactory HttpClientFactory { get; set; }
 
         public static string Title = "SpecIF Web API";
 
@@ -46,6 +55,8 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         private void HandleConnectClick()
         {
+            DataContext.IsConnecting = true;
+            DataContext.StatusMessageKey = "Message.Connencting";
 
             if (_configuration != null && _configurationReaderWriter != null)
             {
@@ -54,14 +65,22 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
                 _configurationReaderWriter.StoreConfiguration(_configuration);
             }
 
-            //ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(MetadataPath);
-            //ISpecIfDataReader dataReader = new SpecIfFileDataReader(DataPath);
+            ISpecIfMetadataReader webApiMetadataReader = new SpecIfWebApiMetadataReader(ApiURL);
+            CachedSpecIfMetadataReader cachedMetadaReader = new CachedSpecIfMetadataReader(webApiMetadataReader);
 
-            //DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
-            //DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
-            //DataContext.SpecIfDataProviderFactory.DataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
+            ISpecIfMetadataReader metadataReader = cachedMetadaReader;
+            ISpecIfMetadataWriter metadataWriter = new SpecIfWebApiMetadataWriter(ApiURL, ApiKey);
+            ISpecIfDataReader dataReader = new SpecIfWebApiDataReader(ApiURL, ApiKey);
+            ISpecIfDataWriter dataWriter = new SpecIfWebApiDataWriter(ApiURL, ApiKey, metadataReader, dataReader);
+
+            DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+            DataContext.SpecIfDataProviderFactory.MetadataWriter = metadataWriter;
+            DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
+            DataContext.SpecIfDataProviderFactory.DataWriter = dataWriter;
 
             DataContext.ConnectCommand.Execute(null);
+
+            DataContext.IsConnecting = false;
         }
     }
 }

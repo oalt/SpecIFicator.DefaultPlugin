@@ -1,0 +1,11 @@
+﻿@using MDD4All.UI.BlazorComponents.Tree
+
+
+    <MvvmTree TNode="NodeViewModel" 
+              DataContext="@DataContext"
+              SelectedNodeChanged="OnSelectionChanged">
+
+        <TitleTemplate>@context.Level 
+                        <ResourceIcon Icon="@context.ReferencedResource.Icon"></ResourceIcon><TestVerdictIcon DataContext="@context.ReferencedResource" />&nbsp;@context.TreeNodeText</TitleTemplate>
+        <LoadingTemplate>@context.Level <span class="placeholder-glow"></span></LoadingTemplate>
+    </MvvmTree>

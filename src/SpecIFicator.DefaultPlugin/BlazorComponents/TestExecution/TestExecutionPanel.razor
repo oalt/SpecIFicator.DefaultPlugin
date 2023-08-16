@@ -1,0 +1,48 @@
+﻿@using MDD4All.UI.BlazorComponents.TabControl
+@using MDD4All.UI.BlazorComponents.Tooltip
+@using SpecIFicator.DefaultPlugin.BlazorComponents.Document
+@using SplitJs.Blazor.Components
+@using MDD4All.UI.BlazorComponents.Dialog
+@if (HierarchyViewModel != null)
+{
+    <div class="mainPanel">
+
+        <TestExecutionPanelHeader />
+
+        <div class="editorPanel">
+            <SplitZone Style="height:100%;">
+                <Horizontal>
+                    <Split MinSizePx="100" Size="20">
+                        @if (_treeType != null)
+                        {
+                            <CascadingValue Value="@HierarchyViewModel">
+                                <DynamicComponent Type="@_treeType"></DynamicComponent>
+                            </CascadingValue>
+                        }
+                        else
+                        {
+                            <p>No matching tree view found!</p>
+                        }
+                    </Split>
+                    <Split Size="80">
+                        @if (_hierarchyViewType != null)
+                        {
+                            <CascadingValue Value="@HierarchyViewModel">
+                                <DynamicComponent Type="@_hierarchyViewType"></DynamicComponent>
+                            </CascadingValue>
+                        }
+                        else
+                        {
+                            <h1>No matching hierarchy view found!</h1>
+                        }
+                    </Split>
+                </Horizontal>
+            </SplitZone>
+        </div>
+    </div>
+
+}
+else
+{
+    <h2>Loading...</h2>
+}

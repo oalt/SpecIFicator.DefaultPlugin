@@ -1,6 +1,4 @@
-﻿using MDD4All.FileAccess.Contracts;
-using MDD4All.SpecIF.DataProvider.Contracts;
-using MDD4All.SpecIF.ViewModels;
+﻿using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using SpecIFicator.DefaultPlugin.ViewModels;
@@ -9,20 +7,30 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
 {
     partial class TestExecutionView
     {
-        [CascadingParameter]
-        public HierarchyViewModel HierarchyViewModel { get; set; }
+        [Inject] // Daten speichern in Ressource ----> (.resx)
+        public IStringLocalizer<TestExecutionView> L { get; set; }
 
-        public TestExecutionViewModel DataContext { get; set; }
+        [CascadingParameter]
+        public HierarchyViewModel? HierarchyViewModel { get; set; }
+
+        public TestExecutionViewModel? DataContext { get; set; }
 
         protected override void OnInitialized()
         {
             DataContext = new TestExecutionViewModel(HierarchyViewModel);
-        }
 
+            HierarchyViewModel.PropertyChanged += OnPropertyChanged;
+        }
+        private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        }
         private void OnSaveButtonClick()
         {
-            DataContext.SaveTestResultCommand.Execute(null); 
-
+            DataContext.SaveTestResultCommand.Execute(null);
         }
         private void OnNextButtonClick()
         {
@@ -31,8 +39,6 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
         private void OnBackButtonClick()
         {
             DataContext.GoToPreviousCommand.Execute(null);
-
-        }
-
+        } 
     }
 }

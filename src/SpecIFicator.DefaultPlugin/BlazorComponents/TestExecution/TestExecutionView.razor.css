@@ -1,31 +1,18 @@
-﻿.testcase{
-    background-color:gold
-}
-.testStep {
-    background-color: gold;
- 
-}
-.testStep2 {
-    background-color:lavender;   
-}
-.Description {
-  
-}
-.TestData {
- 
-}
-.Result {
-  
-}
-.verdict {
+﻿
 
-}  
-.ReasonMessage {
- 
+.bi bi-arrow-left {
+    background-color: yellow;
 }
-.buttonGroup{
-   margin:10px
+.buttonGroup {
+    margin: 1px
 }
 .button{
-    margin:10px
+    margin:1px
+}
+.text{
+    width:1000px;
+    height:100px;
+}
+.bi bi-arrow-left{
+    background-color:dodgerblue
 }

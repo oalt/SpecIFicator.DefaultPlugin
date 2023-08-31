@@ -1,22 +1,37 @@
-﻿using EA;
+﻿
 using GalaSoft.MvvmLight.Command;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.ViewModels;
 using MDD4All.UI.DataModels.Tree;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Primitives;
 using SpecIFicator.DefaultPlugin.ViewModelExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using MDD4All.SpecIF.ViewModels.Revisioning;
+using MDD4All.SpecIF.ViewModels.Cache;
+using System.Threading.Tasks;
 
 namespace SpecIFicator.DefaultPlugin.ViewModels
 {
     public class TestExecutionViewModel
     {
+        private int changedat;
+        private string testDate;
+        private string title;
+        private string description;
+
 
         public TestExecutionViewModel(HierarchyViewModel hierarchyViewModel)
 
@@ -50,19 +65,19 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return result;
             }
         }
-
         public NodeViewModel SelectedNode
         {
             get
             {
-                NodeViewModel result = null;
+                NodeViewModel? result = null;
 
                 result = HierarchyViewModel.SelectedNode as NodeViewModel;
+
+                //NodeViewModel? result = HierarchyViewModel.SelectedNode as NodeViewModel; 
 
                 return result;
             }
         }
-
         public Dictionary<string, string> VerdictValues
         {
             get
@@ -79,34 +94,135 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
 
+        private Dictionary<Key, Resource> ChangedResources = new Dictionary<Key, Resource>();
+
         public string Verdict
         {
             get
             {
                 string result = "";
-
-
                 if (SelectedResource != null)
                 {
                     if (SelectedResource.ResourceClassID == "RC-TestStep" || SelectedResource.ResourceClassID == "RC-TestCase")
                     {
-                        result = SelectedResource.Resource.GetPropertyValue("U2TP:Verdict", SelectedResource.MetadataReader);
+                        result = SelectedResource.Resource.GetPropertyValue("U2TP:Verdict", SelectedResource.MetadataReader);//aktuelle verdict 
                     }
                 }
                 return result;
             }
+
+
             set
             {
-                string tmp = value;
-                ;
+                if (SelectedResource != null)
+                {
+                    List<PropertyViewModel> properties = SelectedResource.Properties;
+
+                    foreach (PropertyViewModel property in properties)
+                    {
+                        if (property.PropertyClass.ID == "PC-TestVerdict")
+                        {
+                            Key hugo = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+
+                            ChangedResources.Add(hugo, SelectedResource.Resource);
+
+                            property.SetSingleEnumerationValue(value);
+                            HierarchyViewModel.StateChanged = true;
+                            break;
+                        }
+                    }
+                }
+                string resultingVerdict = "V-Verdict-0";
+                if (SelectedResource != null)
+                {
+                    List<PropertyViewModel> propertiesViewModel = SelectedResource.Properties;
+
+                    foreach (NodeViewModel child in SelectedNode.Parent.Children)
+                    {
+                        string childVerdict = child.ReferencedResource.Resource.GetPropertyValue("U2TP:Verdict", SelectedResource.MetadataReader);
+
+                        if (childVerdict != null)
+                        {
+                            if (SelectedResource.ResourceClassID == "RC-TestStep")
+                            {
+                                if (childVerdict == "V-Verdict-0" && resultingVerdict == "V-Verdict-0")  // None: nicht getestet
+                                {
+                                    resultingVerdict = "V-Verdict-0";
+                                }
+                                else if (childVerdict == "V-Verdict-1" && (resultingVerdict == "V-Verdict-1" || resultingVerdict == "V-Verdict-0")) //Pass
+                                {
+                                    resultingVerdict = "V-Verdict-1";
+                                }
+                                else if (childVerdict == "V-Verdict-2" && (resultingVerdict == "V-Verdict-2" || resultingVerdict == "V-Verdict-1" || resultingVerdict == "V-Verdict-0")) //Inconclusive
+                                {
+                                    resultingVerdict = "V-Verdict-2";
+                                }
+                                else if (childVerdict == "V-Verdict-3" && (resultingVerdict == "V-Verdict-3" || resultingVerdict == "V-Verdict-1" || resultingVerdict == "V-Verdict-2" || resultingVerdict == "V-Verdict-0")) //Fail
+                                {
+                                    resultingVerdict = "V-Verdict-3";
+                                }
+                                else if (childVerdict == "V-Verdict-4" && (resultingVerdict == "V-Verdict-4" || resultingVerdict == "V-Verdict-1" || resultingVerdict == "V-Verdict-0" || resultingVerdict == "V-Verdict-2" || resultingVerdict == "V-Verdict-3")) //Error
+                                {
+                                    resultingVerdict = "V-Verdict-4";
+                                }
+                            }
+                        }
+                    }
+
+                    NodeViewModel parentNode = SelectedNode.Parent as NodeViewModel;
+
+                    List<PropertyViewModel> properties = parentNode.ReferencedResource.Properties;
+
+                    foreach (PropertyViewModel property in properties)
+                    {
+                        if (property.PropertyClass.ID == "PC-TestVerdict")
+                        {
+                            Key key = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+
+                            if (!ChangedResources.ContainsKey(key))
+                            {
+
+                                ChangedResources.Add(key, parentNode.ReferencedResource.Resource);
+                            }
+
+
+                            property.SetSingleEnumerationValue(resultingVerdict);
+                            HierarchyViewModel.StateChanged = true;
+                            break;
+                        }
+                    }
+
+                    // Wenn TestCase und TestStep Pass sind, sollte TestSuite als Pass dargestellt werden.
+                    NodeViewModel nodeTestsuite = SelectedNode.Parent.Parent as NodeViewModel;
+
+                    List<PropertyViewModel> propertyViewModels = nodeTestsuite.ReferencedResource.Properties;
+
+                    foreach (PropertyViewModel propertyView in propertyViewModels)
+                    {
+                        if (propertyView.PropertyClass.ID == "PC-TestVerdict")
+                        {
+                            Key key = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+
+                            if (!ChangedResources.ContainsKey(key))
+                            {
+                                ChangedResources.Add(key, nodeTestsuite.ReferencedResource.Resource);
+                            }
+
+
+                            propertyView.SetSingleEnumerationValue(resultingVerdict);
+                            HierarchyViewModel.StateChanged = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
+
         public string ReasonMessage
         {
             get
             {
                 string result = "";
-
 
                 if (SelectedResource != null)
                 {
@@ -114,24 +230,21 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     {
                         result = SelectedResource.Resource.GetPropertyValue("U2TP:ReasonMessage", SelectedResource.MetadataReader);
                     }
-
                 }
                 return result;
             }
-            set
-            {
-            }
-        }
-        public string TestCaseTestResult
-        {
-            get
-            {
-
-                return "";
-            }
 
             set
             {
+
+                if (SelectedResource != null)
+                {
+                    if (SelectedResource.ResourceClassID == "RC-TestStep")
+                    {
+                        SelectedResource.Resource.SetPropertyValue("U2TP:ReasonMessage", value, SelectedResource.MetadataReader);
+                    }
+
+                }
             }
         }
 
@@ -157,19 +270,19 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         public ICommand GoToPreviousCommand { get; private set; }
 
         public ICommand SaveTestResultCommand { get; private set; }
-        public NodeViewModel child { get; private set; }
+
 
         private void ExecuteGoToPrevious()
         {
-            if (SelectedResource.ResourceClassID == "RC-TestStep")
+            if (SelectedResource.ResourceClassID == "RC-TestStep" || SelectedResource.ResourceClassID == "RC-TestCase")
             {
-                NodeViewModel currentNodeViewModel = SelectedNode as NodeViewModel;
+                NodeViewModel? currentNodeViewModel = SelectedNode as NodeViewModel;
 
-                NodeViewModel previousTestStep = null;
+                NodeViewModel? previousTestStep = null;
 
-                NodeViewModel parent = currentNodeViewModel.Parent as NodeViewModel;
+                NodeViewModel? parent = currentNodeViewModel.Parent as NodeViewModel;
 
-                foreach (NodeViewModel child in parent.Children)
+                foreach (NodeViewModel? child in parent.Children)
                 {
                     if (child == currentNodeViewModel)
                     {
@@ -186,41 +299,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 }
                 else
                 {
-                    NodeViewModel parentTestCase = currentNodeViewModel.Parent as NodeViewModel;
+                    NodeViewModel? parentTestCase = currentNodeViewModel.Parent as NodeViewModel;
                     HierarchyViewModel.SelectedNode = parentTestCase;
                 }
-            }
-            if (SelectedResource.ResourceClassID == "RC-TestCase")
-            {
-                NodeViewModel currentNodeViewModel = SelectedNode as NodeViewModel;
-
-                NodeViewModel previousTestCase = null;
-
-                // Suche den vorherigen TestCase und setze die Variable previousTestCase
-
-                NodeViewModel parent = currentNodeViewModel.Parent as NodeViewModel;
-
-                foreach (NodeViewModel child in parent.Children)
-                {
-                    if (child == currentNodeViewModel)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        previousTestCase = child;
-                    }
-                }
-
-                if (previousTestCase != null)
-                {
-                    HierarchyViewModel.SelectedNode = previousTestCase;
-                }
-                //else
-                //{
-                //    NodeViewModel previousNodeViewModel = currentNodeViewModel as NodeViewModel;
-                //    HierarchyViewModel.SelectedNode = previousNodeViewModel;
-                //}
             }
 
         }
@@ -228,9 +309,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         {
             if (SelectedResource.ResourceClassID == "RC-TestStep")
             {
-                NodeViewModel currentNodeViewModel = SelectedNode as NodeViewModel;
-                NodeViewModel parent = currentNodeViewModel.Parent as NodeViewModel;
-                NodeViewModel nextTestStep = null;
+                NodeViewModel? currentNodeViewModel = SelectedNode as NodeViewModel;
+                NodeViewModel? parent = currentNodeViewModel.Parent as NodeViewModel;
+                NodeViewModel? nextTestStep = null;
 
                 bool foundCurrentTestStep = false;
 
@@ -246,19 +327,17 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                         foundCurrentTestStep = true;
                     }
                 }
-
                 // next teststep found
                 if (nextTestStep != null)
                 {
                     HierarchyViewModel.SelectedNode = nextTestStep;
-
                 }
                 else
                 {
-                    NodeViewModel grandparend = parent.Parent as NodeViewModel;
+                    NodeViewModel? grandparend = parent.Parent as NodeViewModel;
                     if (grandparend != null)
                     {
-                        NodeViewModel nextTestCase = null;
+                        NodeViewModel? nextTestCase = null;
 
                         bool currentTestCaseFound = false;
                         foreach (NodeViewModel child in grandparend.Children)
@@ -268,43 +347,56 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                                 nextTestCase = child;
                                 break;
                             }
-
                             if (child == parent)
                             {
                                 currentTestCaseFound = true;
                             }
                         }
-
                         if (nextTestCase != null)
                         {
                             HierarchyViewModel.SelectedNode = nextTestCase;
                         }
-
                     }
-
                 }
-
             }
-            else if (SelectedResource.ResourceClassID == "RC-TestCase")
+            else if (SelectedResource.ResourceClassID == "RC-TestCase" || SelectedResource.ResourceClassID == "RC-TestSuite")
             {
-                NodeViewModel currentNodeViewModel = SelectedNode as NodeViewModel;
+                NodeViewModel? currentNodeViewModel = SelectedNode as NodeViewModel;
 
-                if (currentNodeViewModel.Children != null && currentNodeViewModel.Children.Count > 0) 
+                if (currentNodeViewModel.Children != null && currentNodeViewModel.Children.Count > 0)
                 {
-                    NodeViewModel child = currentNodeViewModel.Children[0] as NodeViewModel;
+                    NodeViewModel? child = currentNodeViewModel.Children[0] as NodeViewModel;
                     HierarchyViewModel.SelectedNode = child;
-                    
                 }
-
-
             }
-
         }
 
         private void ExecuteSaveTestResult()
         {
+            string result = " ";
 
+            if (SelectedResource != null)
+            {
+                result = SelectedResource.ResourceClassID;
 
+                result = SelectedResource.ResourceClassID.ToString();
+
+            }
+
+        }
+        public string TestObject
+        {
+            get
+            {
+                string result = "";
+
+                if (SelectedResource != null && SelectedResource.Properties != null)
+                {
+                    result = SelectedResource.Resource.GetPropertyValue("ISTQB:TestObject", SelectedResource.MetadataReader);
+                }
+
+                return result;
+            }
 
         }
 

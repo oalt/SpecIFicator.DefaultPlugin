@@ -1,5 +1,6 @@
 ﻿using MDD4All.SpecIF.DataModels.Manipulation;
 using MDD4All.SpecIF.ViewModels;
+using SpecIFicator.DefaultPlugin.BlazorComponents;
 
 namespace SpecIFicator.DefaultPlugin.ViewModelExtensions
 {
@@ -87,5 +88,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModelExtensions
 
             return result;
         }
+
     }
 }

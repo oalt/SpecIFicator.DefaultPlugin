@@ -21,7 +21,15 @@
 
             </legend>
 
-
+            @if (HierarchyViewModel != null)
+            {
+                <fieldset class="propertyField">
+                    <legend>Node ID</legend>
+                    <p>
+                        @(((NodeViewModel)HierarchyViewModel.SelectedNode).NodeID)
+                    </p>
+                </fieldset>
+            }
             <fieldset class="propertyField">
                 <legend>Key</legend>
                 <p style="font-family: 'Courier New', monospace;">

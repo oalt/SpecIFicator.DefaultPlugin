@@ -1,0 +1,44 @@
+﻿@using System.Collections.ObjectModel;
+@using System.Collections.Generic;
+@using System.ComponentModel;
+@using GalaSoft.MvvmLight;
+@using System.Linq;
+@using MDD4All.UI.DataModels.Tree;
+@using MDD4All.UI.DataModels;
+@using MDD4All.SpecIF.DataModels;
+@using MDD4All.SpecIF.DataProvider.Contracts;
+@using MDD4All.SpecIF.ViewModels.Cache;
+@using System;
+@using System.Text;
+@using System.Threading.Tasks;
+@using SpecIFicator.DefaultPlugin.ViewModels;
+
+<br />
+<span><h3> Bitte wählen Sie Ihre gewünschte TestCases aus.</h3></span>
+<br />
+
+<MDD4All.UI.BlazorComponents.Tree.MvvmTree TNode="TestResourceNodeViewModel"
+                                           DataContext="@DataContext">
+
+    <TitleTemplate>
+
+        <input type="checkbox"
+               @oninput="CheckboxChanged "
+               checked="@context.IsChecked"
+               class="title" />
+
+        @context.Title
+
+    </TitleTemplate>
+
+</MDD4All.UI.BlazorComponents.Tree.MvvmTree>
+
+@foreach (TestResourceNodeViewModel testResourceNodeTestSuite in DataContext.CheckedNodes)
+{
+    if (testResourceNodeTestSuite.ReferencedResource.ResourceClassID == "RC-TestSuite")
+    {
+        <h3>@testResourceNodeTestSuite.Title</h3>
+    }
+}
+
+

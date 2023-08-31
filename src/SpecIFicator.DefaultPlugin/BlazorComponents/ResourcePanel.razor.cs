@@ -10,7 +10,13 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         public ClipboardDataProvider ClipboardDataProvider { get; set; }
         
         [Parameter]
-        public ResourceViewModel ResourceViewModel { get; set; }
+        public HierarchyViewModel HierarchyViewModel { get; set; }
+
+        [Parameter]
+        public ResourceViewModel ResourceViewModel 
+        {
+            get; set;
+        }
 
         [Parameter]
         public bool IsMultilinguismEnabled { get; set; } = false;
@@ -22,6 +28,12 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         public string SecondaryLanguage { get; set; } = "de";
 
         private string CopyButtonIconClass { get; set; } = "bi bi-clipboard-fill";
+
+
+        protected override void OnInitialized()
+        {
+            
+        }
 
         private async void CopyKeyToClipboardAsync()
         {

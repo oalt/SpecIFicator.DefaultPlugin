@@ -1,0 +1,43 @@
+﻿@using MDD4All.UI.BlazorComponents.Dialog
+@using SpecIFicator.DefaultPlugin.ViewModels;
+
+
+@if (DataContext.ShowNewTestSuite == false)  // if (!DataContext.ShowNewTestSuite)
+{
+
+    <TestSuiteSelectionTree DataContext="@DataContext" />
+   
+    <br />
+
+    @foreach (TestResourceNodeViewModel testResourceNodeTestSuite in DataContext.CheckedNodes)
+    {
+        if (testResourceNodeTestSuite.ReferencedResource.ResourceClassID == "RC-TestSuite")
+        {
+            <h3>@testResourceNodeTestSuite.Title</h3>
+        }
+    }
+
+    <div class="d-grid gap-2 d-md-block">
+        <button type="button" class="btn btn-primary ok" @onclick="OnOkButtonClick">
+            OK
+        </button>
+
+        <button type="button" class="btn btn-primary cancel" @onclick="OnCancelButtonClick">
+            Cancel
+        </button>
+    </div>
+  
+
+}
+else if (DataContext.ShowNewTestSuite == true) // else
+{
+    <ModalDialog OnClose="@OnNewTestSuiteClose"
+             DialogType="ModalDialog.ModalDialogType.OkCancel"
+             Title="@L["Title.CreateNewHierarchy"]">
+
+        <ResourcePanel ResourceViewModel="@DataContext.TestSuiteUnderEdit" />
+
+    </ModalDialog>
+}
+
+

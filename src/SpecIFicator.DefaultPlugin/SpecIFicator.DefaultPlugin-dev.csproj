@@ -188,6 +188,21 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>StatementCreator.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestExecutionView.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestExecutionView.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestSuiteCreator.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteSelectionTree.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestSuiteSelectionTree.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\DataConnectors\SpecIfWebApiConnector.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -315,6 +330,18 @@
       <EmbeddedResource Update="Resources\BlazorComponents\StatementCreator.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>StatementCreator.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestExecutionView.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestExecutionView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestSuiteCreator.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteSelectionTree.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestSuiteSelectionTree.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.resx">
         <LastGenOutput>SpecIfEaConnector.Designer.cs</LastGenOutput>

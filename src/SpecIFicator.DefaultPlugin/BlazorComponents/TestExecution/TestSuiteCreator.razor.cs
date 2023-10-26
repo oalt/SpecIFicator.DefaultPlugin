@@ -52,7 +52,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
         {
             if (accepted)
             {
-                DataContext.CreateTestSuiteCommand.Execute(null);
+                //DataContext.CreateTestSuiteCommand.Execute(null);
             }
             if (!accepted) // else
             {

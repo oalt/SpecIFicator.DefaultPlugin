@@ -143,6 +143,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Test Result ähnelt.
+        /// </summary>
+        internal static string Label_Verdict {
+            get {
+                return ResourceManager.GetString("Label.Verdict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         internal static string Label_Verdict_Error {

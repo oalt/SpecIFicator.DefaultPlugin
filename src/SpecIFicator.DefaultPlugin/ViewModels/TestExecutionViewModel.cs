@@ -2,26 +2,9 @@
 using GalaSoft.MvvmLight.Command;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
-using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.ViewModels;
-using MDD4All.UI.DataModels.Tree;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Primitives;
 using SpecIFicator.DefaultPlugin.ViewModelExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using MDD4All.SpecIF.ViewModels.Revisioning;
-using MDD4All.SpecIF.ViewModels.Cache;
-using System.Threading.Tasks;
 
 namespace SpecIFicator.DefaultPlugin.ViewModels
 {
@@ -31,7 +14,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         private string testDate;
         private string title;
         private string description;
-
 
         public TestExecutionViewModel(HierarchyViewModel hierarchyViewModel)
 
@@ -47,7 +29,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             SaveTestResultCommand = new RelayCommand(ExecuteSaveTestResult);
 
         }
-
         public HierarchyViewModel HierarchyViewModel { get; set; }
 
         public ResourceViewModel SelectedResource
@@ -93,7 +74,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return result;
             }
         }
-
         private Dictionary<Key, Resource> ChangedResources = new Dictionary<Key, Resource>();
 
         public string Verdict
@@ -110,7 +90,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 }
                 return result;
             }
-
 
             set
             {
@@ -207,8 +186,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                             {
                                 ChangedResources.Add(key, nodeTestsuite.ReferencedResource.Resource);
                             }
-
-
                             propertyView.SetSingleEnumerationValue(resultingVerdict);
                             HierarchyViewModel.StateChanged = true;
                             break;
@@ -303,7 +280,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     HierarchyViewModel.SelectedNode = parentTestCase;
                 }
             }
-
         }
         private void ExecuteGoToNext()
         {
@@ -340,18 +316,26 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                         NodeViewModel? nextTestCase = null;
 
                         bool currentTestCaseFound = false;
+
+
                         foreach (NodeViewModel child in grandparend.Children)
                         {
-                            if (currentTestCaseFound && child.ReferencedResource.ResourceClassID == "RC-TestCase")
+                            if (child.ReferencedResource != null)
                             {
-                                nextTestCase = child;
-                                break;
-                            }
-                            if (child == parent)
-                            {
-                                currentTestCaseFound = true;
+
+                                if (currentTestCaseFound && child.ReferencedResource.ResourceClassID == "RC-TestCase")
+                                {
+                                    nextTestCase = child;
+                                    break;
+                                }
+
+                                if (child == parent)
+                                {
+                                    currentTestCaseFound = true;
+                                }
                             }
                         }
+
                         if (nextTestCase != null)
                         {
                             HierarchyViewModel.SelectedNode = nextTestCase;

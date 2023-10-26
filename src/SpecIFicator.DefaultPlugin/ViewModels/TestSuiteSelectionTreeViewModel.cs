@@ -41,7 +41,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             ShowNewTestSuite = true;
         }
         public bool ShowNewTestSuite { get; set; } = true;
-
         private void InitializeCommands()
         {
             EditNewTestSuiteCommand = new RelayCommand(ExecuteEditNewTestSuite);
@@ -50,7 +49,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             // DeleteTestSuiteCommand = new RelayCommand(ExecuteDeleteTestSuiteCommand);
             // SaveTestSuiteCommand = new RelayCommand(ExecuteSaveTestCommand);
         }
-
         //private void ExecuteDeleteTestSuiteCommand()
         //{
         //    if (SelectedNode == null)
@@ -71,14 +69,11 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         //        SaveTestsCommand.Execute(null);
         //    }
         //}
-
         public ResourceViewModel TestSuiteUnderEdit { get; set; }
-
         private void ExecuteEditNewTestSuite()
         {
             
         }
-
         private void ExecuteCreateTestsuite()
         {
             // hier musst du programmieren
@@ -282,19 +277,14 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 CheckAllNodes(testResourceNodeViewModel);
             }
         }
-
         private ISpecIfDataProviderFactory _specIfDataProviderFactory;
-
         private ISpecIfMetadataReader _metadataReader;
-
         public ISpecIfMetadataReader MetadataReader
         {
             get { return _metadataReader; }
 
         }
-
         private ISpecIfDataReader _specIfDataReader;
-
         public ISpecIfDataReader DataReader
         {
             get
@@ -302,9 +292,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return _specIfDataReader;
             }
         }
-
         private ISpecIfDataWriter _specIfDataWriter;
-
         public ISpecIfDataWriter DataWriter
         {
             get
@@ -312,11 +300,8 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return _specIfDataWriter;
             }
         }
-
         public TestResourceNodeViewModel RootNode { get; set; }
-
         private ObservableCollection<ITreeNode> _treeRootNodes = new ObservableCollection<ITreeNode>();
-
         public ObservableCollection<ITreeNode> TreeRootNodes
         {
             get
@@ -325,7 +310,6 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
         private ITreeNode _selectedNode;
-
         public ITreeNode SelectedNode
         {
             get
@@ -340,11 +324,8 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
         public ICommand EditNewTestSuiteCommand { get; set; }
-
         public ICommand CreateTestSuiteCommand { get; set; }
-
         public ICommand DeleteTestSuiteCommand { get; set; }
-
         public ICommand SaveTestSuiteCommand { get; set; }
     }
 }

@@ -148,6 +148,9 @@
     <value>Test Result</value>
     <comment>The test result of Test Case</comment>
   </data>
+  <data name="Label.Verdict" xml:space="preserve">
+    <value>Test Result</value>
+  </data>
   <data name="Label.Verdict.Error" xml:space="preserve">
     <value>Error</value>
     <comment>The test is not working</comment>

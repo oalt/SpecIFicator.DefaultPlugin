@@ -19,9 +19,9 @@
         @DataContext.SelectedResource.Title
     </h2>
     <br />
-    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary">@L["Button.Back"]</button>
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary">@L["Button.Next"]</button>
-    <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success">@L["Button.Save"]</button>
+    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
+    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
+    <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success"><i class="bi bi-save"></i>@L["Button.Save"]</button>
     <br />
     <br />
     <EditForm Model="@DataContext">
@@ -37,15 +37,11 @@
                 <label for="None" class="form-label">@keyValuePair.Value </label>
               
             }
-
         </InputRadioGroup><br />
-
     </EditForm>
     <br />
-
     <h3><label>@L["Label.ReasonMessage"]</label></h3>
     <textarea class="text" @bind="DataContext.ReasonMessage"></textarea>
-
     <br />
     <br />
     <h3><lable class="Description">@L["Label.Description"]</lable></h3>
@@ -83,8 +79,8 @@ else if (DataContext.SelectedResource.ResourceClassID == "RC-TestCase")
     <br />
     <br />
 
-    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary">@L["Button.Back"]</button>
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary">@L["Button.Next"]</button>
+    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
+    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
 
     <br />
     <br />
@@ -112,7 +108,7 @@ else if (DataContext.SelectedResource.ResourceClassID == "RC-TestSuite")
     <br />
     <br />
 
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary">@L["Button.Next"]</button>
+    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
 
     <br />
     <br />

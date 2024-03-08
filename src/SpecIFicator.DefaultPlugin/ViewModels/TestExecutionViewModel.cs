@@ -1,5 +1,4 @@
-﻿
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
 using MDD4All.SpecIF.ViewModels;
@@ -26,9 +25,12 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         {
             GoToPreviousCommand = new RelayCommand(ExecuteGoToPrevious);
             GoToNextCommand = new RelayCommand(ExecuteGoToNext);
-            SaveTestResultCommand = new RelayCommand(ExecuteSaveTestResult);
+            SaveTestResultCommand = new RelayCommand(ExecuteSaveTestResult, CanSave);
 
         }
+
+        
+
         public HierarchyViewModel HierarchyViewModel { get; set; }
 
         public ResourceViewModel SelectedResource
@@ -74,6 +76,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return result;
             }
         }
+
         private Dictionary<Key, Resource> ChangedResources = new Dictionary<Key, Resource>();
 
         public string Verdict
@@ -101,9 +104,12 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     {
                         if (property.PropertyClass.ID == "PC-TestVerdict")
                         {
-                            Key hugo = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+                            Key selectedResourceKey = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
 
-                            ChangedResources.Add(hugo, SelectedResource.Resource);
+                            if (!ChangedResources.ContainsKey(selectedResourceKey))
+                            {
+                                ChangedResources.Add(selectedResourceKey, SelectedResource.Resource);
+                            }
 
                             property.SetSingleEnumerationValue(value);
                             HierarchyViewModel.StateChanged = true;
@@ -111,7 +117,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                         }
                     }
                 }
+
                 string resultingVerdict = "V-Verdict-0";
+                
                 if (SelectedResource != null)
                 {
                     List<PropertyViewModel> propertiesViewModel = SelectedResource.Properties;
@@ -219,9 +227,38 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     if (SelectedResource.ResourceClassID == "RC-TestStep")
                     {
                         SelectedResource.Resource.SetPropertyValue("U2TP:ReasonMessage", value, SelectedResource.MetadataReader);
+                        
+                        Key selectedResourceKey = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+
+                        if (!ChangedResources.ContainsKey(selectedResourceKey))
+                        {
+                            ChangedResources.Add(selectedResourceKey, SelectedResource.Resource);
+                        }
                     }
 
                 }
+            }
+        }
+        
+        public string ReasonMessageFormat
+        {
+            get
+            {
+                string result = "plain";
+
+                if(SelectedResource != null && SelectedResource.ResourceClassID == "RC-TestStep")
+                {
+                    foreach(PropertyClass propertyClass in SelectedResource.PropertyClasses)
+                    {
+                        if(propertyClass.Title == "U2TP:ReasonMessage" && !string.IsNullOrEmpty(propertyClass.Format))
+                        {
+                            result = propertyClass.Format;
+                            break;
+                        }
+                    }
+                }
+
+                return result;
             }
         }
 
@@ -240,6 +277,22 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
                 return result;
             }
+        }
+
+        public string TestObject
+        {
+            get
+            {
+                string result = "";
+
+                if (SelectedResource != null && SelectedResource.Properties != null)
+                {
+                    result = SelectedResource.Resource.GetPropertyValue("ISTQB:TestObject", SelectedResource.MetadataReader);
+                }
+
+                return result;
+            }
+
         }
 
         public ICommand GoToNextCommand { get; private set; }
@@ -357,32 +410,18 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
         private void ExecuteSaveTestResult()
         {
-            string result = " ";
 
-            if (SelectedResource != null)
-            {
-                result = SelectedResource.ResourceClassID;
 
-                result = SelectedResource.ResourceClassID.ToString();
-
-            }
+            ChangedResources.Clear();
 
         }
-        public string TestObject
+
+        private bool CanSave()
         {
-            get
-            {
-                string result = "";
-
-                if (SelectedResource != null && SelectedResource.Properties != null)
-                {
-                    result = SelectedResource.Resource.GetPropertyValue("ISTQB:TestObject", SelectedResource.MetadataReader);
-                }
-
-                return result;
-            }
-
+            return ChangedResources.Count > 0;
         }
+
+        
 
     }
 }

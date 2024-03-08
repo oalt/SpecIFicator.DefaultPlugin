@@ -118,66 +118,66 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Button.Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Zurück</value>
   </data>
   <data name="Button.Next" xml:space="preserve">
-    <value>Next</value>
+    <value>Weiter</value>
   </data>
   <data name="Button.Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
     <comment>The test is Save</comment>
   </data>
   <data name="Label.Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="Label.ExpectedResult" xml:space="preserve">
-    <value>Expected Result</value>
+    <value>Erwartetes Ergebnis</value>
     <comment>Accept result</comment>
   </data>
   <data name="Label.Precondition" xml:space="preserve">
-    <value>Precondition</value>
+    <value>Vorbedingung</value>
   </data>
   <data name="Label.Priority" xml:space="preserve">
-    <value>Priority</value>
+    <value>Priorität</value>
   </data>
   <data name="Label.ReasonMessage" xml:space="preserve">
-    <value>Reason Message</value>
+    <value>Begründung</value>
   </data>
   <data name="Label.TestData" xml:space="preserve">
-    <value>Test Data</value>
+    <value>Testdaten</value>
   </data>
   <data name="Label.TestObject" xml:space="preserve">
-    <value>Test Object</value>
+    <value>Testobjekt</value>
     <comment>Tested the Object in test suite</comment>
   </data>
   <data name="Label.TestResult" xml:space="preserve">
-    <value>Test Result</value>
+    <value>Testergebnis</value>
     <comment>The test result of Test Case</comment>
   </data>
   <data name="Label.Verdict" xml:space="preserve">
-    <value>Test Result</value>
+    <value>Testergebnis</value>
   </data>
   <data name="Label.Verdict.Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
     <comment>The test is not working</comment>
   </data>
   <data name="Label.Verdict.Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>Inkorrekt</value>
     <comment>faulty</comment>
   </data>
   <data name="Label.Verdict.Inconclusive" xml:space="preserve">
-    <value>Inconclusive</value>
+    <value>Unklar</value>
     <comment>Something is missing</comment>
   </data>
   <data name="Label.Verdict.None" xml:space="preserve">
-    <value>None</value>
+    <value>Nicht getestet</value>
     <comment>No tested</comment>
   </data>
   <data name="Label.Verdict.Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>In Ordnung</value>
     <comment>The result is the same as expected</comment>
   </data>
   <data name="LabelTescaseID" xml:space="preserve">
-    <value>Test Case ID</value>
+    <value>Testfall ID</value>
   </data>
 </root>

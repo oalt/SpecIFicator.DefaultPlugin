@@ -3,137 +3,166 @@
 @using SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution;
 @using SpecIFicator.DefaultPlugin.ViewModels;
 
-@if (DataContext.SelectedResource.ResourceClassID == "RC-TestStep")
-{
-    <h1>
-        @(
-            ((NodeViewModel)DataContext.SelectedNode.Parent).Level
-            )
-        <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
-        @DataContext.SelectedNode.TestCaseTitle()
-    </h1>
+<div class="testExecutionView">
+    @if (DataContext.SelectedResource.ResourceClassID == "RC-TestStep")
+    {
+        <p>
+            <button type="button" @onclick="OnBackButtonClick" class="btn btn-secondary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
+            <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
+            <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success" disabled="@(!DataContext.SaveTestResultCommand.CanExecute(null))"><i class="bi bi-save"></i> @L["Button.Save"]</button>
+        </p>
 
-    <h2>
-        @DataContext.SelectedNode.Level
-        <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
-        @DataContext.SelectedResource.Title
-    </h2>
-    <br />
-    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
-    <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success"><i class="bi bi-save"></i>@L["Button.Save"]</button>
-    <br />
-    <br />
-    <EditForm Model="@DataContext">
 
-        <h3><label class="verdict">@L["Label.Verdict"]</label></h3>
-
-        <InputRadioGroup Name="VerdictRadioGroup" @bind-Value="@DataContext.Verdict">
-
-            @foreach (KeyValuePair<string, string> keyValuePair in DataContext.VerdictValues)
-            {
-                <InputRadio Value="@keyValuePair.Key"
-                    Name="VerdictRadioGroup" />
-                <label for="None" class="form-label">@keyValuePair.Value </label>
-              
-            }
-        </InputRadioGroup><br />
-    </EditForm>
-    <br />
-    <h3><label>@L["Label.ReasonMessage"]</label></h3>
-    <textarea class="text" @bind="DataContext.ReasonMessage"></textarea>
-    <br />
-    <br />
-    <h3><lable class="Description">@L["Label.Description"]</lable></h3>
-    <p>
-        @(
-            (MarkupString)DataContext.SelectedResource.Description
-            )
-    </p>
-    <br />
-
-    <h3><lable class="TestData">@L["Label.TestData"]</lable></h3>
-    <p>
-        @(
-            (MarkupString)DataContext.SelectedResource.TestData()
-            )
-    </p>
-    <br />
-    <br />
-    <h3><lable class="Result">@L["Label.ExpectedResult"]</lable></h3>
-    <p>
-        @(
-            (MarkupString)DataContext.SelectedResource.ExpectedResult()
-            )
-    </p>
-    <br />
-
-}
-else if (DataContext.SelectedResource.ResourceClassID == "RC-TestCase")
-{
-    <h1>
-        @DataContext.SelectedNode.Level
-        <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
-        @DataContext.SelectedNode.TestCaseTitle()
-    </h1>
-    <br />
-    <br />
-
-    <button type="button" @onclick="OnBackButtonClick" class="btn btn-primary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
-
-    <br />
-    <br />
-    <strong>
-
-        <h3><lable class="Description">@L["Label.Description"]</lable></h3>
+        <h4>
+            @(
+                ((NodeViewModel)DataContext.SelectedNode.Parent).Level
+                )
+            <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
+            @DataContext.SelectedNode.TestCaseTitle()
+        </h4>
 
         <p>
-            @(
-                (MarkupString)DataContext.SelectedResource.Description
-                )
+            <table border="1" class="testStepTable">
+                <tr>
+                    <th></th>
+                    <th>@L["Label.Description"]</th>
+                    <th>@L["Label.TestData"]</th>
+                    <th>@L["Label.ExpectedResult"]</th>
+                </tr>
+                <tr>
+                    <td style="width: 50px">
+                        @DataContext.SelectedNode.Level
+                        <ResourceIcon Icon="@DataContext.SelectedResource.Icon" />
+                    </td>
+                    <td style="width:34%;">
+                        <strong>@DataContext.SelectedResource.Title</strong><br />
+                        <div>@((MarkupString)DataContext.SelectedResource.Description)</div>
+                    </td>
+
+                    <td style="white-space: pre; width:30%">@((MarkupString)DataContext.SelectedResource.TestData())</td>
+
+                    <td style="width:30%;">@((MarkupString)DataContext.SelectedResource.ExpectedResult())</td>
+
+                </tr>
+
+
+            </table>
         </p>
-    </strong>
-    <br />
-    <h3><label>@L["Label.TestResult"]</label></h3>
-}
 
-else if (DataContext.SelectedResource.ResourceClassID == "RC-TestSuite")
-{
-    <h1>
-        @DataContext.SelectedNode.Level
-        <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
-        @DataContext.SelectedNode.Title
-    </h1>
-    <br />
-    <br />
+        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon></h4>
 
-    <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
+        <p>
+            <button type="button" 
+                    class="btn btn-success"
+                    @onclick="OnPassButtonClick">
+                <i class="bi bi-check"></i>@L["Label.Verdict.Pass"]
+            </button>
+            <button type="button" 
+                    class="btn btn-danger"
+                    @onclick="OnFailButtonClick">
+                <i class="bi bi-x"></i>@L["Label.Verdict.Fail"]
+            </button>
+            <button type="button" 
+                    class="btn btn-warning"
+                    @onclick="OnInconclusiveButtonClick">
+                <i class="bi bi-question-circle"></i> @L["Label.Verdict.Inconclusive"]
+            </button>
+            <button type="button"
+                class="btn btn-danger errorButton"
+                    @onclick="OnErrorButtonClick">
+                <i class="bi bi-exclamation-triangle"></i> @L["Label.Verdict.Error"]
+            </button>
+            <button type="button" 
+                    class="btn btn-secondary"
+                    @onclick="OnNotTestedButtonClick">
+                <i class="bi bi-file-minus"></i> @L["Label.Verdict.None"]
+            </button>
+        </p>
 
-    <br />
-    <br />
-    <h3><lable class="Description">@L["Label.Description"]</lable></h3>
 
-    @(
-            (MarkupString)DataContext.SelectedResource.GetDescription()
-         )
-    
-<br />
-<br />
-<div>
-    <h3>
-            <label class="verdict">@L["Label.Verdict"]</label>
 
-        <TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon>
-    </h3>
+        <h5>@L["Label.ReasonMessage"]</h5>
+        <p>
+            @if (DataContext.ReasonMessageFormat == "plain")
+            {
+                <textarea class="text" @bind="DataContext.ReasonMessage"></textarea>
+            }
+            else if(DataContext.ReasonMessageFormat == "xhtml")
+            {
+                <BlazingComponents.Summernote.Editor @bind-Content="DataContext.ReasonMessage"
+                                                     ShowEditButton="false" />
+            }
+        </p>
+
+    }
+    else if (DataContext.SelectedResource.ResourceClassID == "RC-TestCase")
+    {
+        <p>
+            <button type="button" @onclick="OnBackButtonClick" class="btn btn-secondary"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
+            <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
+            <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success" disabled="@(!DataContext.SaveTestResultCommand.CanExecute(null))"><i class="bi bi-save"></i> @L["Button.Save"]</button>
+        </p>
+        <h1>
+            @DataContext.SelectedNode.Level
+            <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
+            @DataContext.SelectedNode.TestCaseTitle()
+        </h1>
+        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon></h4>
+
+        <table class="testCaseTable">
+            <tr style="background-color: #DADAFF;">
+                        <td rowspan="3" style="width: 10px;background:@DataContext.SelectedResource.StatusColor;"></td>
+
+                <td><strong>@L["LabelTescaseID"]:</strong> @DataContext.SelectedResource.Identifier</td>
+                <td><strong>@L["Label.Priority"]:</strong> @DataContext.SelectedResource.Priority</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>@L["Label.Description"]</strong><br />
+                            <div>@((MarkupString)DataContext.SelectedResource.Description)</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>@L["Label.Precondition"]:</strong><br />
+                            <div style="white-space: pre;">@DataContext.SelectedResource.TestPrecondition()</div>
+                </td>
+            </tr>
+        </table>
+
+         
+    }
+
+    else if (DataContext.SelectedResource.ResourceClassID == "RC-TestSuite")
+    {
+        <p>
+            <button type="button" @onclick="OnBackButtonClick" class="btn btn-secondary" disabled="@(true)"><i class="bi bi-caret-left"></i>@L["Button.Back"]</button>
+            <button type="button" @onclick="OnNextButtonClick" class="btn btn-primary"><i class="bi bi-caret-right"></i>@L["Button.Next"]</button>
+            <button type="button" @onclick="OnSaveButtonClick" class="btn btn-success" disabled="@(!DataContext.SaveTestResultCommand.CanExecute(null))"><i class="bi bi-save"></i> @L["Button.Save"]</button>
+        </p>
+        <h1>
+            @DataContext.SelectedNode.Level
+            <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
+            @DataContext.SelectedNode.Title
+        </h1>
+        <h3>@L["Label.Description"]</h3>
+        <p>
+            @(
+                (MarkupString)DataContext.SelectedResource.GetDescription()
+             )
+        </p>
+
+        <h3>@L["Label.Verdict"]</h3>
+        <p>
+            <TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon>
+        </p>
+
+
+        <h3>@L["Label.TestObject"]</h3>
+        <p>
+            @(
+                (MarkupString)DataContext.TestObject
+             )
+        </p>
+    }
 </div>
-    <br />
-    <br />
-
-    <div>
-        <h3><label>@L["Label.TestObject"]</label></h3>
-        @(
-            (MarkupString)DataContext.TestObject
-            )
-    </div>
-}

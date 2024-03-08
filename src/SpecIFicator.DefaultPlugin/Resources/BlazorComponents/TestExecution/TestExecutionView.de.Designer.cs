@@ -22,14 +22,14 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TestExecutionView {
+    internal class TestExecutionView___Kopieren {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TestExecutionView() {
+        internal TestExecutionView___Kopieren() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution.TestExecution" +
-                            "View", typeof(TestExecutionView).Assembly);
+                            "View - Kopieren", typeof(TestExecutionView___Kopieren).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -103,24 +103,6 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
         internal static string Label_ExpectedResult {
             get {
                 return ResourceManager.GetString("Label.ExpectedResult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Precondition ähnelt.
-        /// </summary>
-        internal static string Label_Precondition {
-            get {
-                return ResourceManager.GetString("Label.Precondition", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Priority ähnelt.
-        /// </summary>
-        internal static string Label_Priority {
-            get {
-                return ResourceManager.GetString("Label.Priority", resourceCulture);
             }
         }
         
@@ -211,15 +193,6 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
         internal static string Label_Verdict_Pass {
             get {
                 return ResourceManager.GetString("Label.Verdict.Pass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Test Case ID ähnelt.
-        /// </summary>
-        internal static string LabelTescaseID {
-            get {
-                return ResourceManager.GetString("LabelTescaseID", resourceCulture);
             }
         }
     }

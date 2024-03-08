@@ -1,4 +1,6 @@
-﻿
+﻿.testExecutionView {
+    padding: 10px;
+}
 
 .bi bi-arrow-left {
     background-color: yellow;
@@ -10,9 +12,28 @@
     margin:1px
 }
 .text{
-    width:1000px;
+    width:100%;
     height:100px;
 }
 .bi bi-arrow-left{
     background-color:dodgerblue
+}
+
+.testCaseTable {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
+.testStepTable {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
+.errorButton {
+    background-color: darkred;
+    border-color: darkred;
 }

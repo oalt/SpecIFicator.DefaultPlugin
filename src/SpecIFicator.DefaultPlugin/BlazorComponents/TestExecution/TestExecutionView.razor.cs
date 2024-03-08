@@ -40,5 +40,30 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
         {
             DataContext.GoToPreviousCommand.Execute(null);
         } 
+
+        private void OnPassButtonClick()
+        {
+            DataContext.Verdict = "V-Verdict-1";
+        }
+
+        private void OnFailButtonClick()
+        {
+            DataContext.Verdict = "V-Verdict-3";
+        }
+
+        private void OnInconclusiveButtonClick()
+        {
+            DataContext.Verdict = "V-Verdict-2";
+        }
+
+        private void OnErrorButtonClick()
+        {
+            DataContext.Verdict = "V-Verdict-4";
+        }
+
+        private void OnNotTestedButtonClick()
+        {
+            DataContext.Verdict = "V-Verdict-0";
+        }
     }
 }

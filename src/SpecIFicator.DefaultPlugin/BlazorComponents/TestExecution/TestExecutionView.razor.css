@@ -19,6 +19,13 @@
     background-color:dodgerblue
 }
 
+.testSuiteTable {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
 .testCaseTable {
     width: 100%;
     border: 1px solid black;

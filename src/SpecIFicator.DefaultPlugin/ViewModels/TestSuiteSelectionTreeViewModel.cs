@@ -10,11 +10,13 @@ using GalaSoft.MvvmLight.Command;
 using MDD4All.SpecIF.DataFactory;
 using MDD4All.SpecIF.DataModels.Helpers;
 using MDD4All.SpecIF.ViewModels;
+using System.Runtime.Versioning;
 
 namespace SpecIFicator.DefaultPlugin.ViewModels
 {
     public class TestSuiteSelectionTreeViewModel : ViewModelBase, ITree
     {
+
         public TestSuiteSelectionTreeViewModel(ISpecIfDataProviderFactory specIfDataProviderFactory, Key key)
         {
             _specIfDataProviderFactory = specIfDataProviderFactory;
@@ -40,40 +42,25 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
             ShowNewTestSuite = true;
         }
+
         public bool ShowNewTestSuite { get; set; } = true;
+        
         private void InitializeCommands()
         {
             EditNewTestSuiteCommand = new RelayCommand(ExecuteEditNewTestSuite);
             CreateTestSuiteCommand = new RelayCommand(ExecuteCreateTestsuite);
-
-            // DeleteTestSuiteCommand = new RelayCommand(ExecuteDeleteTestSuiteCommand);
-            // SaveTestSuiteCommand = new RelayCommand(ExecuteSaveTestCommand);
         }
-        //private void ExecuteDeleteTestSuiteCommand()
-        //{
-        //    if (SelectedNode == null)
-        //    {
-        //        DeleteTestSuiteCommand.Execute(SelectedNode);
-        //    }
-        //}
 
-        //private void ExecuteSaveTestSuiteCommand()
-        //{
-        //    Node result = new Node();
-        //    foreach (Node node in result.Nodes)
-        //    {
-        //        result.Nodes.Add(node);
-        //    }
-        //    if (CheckedNodes !=null && SelectedNode.Parent.Children.Count >0)
-        //    {
-        //        SaveTestsCommand.Execute(null);
-        //    }
-        //}
+        public Key TestSuiteHierarchyKey { get; set; }
+
+
         public ResourceViewModel TestSuiteUnderEdit { get; set; }
+
         private void ExecuteEditNewTestSuite()
         {
             
         }
+
         private void ExecuteCreateTestsuite()
         {
             // hier musst du programmieren
@@ -87,6 +74,18 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 Resource testSuiteResource = TestSuiteUnderEdit.Resource;
 
                 testSuiteNode.ResourceReference = new Key(testSuiteResource.ID, testSuiteResource.Revision);
+
+                testSuiteResource.SetPropertyValue(
+                                                    new Key
+                                                    {
+                                                        ID = "PC-TestVerdict",
+                                                        Revision = "1.1"
+                                                    },
+                                                    new Value
+                                                    {
+                                                        StringValue = "V-Verdict-0"
+                                                    }
+                                                   );
 
                 _specIfDataWriter.AddResource(testSuiteResource);
 
@@ -109,9 +108,10 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 // test suite als neue Hierarchy speichern
                 _specIfDataWriter.AddHierarchy(testSuiteNode);
 
-                //SaveNewHierarchy(testSuiteNode);
+                TestSuiteHierarchyKey = new Key(testSuiteNode.ID, testSuiteNode.Revision);
             }
         }
+
         public void CopyTestCase(Node node, Node currentTarget)
         {
 
@@ -121,6 +121,18 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             // 3. Resource kopieren in eine neue Resource
             Resource resourceCopy = sourceResource.CreateNewRevisionForEdit(_metadataReader);
             resourceCopy.ID = SpecIfGuidGenerator.CreateNewSpecIfGUID();
+
+            // set all test results to "not tested"
+            resourceCopy.SetPropertyValue(new Key
+                                                {
+                                                    ID = "PC-TestVerdict",
+                                                    Revision = "1.1"
+                                                },
+                                                new Value
+                                                {
+                                                    StringValue = "V-Verdict-0"
+                                                }
+                                           );
 
             // Neuen Target Knoten erzeugen
             Node newTargetNode = new Node();
@@ -140,6 +152,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 CopyTestCase(childNode, newTargetNode);
             }
         }
+
         private void SaveNewHierarchy(Node parent)
         {
             for (int index = 0; index < parent.Nodes.Count; index++)
@@ -158,6 +171,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 SaveNewHierarchy(childNode); // Rekursive Methode
             }
         }
+
         public TestResourceNodeViewModel InitializeTestSuiteSelectionTree(Node hierarchyRootNode)
         {
             TestResourceNodeViewModel result = null;//zuerst wert ist null bei dieser Variable.
@@ -236,7 +250,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return result;
             }
         }
-        // hier soll ich etwas verändern
+        
         public void FindAllCheckedNodes(TestResourceNodeViewModel child, ref List<TestResourceNodeViewModel> result)
         {
             if (child.IsChecked)
@@ -244,33 +258,16 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 result.Add(child);
             }
 
-            //if (child.IsChecked && child.Node.ResourceReference.ID == "RC-TestCase")
-            //{
-            //    result.Add(child);
-            //}
-
-            //foreach (TestResourceNodeViewModel childNode in child.Children.Cast<TestResourceNodeViewModel>()){}
-
             foreach (TestResourceNodeViewModel childNode in child.Children)
             {
                 FindAllCheckedNodes(childNode, ref result);
             }
 
-            //for (int i = 0; i < child.Children.Count; i++)
-            //{
-            //    TestResourceNodeViewModel childNode = (TestResourceNodeViewModel)child.Children[i];
-            //    FindAllCheckedNodes(childNode, ref result);
-            //}
+            
         }
         public void CheckAllNodes(TestResourceNodeViewModel testResourceNodeViewModel)
         {
             testResourceNodeViewModel.IsChecked = true;
-
-            //for (int i = 0; i <testResourceNodeViewModel.Children.Count; i++)
-            //{
-            //    TestResourceNodeViewModel childNode = (TestResourceNodeViewModel)testResourceNodeViewModel.Children[i];
-            //    CheckAllNodes(testResourceNodeViewModel);
-            //}
 
             foreach (TestResourceNodeViewModel child in testResourceNodeViewModel.Children)
             {
@@ -278,13 +275,16 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
         private ISpecIfDataProviderFactory _specIfDataProviderFactory;
+        
         private ISpecIfMetadataReader _metadataReader;
+
         public ISpecIfMetadataReader MetadataReader
         {
             get { return _metadataReader; }
 
         }
         private ISpecIfDataReader _specIfDataReader;
+
         public ISpecIfDataReader DataReader
         {
             get
@@ -293,6 +293,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
         private ISpecIfDataWriter _specIfDataWriter;
+
         public ISpecIfDataWriter DataWriter
         {
             get
@@ -301,7 +302,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
         public TestResourceNodeViewModel RootNode { get; set; }
+
         private ObservableCollection<ITreeNode> _treeRootNodes = new ObservableCollection<ITreeNode>();
+
         public ObservableCollection<ITreeNode> TreeRootNodes
         {
             get
@@ -309,7 +312,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 return _treeRootNodes;
             }
         }
+        
         private ITreeNode _selectedNode;
+
         public ITreeNode SelectedNode
         {
             get
@@ -323,9 +328,10 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                 RaisePropertyChanged("SelectedNode");
             }
         }
+        
         public ICommand EditNewTestSuiteCommand { get; set; }
+        
         public ICommand CreateTestSuiteCommand { get; set; }
-        public ICommand DeleteTestSuiteCommand { get; set; }
-        public ICommand SaveTestSuiteCommand { get; set; }
+
     }
 }

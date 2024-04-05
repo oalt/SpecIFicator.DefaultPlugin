@@ -1,19 +1,16 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.DataModels.Manipulation;
+using MDD4All.SpecIF.DataProvider.Contracts;
 using MDD4All.SpecIF.ViewModels;
 using SpecIFicator.DefaultPlugin.ViewModelExtensions;
+using System.Reflection.Metadata;
 using System.Windows.Input;
 
 namespace SpecIFicator.DefaultPlugin.ViewModels
 {
     public class TestExecutionViewModel
     {
-        private int changedat;
-        private string testDate;
-        private string title;
-        private string description;
-
         public TestExecutionViewModel(HierarchyViewModel hierarchyViewModel)
 
         {
@@ -77,7 +74,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             }
         }
 
-        private Dictionary<Key, Resource> ChangedResources = new Dictionary<Key, Resource>();
+        private Dictionary<Key, NodeViewModel> ChangedNodes = new Dictionary<Key, NodeViewModel>();
 
         public string Verdict
         {
@@ -104,11 +101,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     {
                         if (property.PropertyClass.ID == "PC-TestVerdict")
                         {
-                            Key selectedResourceKey = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
-
-                            if (!ChangedResources.ContainsKey(selectedResourceKey))
+                            if (!ChangedNodes.ContainsKey(SelectedNode.HierarchyKey))
                             {
-                                ChangedResources.Add(selectedResourceKey, SelectedResource.Resource);
+                                ChangedNodes.Add(SelectedNode.HierarchyKey, SelectedNode);
                             }
 
                             property.SetSingleEnumerationValue(value);
@@ -156,47 +151,49 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                         }
                     }
 
-                    NodeViewModel parentNode = SelectedNode.Parent as NodeViewModel;
-
-                    List<PropertyViewModel> properties = parentNode.ReferencedResource.Properties;
-
-                    foreach (PropertyViewModel property in properties)
+                    if (SelectedNode.Parent != null)
                     {
-                        if (property.PropertyClass.ID == "PC-TestVerdict")
+                        NodeViewModel parentNode = SelectedNode.Parent as NodeViewModel;
+
+                        List<PropertyViewModel> properties = parentNode.ReferencedResource.Properties;
+
+                        foreach (PropertyViewModel property in properties)
                         {
-                            Key key = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
-
-                            if (!ChangedResources.ContainsKey(key))
+                            if (property.PropertyClass.ID == "PC-TestVerdict")
                             {
+                                if (!ChangedNodes.ContainsKey(parentNode.HierarchyKey))
+                                {
+                                    ChangedNodes.Add(parentNode.HierarchyKey, parentNode);
+                                }
 
-                                ChangedResources.Add(key, parentNode.ReferencedResource.Resource);
+
+                                property.SetSingleEnumerationValue(resultingVerdict);
+                                HierarchyViewModel.StateChanged = true;
+                                break;
                             }
-
-
-                            property.SetSingleEnumerationValue(resultingVerdict);
-                            HierarchyViewModel.StateChanged = true;
-                            break;
                         }
                     }
 
                     // Wenn TestCase und TestStep Pass sind, sollte TestSuite als Pass dargestellt werden.
-                    NodeViewModel nodeTestsuite = SelectedNode.Parent.Parent as NodeViewModel;
-
-                    List<PropertyViewModel> propertyViewModels = nodeTestsuite.ReferencedResource.Properties;
-
-                    foreach (PropertyViewModel propertyView in propertyViewModels)
+                    if (SelectedNode.Parent != null && SelectedNode.Parent.Parent != null)
                     {
-                        if (propertyView.PropertyClass.ID == "PC-TestVerdict")
-                        {
-                            Key key = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
+                        NodeViewModel testSuiteNode = SelectedNode.Parent.Parent as NodeViewModel;
 
-                            if (!ChangedResources.ContainsKey(key))
+                        List<PropertyViewModel> propertyViewModels = testSuiteNode.ReferencedResource.Properties;
+
+                        foreach (PropertyViewModel propertyView in propertyViewModels)
+                        {
+                            if (propertyView.PropertyClass.ID == "PC-TestVerdict")
                             {
-                                ChangedResources.Add(key, nodeTestsuite.ReferencedResource.Resource);
+                                if (!ChangedNodes.ContainsKey(testSuiteNode.HierarchyKey))
+                                {
+                                    ChangedNodes.Add(testSuiteNode.HierarchyKey, testSuiteNode);
+                                }
+
+                                propertyView.SetSingleEnumerationValue(resultingVerdict);
+                                HierarchyViewModel.StateChanged = true;
+                                break;
                             }
-                            propertyView.SetSingleEnumerationValue(resultingVerdict);
-                            HierarchyViewModel.StateChanged = true;
-                            break;
                         }
                     }
                 }
@@ -227,12 +224,10 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
                     if (SelectedResource.ResourceClassID == "RC-TestStep")
                     {
                         SelectedResource.Resource.SetPropertyValue("U2TP:ReasonMessage", value, SelectedResource.MetadataReader);
-                        
-                        Key selectedResourceKey = new Key(SelectedResource.Resource.ID, SelectedResource.Resource.Revision);
 
-                        if (!ChangedResources.ContainsKey(selectedResourceKey))
+                        if (!ChangedNodes.ContainsKey(SelectedNode.HierarchyKey))
                         {
-                            ChangedResources.Add(selectedResourceKey, SelectedResource.Resource);
+                            ChangedNodes.Add(SelectedNode.HierarchyKey, SelectedNode);
                         }
                     }
 
@@ -410,15 +405,35 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
         private void ExecuteSaveTestResult()
         {
+            foreach(KeyValuePair<Key, NodeViewModel> keyValuePair in ChangedNodes)
+            {
+                NodeViewModel changedNode = keyValuePair.Value;
 
+                Resource changedResource = changedNode.ReferencedResource.Resource;
 
-            ChangedResources.Clear();
+                Resource newRevisionResource = changedResource.CreateNewRevisionForEdit(HierarchyViewModel.MetadataReader);
+
+                HierarchyViewModel.DataWriter.AddResource(newRevisionResource);
+
+                ResourceViewModel changedResourceViewModel = new ResourceViewModel(HierarchyViewModel.MetadataReader,
+                                                              HierarchyViewModel.DataReader,
+                                                              HierarchyViewModel.DataWriter,
+                                                              newRevisionResource);
+
+                changedNode.ReferencedResource = changedResourceViewModel;
+
+                changedNode.HierarchyNode.ResourceReference.Revision = changedResourceViewModel.Resource.Revision;
+
+                HierarchyViewModel.DataWriter.UpdateHierarchy(changedNode.HierarchyNode);
+            }
+
+            ChangedNodes.Clear();
 
         }
 
         private bool CanSave()
         {
-            return ChangedResources.Count > 0;
+            return ChangedNodes.Count > 0;
         }
 
         

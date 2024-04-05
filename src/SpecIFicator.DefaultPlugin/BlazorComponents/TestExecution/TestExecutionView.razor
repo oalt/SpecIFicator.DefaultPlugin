@@ -49,7 +49,7 @@
             </table>
         </p>
 
-        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon></h4>
+        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon> <TestVerdictText DataContext="DataContext.SelectedResource" /></h4>
 
         <p>
             <button type="button" 
@@ -107,7 +107,7 @@
             <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
             @DataContext.SelectedNode.TestCaseTitle()
         </h1>
-        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon></h4>
+        <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon> <TestVerdictText DataContext="DataContext.SelectedResource" /></h4>
 
         <table class="testCaseTable">
             <tr style="background-color: #DADAFF;">
@@ -145,21 +145,19 @@
             <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
             @DataContext.SelectedNode.Title
         </h1>
-        <h3>@L["Label.Description"]</h3>
+
         <p>
+            <strong>@L["Label.Description"]</strong><br />
             @(
                 (MarkupString)DataContext.SelectedResource.GetDescription()
              )
-        </p>
-
-        <h3>@L["Label.Verdict"]</h3>
+        </p>        
         <p>
-            <TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon>
+            <strong>@L["Label.Verdict"]</strong><br />
+            <TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon> <TestVerdictText DataContext="DataContext.SelectedResource" />
         </p>
-
-
-        <h3>@L["Label.TestObject"]</h3>
         <p>
+            <strong>@L["Label.TestObject"]</strong><br />
             @(
                 (MarkupString)DataContext.TestObject
              )

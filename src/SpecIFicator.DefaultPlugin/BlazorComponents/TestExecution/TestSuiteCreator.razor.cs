@@ -20,7 +20,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
         public string? KeyString { get; set; }
 
         [Inject]
-        private NavigationManager MyNav { get; set; }
+        private NavigationManager NavigationManager { get; set; }
 
         public TestSuiteSelectionTreeViewModel DataContext { get; set; }
 
@@ -36,15 +36,17 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
         }
         public void OnCancelButtonClick()
         {
-            MyNav.NavigateTo("/");
+            NavigationManager.NavigateTo("/");
         }
         public void OnOkButtonClick()
         {
             DataContext.CreateTestSuiteCommand.Execute(null);
-
+            if(DataContext.TestSuiteHierarchyKey != null)
+            {
+                NavigationManager.NavigateTo("/pluginPage/36AB7319-01C7-4F3F-9594-A89DBA0BC0A1/" + DataContext.TestSuiteHierarchyKey.ToString());
+            }
         }
-       // [Inject]
-        //private IStringLocalizer<ProjectsBrowser> L { get; set; }
+
 
         private ResourceViewModel? NewTestSuiteViewModel { get; set; }
 
@@ -56,7 +58,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
             }
             if (!accepted) // else
             {
-                MyNav.NavigateTo("/");
+                NavigationManager.NavigateTo("/");
             }
             DataContext.ShowNewTestSuite = false;
             StateHasChanged();

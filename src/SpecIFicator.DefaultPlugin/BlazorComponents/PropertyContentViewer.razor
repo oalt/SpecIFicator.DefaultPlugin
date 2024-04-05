@@ -46,9 +46,20 @@ else // no multiple property
         {
             <p>@PropertyViewModel.DurationValue</p>
         }
+
         else
         {
-            <div>@((MarkupString)PropertyViewModel.GetStringValue(Language))</div>
+            @if (string.IsNullOrEmpty(PropertyViewModel.GetStringValue(Language)))
+            {
+                <div>&nbsp;</div>
+            }
+            else
+            {
+                <div>@(
+                       (MarkupString)PropertyViewModel.GetStringValue(Language)
+                       )</div>
+            }
+
         }
     }
 }

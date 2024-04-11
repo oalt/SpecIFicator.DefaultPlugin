@@ -58,6 +58,21 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>DocumentView.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestCaseDocumentItem.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestCaseDocumentItem.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.de.Designer.cs">
+        <DependentUpon>TestModelDocumentItem.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestModelDocumentItem.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\FileExport.de.Designer.cs">
         <DependentUpon>FileExport.de.resx</DependentUpon>
         <DesignTime>True</DesignTime>
@@ -198,6 +213,11 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>TestExecutionView.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.de.Designer.cs">
+        <DependentUpon>TestSuiteCreator.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -243,6 +263,18 @@
       <EmbeddedResource Update="Resources\BlazorComponents\Document\DocumentView.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>DocumentView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestCaseDocumentItem.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestCaseDocumentItem.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.de.resx">
+        <LastGenOutput>TestModelDocumentItem.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestModelDocumentItem.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\FileExport.de.resx">
         <LastGenOutput>FileExport.de.Designer.cs</LastGenOutput>
@@ -343,6 +375,10 @@
       <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestExecutionView.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>TestExecutionView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.de.resx">
+        <LastGenOutput>TestSuiteCreator.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.resx">
         <Generator>ResXFileCodeGenerator</Generator>

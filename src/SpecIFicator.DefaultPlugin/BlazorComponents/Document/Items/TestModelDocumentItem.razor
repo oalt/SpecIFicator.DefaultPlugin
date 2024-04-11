@@ -1,6 +1,23 @@
-﻿<div class="testModel">
-    <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> <br />Test Model
-    <br />
-    @DataContext.ReferencedResource.Title
-</div>
-<div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+﻿@if (DataContext.IsMultilanguageEnabled)
+{
+    <div class="testModel">
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> <br />
+        @this.GetPrimaryText("Label.TestModel") / @this.GetSecondaryText("Label.TestModel")
+        <br />
+        @DataContext.ReferencedResource.GetTitle(DataContext.PrimaryLanguage) / @DataContext.ReferencedResource.GetTitle(DataContext.SecondaryLanguage)
+
+        
+    </div>
+    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+    <div class="secondary">@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage))</div>
+}
+else
+{
+    <div class="testModel">
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> <br />
+        @this.GetPrimaryText("Label.TestModel")
+        <br />
+        @DataContext.ReferencedResource.GetTitle(DataContext.PrimaryLanguage)
+    </div>
+    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+}

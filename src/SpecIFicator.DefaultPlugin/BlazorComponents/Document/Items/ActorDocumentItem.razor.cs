@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using MDD4All.SpecIF.ViewModels;
+using System.Resources;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
@@ -9,5 +10,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
         public NodeViewModel DataContext { get; set; }
 
         public string Type => "FMC:Actor";
+
+        public ResourceManager ResourceManager => null;
     }
 }

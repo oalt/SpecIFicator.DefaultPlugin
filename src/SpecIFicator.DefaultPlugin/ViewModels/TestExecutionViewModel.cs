@@ -267,7 +267,7 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
                 if (selectedNode != null)
                 {
-                    result = selectedNode.TestCaseTitle();
+                    result = selectedNode.TestCaseTitle(HierarchyViewModel.PrimaryLanguage);
                 }
 
                 return result;

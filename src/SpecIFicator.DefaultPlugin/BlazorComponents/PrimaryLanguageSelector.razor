@@ -1,0 +1,9 @@
+﻿<span>
+    <select class="form-select-sm"
+            @bind="DataContext.PrimaryLanguage">
+        @foreach (string language in DataContext.Languages)
+        {
+            <option value="@language">@language</option>
+        }
+    </select>
+</span>

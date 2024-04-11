@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Button.Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="Label.Description" xml:space="preserve">
+    <value>Beschreibung</value>
   </data>
-  <data name="Button.OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="Label.Precondition" xml:space="preserve">
+    <value>Vorbedingung</value>
   </data>
-  <data name="Label.NewTestsuite" xml:space="preserve">
-    <value>Create new test suite</value>
+  <data name="Label.Priority" xml:space="preserve">
+    <value>Priorität</value>
   </data>
-  <data name="Label.SelectTestCases" xml:space="preserve">
-    <value>Plaese select test cases for the test suite!</value>
+  <data name="Label.TestCaseID" xml:space="preserve">
+    <value>Testfall ID</value>
   </data>
 </root>

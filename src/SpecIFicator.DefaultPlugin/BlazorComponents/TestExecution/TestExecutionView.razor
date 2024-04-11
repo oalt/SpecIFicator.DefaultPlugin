@@ -18,7 +18,7 @@
                 ((NodeViewModel)DataContext.SelectedNode.Parent).Level
                 )
             <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
-            @DataContext.SelectedNode.TestCaseTitle()
+            @DataContext.TestCaseTitle
         </h4>
 
         <p>
@@ -35,13 +35,13 @@
                         <ResourceIcon Icon="@DataContext.SelectedResource.Icon" />
                     </td>
                     <td style="width:34%;">
-                        <strong>@DataContext.SelectedResource.Title</strong><br />
-                        <div>@((MarkupString)DataContext.SelectedResource.Description)</div>
+                        <strong>@DataContext.SelectedResource.GetTitle(DataContext.SelectedNode.PrimaryLanguage)</strong><br />
+                        <div>@((MarkupString)DataContext.SelectedResource.GetDescription(DataContext.SelectedNode.PrimaryLanguage))</div>
                     </td>
 
-                    <td style="white-space: pre; width:30%">@((MarkupString)DataContext.SelectedResource.TestData())</td>
+                    <td style="white-space: pre; width:30%">@((MarkupString)DataContext.SelectedResource.TestData(DataContext.SelectedNode.PrimaryLanguage))</td>
 
-                    <td style="width:30%;">@((MarkupString)DataContext.SelectedResource.ExpectedResult())</td>
+                    <td style="width:30%;">@((MarkupString)DataContext.SelectedResource.ExpectedResult(DataContext.SelectedNode.PrimaryLanguage))</td>
 
                 </tr>
 
@@ -105,7 +105,7 @@
         <h1>
             @DataContext.SelectedNode.Level
             <ResourceIcon Icon="@DataContext.SelectedNode.TestCaseIcon()" />
-            @DataContext.SelectedNode.TestCaseTitle()
+            @DataContext.SelectedNode.GetTitle(DataContext.SelectedNode.PrimaryLanguage)
         </h1>
         <h4><label class="verdict">@L["Label.Verdict"]: </label><TestVerdictIcon DataContext="DataContext.SelectedResource"></TestVerdictIcon> <TestVerdictText DataContext="DataContext.SelectedResource" /></h4>
 
@@ -119,13 +119,13 @@
             <tr>
                 <td colspan="2">
                     <strong>@L["Label.Description"]</strong><br />
-                            <div>@((MarkupString)DataContext.SelectedResource.Description)</div>
+                            <div>@((MarkupString)DataContext.SelectedResource.GetDescription(DataContext.SelectedNode.PrimaryLanguage))</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <strong>@L["Label.Precondition"]:</strong><br />
-                            <div style="white-space: pre;">@DataContext.SelectedResource.TestPrecondition()</div>
+                            <div style="white-space: pre;">@DataContext.SelectedResource.TestPrecondition(DataContext.SelectedNode.PrimaryLanguage)</div>
                 </td>
             </tr>
         </table>
@@ -143,13 +143,13 @@
         <h1>
             @DataContext.SelectedNode.Level
             <ResourceIcon Icon="@DataContext.SelectedNode.ReferencedResource.Icon" />
-            @DataContext.SelectedNode.Title
+            @DataContext.SelectedNode.GetTitle(DataContext.SelectedNode.PrimaryLanguage)
         </h1>
 
         <p>
             <strong>@L["Label.Description"]</strong><br />
             @(
-                (MarkupString)DataContext.SelectedResource.GetDescription()
+                (MarkupString)DataContext.SelectedResource.GetDescription(DataContext.SelectedNode.PrimaryLanguage)
              )
         </p>        
         <p>

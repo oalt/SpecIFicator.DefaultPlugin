@@ -1,22 +1,56 @@
 ﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions
 
-<table border="1" class="testStepTable">
-    <tr>
-        <td style="width: 50px">
-            @DataContext.Level
-            <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
-        </td>
-        <td style="width:34%;">
-            <strong>@DataContext.ReferencedResource.Title</strong><br />
-            <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
-        </td>
+@if (DataContext.IsMultilanguageEnabled)
+{
+    <table border="1" class="testStepTable">
+        <tr>
+            <td rowspan="2" style="width: 50px">
+                @DataContext.Level
+                <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+            </td>
+            <td style="width:34%;">
+                <strong>@DataContext.ReferencedResource.GetTitle(DataContext.PrimaryLanguage)</strong><br />
+                <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+            </td>
 
-        <td style="white-space: pre; width:30%">@((MarkupString)DataContext.ReferencedResource.TestData())</td>
+            <td style="white-space: pre; width:30%">@((MarkupString)DataContext.ReferencedResource.TestData(DataContext.PrimaryLanguage))</td>
 
-        <td style="width:30%;">@((MarkupString)DataContext.ReferencedResource.ExpectedResult())</td>
+            <td style="width:30%;">@((MarkupString)DataContext.ReferencedResource.ExpectedResult(DataContext.PrimaryLanguage))</td>
 
-    </tr>
+        </tr>
+        <tr class="secondary">
+            <td style="width:34%;">
+                <strong>@DataContext.ReferencedResource.GetTitle(DataContext.SecondaryLanguage)</strong><br />
+                <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage))</div>
+            </td>
+
+            <td style="white-space: pre; width:30%">@((MarkupString)DataContext.ReferencedResource.TestData(DataContext.SecondaryLanguage))</td>
+
+            <td style="width:30%;">@((MarkupString)DataContext.ReferencedResource.ExpectedResult(DataContext.SecondaryLanguage))</td>
+        </tr>
+
+    </table>
+}
+else
+{
+    <table border="1" class="testStepTable">
+        <tr>
+            <td style="width: 50px">
+                @DataContext.Level
+                <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+            </td>
+            <td style="width:34%;">
+                <strong>@DataContext.ReferencedResource.GetTitle(DataContext.PrimaryLanguage)</strong><br />
+                <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+            </td>
+
+            <td style="white-space: pre; width:30%">@((MarkupString)DataContext.ReferencedResource.TestData(DataContext.PrimaryLanguage))</td>
+
+            <td style="width:30%;">@((MarkupString)DataContext.ReferencedResource.ExpectedResult(DataContext.PrimaryLanguage))</td>
+
+        </tr>
 
 
-</table>
+    </table>
+}
 

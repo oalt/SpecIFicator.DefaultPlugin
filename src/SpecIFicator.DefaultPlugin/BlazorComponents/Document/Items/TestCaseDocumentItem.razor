@@ -1,29 +1,91 @@
 ﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions
-<h3>
-    <span>@DataContext.Level</span>
-    <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
-    <span>@DataContext.ReferencedResource.Title</span>
-</h3>
+@using System.Globalization;
 
-<table class="testCaseTable">
-    <tr style="background-color: #DADAFF;">
-        <td rowspan="3" style="width: 10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+@if (DataContext.IsMultilanguageEnabled)
+{
+    <h3>
+        <span>@DataContext.Level</span>
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+        <span>@DataContext.ReferencedResource.GetTitle(DataContext.PrimaryLanguage) / @DataContext.ReferencedResource.GetTitle(DataContext.SecondaryLanguage)</span>
+    </h3>
 
-        <td><strong>Test Case ID:</strong> @DataContext.ReferencedResource.Identifier</td>
-        <td><strong>Priority:</strong> @DataContext.ReferencedResource.Priority</td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <strong>Description:</strong><br />
-            <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <strong>Precondition:</strong><br />
-            <div style="white-space: pre;">@DataContext.ReferencedResource.TestPrecondition()</div>
-        </td>
-    </tr>
-</table>
+    <table class="testCaseTable">
+        <tr style="background-color: #DADAFF;">
+            <td rowspan="7" style="width: 10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+
+            <td><strong>@this.GetPrimaryText("Label.TestCaseID") / @this.GetSecondaryText("Label.TestCaseID"):</strong> @DataContext.ReferencedResource.Identifier</td>
+            <td><strong>@this.GetPrimaryText("Label.Priority") / @this.GetSecondaryText("Label.Priority"):</strong> @DataContext.ReferencedResource.Priority</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <strong>@this.GetPrimaryText("Label.Description") / @this.GetSecondaryText("Label.Description"):</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div>@(
+                        (MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage)
+                       )
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="secondary">
+                <div>
+                    @(
+                        (MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage)
+                        )
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <strong>@this.GetPrimaryText("Label.Precondition") / @this.GetSecondaryText("Label.Precondition"):</strong><br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="white-space: pre;">@DataContext.ReferencedResource.TestPrecondition(DataContext.PrimaryLanguage)</div>
+            </td>
+        </tr>
+        <tr class="secondary">
+            <td colspan="2">
+                <div style="white-space: pre;">@DataContext.ReferencedResource.TestPrecondition(DataContext.SecondaryLanguage)</div>
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <h3>
+        <span>@DataContext.Level</span>
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" />
+        <span>@DataContext.GetTitle(DataContext.PrimaryLanguage)</span>
+    </h3>
+
+    <table class="testCaseTable">
+        <tr style="background-color: #DADAFF;">
+            <td rowspan="3" style="width: 10px;background:@DataContext.ReferencedResource.StatusColor;"></td>
+
+            <td><strong>@this.GetPrimaryText("Label.TestCaseID"):</strong> @DataContext.ReferencedResource.Identifier</td>
+            <td><strong>@this.GetPrimaryText("Label.Priority"):</strong> @DataContext.ReferencedResource.Priority</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <strong>@this.GetPrimaryText("Label.Description"):</strong><br />
+                <div>@(
+                        (MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage)
+                      )
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <strong>@this.GetPrimaryText("Label.Precondition"):</strong><br />
+                <div style="white-space: pre;">@DataContext.ReferencedResource.TestPrecondition(DataContext.PrimaryLanguage)</div>
+            </td>
+        </tr>
+    </table>
+}
 
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
+namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.Document.Items {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TestSuiteCreator {
+    internal class TestModelDocumentItem {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TestSuiteCreator() {
+        internal TestModelDocumentItem() {
         }
         
         /// <summary>
@@ -39,8 +39,8 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution.TestSuiteCrea" +
-                            "tor", typeof(TestSuiteCreator).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpecIFicator.DefaultPlugin.Resources.BlazorComponents.Document.Items.TestModelDoc" +
+                            "umentItem", typeof(TestModelDocumentItem).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,38 +62,11 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents.TestExecution {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Test Model ähnelt.
         /// </summary>
-        internal static string Button_Cancel {
+        internal static string Label_TestModel {
             get {
-                return ResourceManager.GetString("Button.Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
-        /// </summary>
-        internal static string Button_OK {
-            get {
-                return ResourceManager.GetString("Button.OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Create new test suite ähnelt.
-        /// </summary>
-        internal static string Label_NewTestsuite {
-            get {
-                return ResourceManager.GetString("Label.NewTestsuite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Plaese select test cases for the test suite! ähnelt.
-        /// </summary>
-        internal static string Label_SelectTestCases {
-            get {
-                return ResourceManager.GetString("Label.SelectTestCases", resourceCulture);
+                return ResourceManager.GetString("Label.TestModel", resourceCulture);
             }
         }
     }

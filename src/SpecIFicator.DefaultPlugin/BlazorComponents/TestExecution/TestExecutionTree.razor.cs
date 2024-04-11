@@ -21,11 +21,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.TestExecution
 
         private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs arguments)
         {
-            if (arguments.PropertyName == "StateChanged" ||
-                arguments.PropertyName == "SelectedNode")
-            {
-                StateHasChanged();
-            }
+            StateHasChanged();
         }
     }
 }

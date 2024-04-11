@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Button.Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbruch</value>
   </data>
   <data name="Button.OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Label.NewTestsuite" xml:space="preserve">
-    <value>Create new test suite</value>
+    <value>Neue Testsuite erstellen</value>
   </data>
   <data name="Label.SelectTestCases" xml:space="preserve">
-    <value>Plaese select test cases for the test suite!</value>
+    <value>Bitte wählen Sie Testfälle für ihre Testsuite aus!</value>
   </data>
 </root>

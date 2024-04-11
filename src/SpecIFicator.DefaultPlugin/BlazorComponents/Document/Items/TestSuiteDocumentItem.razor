@@ -1,6 +1,31 @@
-﻿<div class="testSuite">
-    <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> Test Suite
-    <br />
-    @DataContext.ReferencedResource.Title
-</div>
-<div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+﻿@if (DataContext.IsMultilanguageEnabled)
+{
+    <div class="testSuite">
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> Test Suite
+        <br />
+        @DataContext.GetTitle(DataContext.PrimaryLanguage) / @DataContext.GetTitle(DataContext.SecondaryLanguage)
+    </div>
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))
+         || !string.IsNullOrEmpty(DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage)))
+    {
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+                </td>
+                <td width="50%">
+                    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.SecondaryLanguage))</div>
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    <div class="testSuite">
+        <ResourceIcon Icon="@DataContext.ReferencedResource.Icon" /> Test Suite
+        <br />
+        @DataContext.GetTitle(DataContext.PrimaryLanguage)
+    </div>
+    <div>@((MarkupString)DataContext.ReferencedResource.GetDescription(DataContext.PrimaryLanguage))</div>
+}

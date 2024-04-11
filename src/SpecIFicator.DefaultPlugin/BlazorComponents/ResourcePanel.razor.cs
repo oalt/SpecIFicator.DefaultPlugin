@@ -29,7 +29,6 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private string CopyButtonIconClass { get; set; } = "bi bi-clipboard-fill";
 
-
         protected override void OnInitialized()
         {
             

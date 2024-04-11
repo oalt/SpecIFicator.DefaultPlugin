@@ -20,7 +20,7 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         public static string Title = "Enterprise Architect";
 
-        public string ConnectionString { get; set; } = @"D:\alto_daten\EA\TdSE2021.eapx";
+        public string ConnectionString { get; set; } = @"c:\EA\TdSE2021.eapx";
 
         private IConfigurationReaderWriter<EaConnectorConfiguration> _configurationReaderWriter;
 

@@ -21,7 +21,15 @@
 
             </legend>
 
-
+            @if (HierarchyViewModel != null)
+            {
+                <fieldset class="propertyField">
+                    <legend>Node ID</legend>
+                    <p>
+                        @(((NodeViewModel)HierarchyViewModel.SelectedNode).NodeID)
+                    </p>
+                </fieldset>
+            }
             <fieldset class="propertyField">
                 <legend>Key</legend>
                 <p style="font-family: 'Courier New', monospace;">
@@ -47,14 +55,32 @@
                 </p>
             </fieldset>
 
+            @{
+                int counter = 0;
+            }
+
             @foreach (PropertyViewModel propertyViewModel in ResourceViewModel.Properties)
             {
+                counter++;
                 @if (ResourceViewModel.IsInEditMode)
                 {
-                    <PropertyEditor PropertyViewModel="@propertyViewModel"
-                                    IsMultilinguismEnabled="@IsMultilinguismEnabled"
-                                    PrimaryLanguage="@PrimaryLanguage"
-                                    SecondaryLanguage="@SecondaryLanguage"/>
+                    if(counter == 1)
+                    {
+                        <PropertyEditor PropertyViewModel="@propertyViewModel"
+                                        IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                        PrimaryLanguage="@PrimaryLanguage"
+                                        SecondaryLanguage="@SecondaryLanguage" 
+                                        SetFocus=true />
+
+                    }
+                    else
+                    {
+                        <PropertyEditor PropertyViewModel="@propertyViewModel"
+                                        IsMultilinguismEnabled="@IsMultilinguismEnabled"
+                                        PrimaryLanguage="@PrimaryLanguage"
+                                        SecondaryLanguage="@SecondaryLanguage"
+                                        SetFocus=false />
+                    }
                 }
                 else
                 {

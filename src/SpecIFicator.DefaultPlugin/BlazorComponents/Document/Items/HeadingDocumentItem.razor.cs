@@ -1,5 +1,6 @@
 ﻿using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
+using System.Resources;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
@@ -9,6 +10,8 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 
         [CascadingParameter]
         public NodeViewModel DataContext { get; set; }
+
+        public ResourceManager ResourceManager => null;
 
         private string CssClass
         {

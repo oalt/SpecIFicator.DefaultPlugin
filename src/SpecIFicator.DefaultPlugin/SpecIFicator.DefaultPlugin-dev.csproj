@@ -28,6 +28,7 @@
         <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.File\src\MDD4All.SpecIF.DataProvider.File\MDD4All.SpecIF.DataProvider.File-dev.csproj" />
         <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.MockupDataStream\src\MDD4All.SpecIF.DataProvider.MockupDataStream\MDD4All.SpecIF.DataProvider.MockupDataStream-dev.csproj" />
         <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.MongoDB\src\MDD4All.SpecIF.DataProvider.MongoDB\MDD4All.SpecIF.DataProvider.MongoDB-dev.csproj" />
+        <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.WebAPI\src\MDD4All.SpecIF.DataProvvider.WebAPI\MDD4All.SpecIF.DataProvider.WebAPI-dev.csproj" />
         <ProjectReference Include="..\..\..\SpecIFicator.Framework\src\SpecIFicator.Framework\SpecIFicator.Framework-dev.csproj" />
         <ProjectReference Include="..\..\..\SplitJs.Blazor\src\SplitJs.Blazor\SplitJs.Blazor-dev.csproj" />
         <ProjectReference Include="..\..\..\Summernote\src\BlazingComponents.Summernote\BlazingComponents.Summernote-dev.csproj" />
@@ -56,6 +57,21 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>DocumentView.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestCaseDocumentItem.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestCaseDocumentItem.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.de.Designer.cs">
+        <DependentUpon>TestModelDocumentItem.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestModelDocumentItem.resx</DependentUpon>
       </Compile>
       <Compile Update="Resources\BlazorComponents\FileExport.de.Designer.cs">
         <DependentUpon>FileExport.de.resx</DependentUpon>
@@ -187,6 +203,31 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>StatementCreator.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestExecutionView.de.Designer.cs">
+        <DependentUpon>TestExecutionView.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestExecutionView.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestExecutionView.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.de.Designer.cs">
+        <DependentUpon>TestSuiteCreator.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestSuiteCreator.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\TestExecution\TestSuiteSelectionTree.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TestSuiteSelectionTree.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\DataConnectors\SpecIfWebApiConnector.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -222,6 +263,18 @@
       <EmbeddedResource Update="Resources\BlazorComponents\Document\DocumentView.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>DocumentView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestCaseDocumentItem.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestCaseDocumentItem.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.de.resx">
+        <LastGenOutput>TestModelDocumentItem.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\Document\Items\TestModelDocumentItem.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestModelDocumentItem.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\FileExport.de.resx">
         <LastGenOutput>FileExport.de.Designer.cs</LastGenOutput>
@@ -315,6 +368,26 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>StatementCreator.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestExecutionView.de.resx">
+        <LastGenOutput>TestExecutionView.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestExecutionView.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestExecutionView.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.de.resx">
+        <LastGenOutput>TestSuiteCreator.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteCreator.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestSuiteCreator.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\TestExecution\TestSuiteSelectionTree.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TestSuiteSelectionTree.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\DataConnectors\SpecIfEaConnector.resx">
         <LastGenOutput>SpecIfEaConnector.Designer.cs</LastGenOutput>
         <Generator>ResXFileCodeGenerator</Generator>
@@ -360,7 +433,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
-      <Exec Command="xcopy /y $(OutputPath)SpecIFicator.DefaultPlugin.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)SpecIFicatorPlugin.json $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)\de\*.resources.dll $(PluginPath)\SpecIFicator.DefaultPlugin\de\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MockupDataStream.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SplitJs.Blazor.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.File.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MongoDB.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)Interop.EA.dll $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.EA.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.WebAPI.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(ProjectDir)\obj\$(Configuration)\net6.0\scopedcss\projectbundle\SpecIFicator.DefaultPlugin.bundle.scp.css $(SolutionDir)SpecIFicator.Framework\src\SpecIFicator.Framework\wwwroot\css\pluginStyles\ " />
+      <Exec Command="xcopy /y $(OutputPath)SpecIFicator.DefaultPlugin.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)SpecIFicatorPlugin.json $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)\de\*.resources.dll $(PluginPath)\SpecIFicator.DefaultPlugin\de\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MockupDataStream.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SplitJs.Blazor.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.File.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.MongoDB.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.MongoDB.DataAccess.Generic.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)DnsClient.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MongoDB.Driver.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MongoDB.Driver.Core.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MongoDB.Libmongocrypt* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)Interop.EA.dll $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.EA.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataProvider.WebAPI.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataModels.RightsManagement.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.EAFacade.DataAccess.Cached.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.EnterpriseArchitect.Manipulations.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SpecIF.DataModels.DiagramInterchange.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.SVG.DataModels.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.EnterpriseArchitect.SvgGenerator.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(OutputPath)MDD4All.EAFacade.DataModels.Contracts.* $(PluginPath)\SpecIFicator.DefaultPlugin\&#xD;&#xA;xcopy /y $(ProjectDir)\obj\$(Configuration)\net6.0\scopedcss\projectbundle\SpecIFicator.DefaultPlugin.bundle.scp.css $(SolutionDir)SpecIFicator.Framework\src\SpecIFicator.Framework\wwwroot\css\pluginStyles\ " />
     </Target>
 
 

@@ -2,43 +2,43 @@
 {
     <table width="100%" border="0">
         <tr  style="vertical-align: top;">
-            <td>
+            <td width="50%">
                 <fieldset class="propertyField">
-        <legend>
-            <span>@PropertyViewModel.Title (@PrimaryLanguage)</span>
-            @{
-                string unit = PropertyViewModel.Unit;
-                if (!string.IsNullOrEmpty(unit))
-                {
-                    <span>&nbsp;[@unit]</span>
-                }
-            }
-        </legend>
+                    <legend>
+                        <span>@PropertyViewModel.Title (@PrimaryLanguage)</span>
+                        @{
+                            string unit = PropertyViewModel.Unit;
+                            if (!string.IsNullOrEmpty(unit))
+                            {
+                                <span>&nbsp;[@unit]</span>
+                            }
+                        }
+                    </legend>
 
 
-        <PropertyContentViewer PropertyViewModel="@PropertyViewModel"
-                           Language="@PrimaryLanguage" />
+                    <PropertyContentViewer PropertyViewModel="@PropertyViewModel"
+                                       Language="@PrimaryLanguage" />
 
-    </fieldset>
+                </fieldset>
             </td>
-            <td>
+            <td width="50%">
                 <fieldset class="propertyField">
-        <legend>
-            <span>@PropertyViewModel.Title (@SecondaryLanguage)</span>
-            @{
-                unit = PropertyViewModel.Unit;
-                if (!string.IsNullOrEmpty(unit))
-                {
-                    <span>&nbsp;[@unit]</span>
-                }
-            }
-        </legend>
+                    <legend>
+                        <span>@PropertyViewModel.Title (@SecondaryLanguage)</span>
+                        @{
+                            unit = PropertyViewModel.Unit;
+                            if (!string.IsNullOrEmpty(unit))
+                            {
+                                <span>&nbsp;[@unit]</span>
+                            }
+                        }
+                    </legend>
 
 
-        <PropertyContentViewer PropertyViewModel="@PropertyViewModel"
-                           Language="@SecondaryLanguage" />
+                    <PropertyContentViewer PropertyViewModel="@PropertyViewModel"
+                                       Language="@SecondaryLanguage" />
 
-    </fieldset>
+                </fieldset>
             </td>
         </tr>
     </table>

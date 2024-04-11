@@ -1,0 +1,20 @@
+﻿<p>
+    @DataContext.Level <ResourceIcon Icon="@DataContext.ReferencedResource.Icon"></ResourceIcon>
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.Stereotype))
+    {
+        <span>@DataContext.ReferencedResource.Stereotype </span>
+    }
+    <span>@DataContext.Title</span>
+    @if (!string.IsNullOrEmpty(DataContext.ReferencedResource.ClassifierName))
+    {
+        <span>: @DataContext.ReferencedResource.ClassifierName</span>
+    }
+    @if(!string.IsNullOrEmpty(DataContext.ReferencedResource.Type))
+    {
+        <span>[@DataContext.ReferencedResource.Type]</span>
+    }
+</p>
+@if (!string.IsNullOrEmpty(DataContext.ReferencedResource.Description))
+{
+    <div>@((MarkupString)DataContext.ReferencedResource.Description)</div>
+}

@@ -1,0 +1,35 @@
+﻿@using MDD4All.UI.BlazorComponents.Dialog
+@using SpecIFicator.DefaultPlugin.ViewModels;
+
+@if (DataContext.ShowNewTestSuite == false)
+{
+    <div class="page">
+
+        <h3>@L["Label.SelectTestCases"]</h3>
+    
+        <TestSuiteSelectionTree DataContext="@DataContext" />
+
+        <div class="d-grid gap-2 d-md-block">
+            <button type="button" class="btn btn-primary ok" @onclick="OnOkButtonClick">
+                @L["Button.OK"]
+            </button>
+
+            <button type="button" class="btn btn-primary cancel" @onclick="OnCancelButtonClick">
+                @L["Button.Cancel"]
+            </button>
+        </div>
+    </div>
+
+}
+else
+{
+    <ModalDialog OnClose="@OnNewTestSuiteClose"
+                 DialogType="ModalDialog.ModalDialogType.OkCancel"
+                 Title=@L["Label.NewTestsuite"]>
+
+        <ResourcePanel ResourceViewModel="@DataContext.TestSuiteUnderEdit" />
+
+    </ModalDialog>
+}
+
+

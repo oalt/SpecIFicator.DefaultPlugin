@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using MDD4All.SpecIF.ViewModels;
+using System.Resources;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 {
@@ -12,6 +13,6 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document.Items
 
         public string Type => "U2TP:TestStep";
 
-        
+        public ResourceManager ResourceManager => null;
     }
 }

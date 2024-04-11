@@ -4,3 +4,7 @@
     border-collapse: collapse;
     border-spacing: 5px;
 }
+
+.secondary {
+    background-color: whitesmoke;
+}

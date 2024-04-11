@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,17 +7,6 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>MDD4All_Github.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="DataConnectors\SpecIfEaConnector.razor.cs" />
-    <Compile Remove="DataConnectors\SpecIfWebApiConnector.razor.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="DataConnectors\SpecIfEaConnector.razor" />
-    <Content Remove="DataConnectors\SpecIfWebApiConnector.razor" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />

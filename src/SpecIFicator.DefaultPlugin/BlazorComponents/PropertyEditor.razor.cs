@@ -18,6 +18,11 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [Parameter]
         public string SecondaryLanguage { get; set; } = "de";
 
+        [Parameter]
+        public bool SetFocus { get; set; } = false;
+
+        private ElementReference _focusedElement;
+
         private string SelectedEnumValue
         {
             get
@@ -55,6 +60,22 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         {
             PropertyViewModel.PrimaryLanguage = PrimaryLanguage;
             PropertyViewModel.SecondaryLanguage = SecondaryLanguage;
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(SetFocus)
+            {
+                try
+                {
+                    await _focusedElement.FocusAsync();
+                }
+                catch
+                {
+
+                }
+                
+            }
         }
     }
 }

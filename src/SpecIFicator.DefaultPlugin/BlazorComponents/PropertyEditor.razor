@@ -40,7 +40,9 @@
                             <td>
                                 @if (PropertyViewModel.Format == "plain")
                                 {
-                                    <textarea class="form-control" rows="2" @bind="PropertyViewModel.SecondaryLanguageStringValue"></textarea>
+                                    <textarea class="form-control" rows="2" 
+                                              @bind="PropertyViewModel.SecondaryLanguageStringValue"
+                                              @ref="_focusedElement"></textarea>
                                 }
                                 else // xhtml
                                 {
@@ -55,7 +57,8 @@
                 {
                     if (PropertyViewModel.Format == "plain")
                     {
-                        <textarea class="form-control" rows="2" @bind="PropertyViewModel.PrimaryLanguageStringValue"></textarea>
+                        <textarea class="form-control" rows="2" @bind="PropertyViewModel.PrimaryLanguageStringValue"
+                                  @ref="_focusedElement"></textarea>
                     }
                     else // xhtml
                     {
@@ -66,15 +69,22 @@
                 break;
 
             case "xs:integer":
-                <input type="text" class="form-control" @bind="PropertyViewModel.Value" />
+                <input type="text" class="form-control" 
+                       @bind="PropertyViewModel.Value"
+                       @ref="_focusedElement"/>
                 break;
 
             case "xs:double":
-                <input type="text" class="form-control" @bind="PropertyViewModel.Value" />
+                <input type="text" class="form-control" 
+                       @bind="PropertyViewModel.Value"
+                       @ref="_focusedElement"/>
                 break;
 
             case "xs:boolean":
-                <input type="checkbox" class="form-check-input" @bind="PropertyViewModel.Value">
+                <input type="checkbox" 
+                       class="form-check-input" 
+                       @bind="PropertyViewModel.Value"
+                       @ref="_focusedElement">
                 break;
         }
     }
@@ -84,7 +94,8 @@
         {
             <select class="form-control"
             multiple
-            @bind="SelectedEnumValues">
+            @bind="SelectedEnumValues"
+            @ref="_focusedElement">
                 @foreach (EnumSelectItem item in PropertyViewModel.EnumerationOptions)
                 {
                     <option value="@item.Value">@item.Title</option>
@@ -94,7 +105,8 @@
         else
         {
             <select class="form-control"
-            @bind="SelectedEnumValue">
+                    @ref="_focusedElement"
+                    @bind="SelectedEnumValue">
 
                 <option value=""></option>
 

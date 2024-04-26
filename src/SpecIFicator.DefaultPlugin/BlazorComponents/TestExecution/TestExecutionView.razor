@@ -91,6 +91,7 @@
                 }
                 else if(DataContext.ReasonMessageFormat == "xhtml")
                 {
+                    @*<textarea class="text" @bind="DataContext.ReasonMessage"></textarea>*@
                     <BlazingComponents.Summernote.Editor @bind-Content="DataContext.ReasonMessage"
                                                          ShowEditButton="false" />
                 }

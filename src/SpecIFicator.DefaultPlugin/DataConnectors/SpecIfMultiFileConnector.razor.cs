@@ -23,6 +23,8 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
         [Parameter]
         public string DataPath { get; set; } = "";
 
+        public string ErrorMessage { get; set; } = "";
+
         private IConfigurationReaderWriter<MultiFileConnectorConfiguration> configurationReaderWriter;
 
         private MultiFileConnectorConfiguration configuration;
@@ -48,27 +50,68 @@ namespace SpecIFicator.DefaultPlugin.DataConnectors
 
         private void HandleConnectClick()
         {
+            ErrorMessage = "";
 
-            if(configuration != null && configurationReaderWriter != null)
+            bool isWrongPath = false;
+
+            string errorMessageID = ValidatePath(DataPath);
+            if (!string.IsNullOrEmpty(errorMessageID))
             {
-                configuration.MetadataPath = MetadataPath;
-                configuration.DataPath = DataPath;
-                configurationReaderWriter.StoreConfiguration(configuration);
+                ErrorMessage = L["Label.DataPath"] + " - " + L[errorMessageID];
+                
+                isWrongPath = true;
+            }
+            else
+            {
+                errorMessageID = ValidatePath(MetadataPath);
+                if (!string.IsNullOrEmpty(errorMessageID))
+                {
+
+                    ErrorMessage = L["Label.MetadataPath"] + " - " + L[errorMessageID];
+                    isWrongPath = true;
+                }
             }
 
-            ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(MetadataPath);
-            ISpecIfMetadataWriter metadataWriter = new SpecIfFileMetadataWriter(MetadataPath);
-            ISpecIfDataReader dataReader = new SpecIfFileDataReader(DataPath);
-            ISpecIfDataWriter dataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
+            if (!isWrongPath)
+            {
+                if (configuration != null && configurationReaderWriter != null)
+                {
+                    configuration.MetadataPath = MetadataPath;
+                    configuration.DataPath = DataPath;
+                    configurationReaderWriter.StoreConfiguration(configuration);
+                }
 
-            DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
-            DataContext.SpecIfDataProviderFactory.MetadataWriter= metadataWriter;
-            DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
-            DataContext.SpecIfDataProviderFactory.DataWriter = dataWriter;
-            
-            DataContext.ConnectCommand.Execute(null);
+                ISpecIfMetadataReader metadataReader = new SpecIfFileMetadataReader(MetadataPath);
+                ISpecIfMetadataWriter metadataWriter = new SpecIfFileMetadataWriter(MetadataPath);
+                ISpecIfDataReader dataReader = new SpecIfFileDataReader(DataPath);
+                ISpecIfDataWriter dataWriter = new SpecIfFileDataWriter(DataPath, metadataReader, dataReader);
+
+                DataContext.SpecIfDataProviderFactory.MetadataReader = metadataReader;
+                DataContext.SpecIfDataProviderFactory.MetadataWriter = metadataWriter;
+                DataContext.SpecIfDataProviderFactory.DataReader = dataReader;
+                DataContext.SpecIfDataProviderFactory.DataWriter = dataWriter;
+
+                DataContext.ConnectCommand.Execute(null);
+            }
         }
 
+        private string ValidatePath(string path)
+        {
+            string result = "";
 
+            try
+            {
+                if(!Directory.Exists(path))
+                {
+                    throw new DirectoryNotFoundException();
+                }
+            }
+            catch
+            {
+                result = "Error.Path";
+            }
+
+            return result;
+        }
     }
 }

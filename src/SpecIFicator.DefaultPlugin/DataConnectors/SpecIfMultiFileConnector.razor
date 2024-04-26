@@ -14,3 +14,9 @@
 <div class="mt-4">
     <button class="btn btn-success" @onclick="HandleConnectClick">@L["Label.Connect"]</button>
 </div>
+@if(!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="mt-4" style="font-weight:bold;color:red">
+        @ErrorMessage
+    </div>
+}

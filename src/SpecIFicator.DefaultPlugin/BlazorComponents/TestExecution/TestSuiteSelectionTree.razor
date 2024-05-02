@@ -17,24 +17,16 @@
                                            DataContext="@DataContext">
 
     <TitleTemplate>
-
+        <ResourceIcon Icon="@context.ReferencedResource.Icon"></ResourceIcon>
         <input type="checkbox"
                @oninput="CheckboxChanged "
                checked="@context.IsChecked"
                class="title" />
-
+        
         @context.Title
 
     </TitleTemplate>
 
 </MDD4All.UI.BlazorComponents.Tree.MvvmTree>
-
-@foreach (TestResourceNodeViewModel testResourceNodeTestSuite in DataContext.CheckedNodes)
-{
-    if (testResourceNodeTestSuite.ReferencedResource.ResourceClassID == "RC-TestSuite")
-    {
-        <h3>@testResourceNodeTestSuite.Title</h3>
-    }
-}
 
 

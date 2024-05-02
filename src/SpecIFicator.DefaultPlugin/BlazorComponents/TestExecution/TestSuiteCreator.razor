@@ -7,17 +7,21 @@
 
         <h3>@L["Label.SelectTestCases"]</h3>
     
-        <TestSuiteSelectionTree DataContext="@DataContext" />
-
         <div class="d-grid gap-2 d-md-block">
-            <button type="button" class="btn btn-primary ok" @onclick="OnOkButtonClick">
+            <button type="button" class="btn btn-primary btn-sm" @onclick="OnOkButtonClick">
                 @L["Button.OK"]
             </button>
 
-            <button type="button" class="btn btn-primary cancel" @onclick="OnCancelButtonClick">
+            <button type="button" class="btn btn-secondary btn-sm" @onclick="OnCancelButtonClick">
                 @L["Button.Cancel"]
             </button>
         </div>
+        <div style="margin-top:10px;">
+            <TestSuiteSelectionTree DataContext="@DataContext" />
+        </div>
+        
+
+        
     </div>
 
 }

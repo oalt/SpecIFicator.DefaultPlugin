@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using MDD4All.SpecIF.DataModels.Manipulation;
 using SpecIFicator.Framework.Configuration;
 using Microsoft.Extensions.Localization;
+using SpecIFicator.DefaultPlugin.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
@@ -29,7 +30,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         [CascadingParameter]
         public string DataContext { get; set; }
 
-        public HierarchyViewModel HierarchyViewModel { get; set; }
+        public DefaultPluginHierarchyViewModel HierarchyViewModel { get; set; }
 
         private NodeViewModel SelectedNode { get; set; }
 
@@ -49,7 +50,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
                 Key key = new Key();
                 key.InitailizeFromKeyString(DataContext);
 
-                HierarchyViewModel = new HierarchyViewModel(DataProviderFactory, key);
+                HierarchyViewModel = new DefaultPluginHierarchyViewModel(DataProviderFactory, key);
 
                 HierarchyViewModel.PropertyChanged += OnStateChanged;
 

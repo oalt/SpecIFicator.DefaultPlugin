@@ -82,6 +82,18 @@
             </div>
 
         </RibbonPanel>
+        <RibbonPanel PanelTitle="@L["Label.Comments"]">
+            <div class="toolStackPanel">
+                <div>
+                    <button type="button"
+                            class="btn btn-outline-info  btn-lg"
+                            @onclick="() => OnNewCommentClicked()">
+                        <i class="bi bi-chat-left-text"></i>
+                    </button>
+                </div>
+            </div>
+
+        </RibbonPanel>
     </RibbonCategory>
 </div>
 @if (DataContext.EditorActive)
@@ -110,5 +122,13 @@
                  OnClose="@OnAddStatementDialogClose"
                  CanConfirm="DataContext.CreateStatementViewModel.CanConfirmEditOperation">
              <StatementCreator DataContext="@DataContext.CreateStatementViewModel"/>
+    </ModalDialog>
+}
+@if(DataContext.ShowComments)
+{
+    <ModalDialog Title="@L["Label.Comments"]"
+                 DialogType="ModalDialog.ModalDialogType.Ok"
+                 OnClose="@OnCommentDialogClose">
+        <CommentPanel HierarchyViewModel="DataContext" />
     </ModalDialog>
 }

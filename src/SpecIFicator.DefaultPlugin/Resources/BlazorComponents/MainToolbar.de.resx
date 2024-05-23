@@ -120,6 +120,9 @@
   <data name="Label.AddStatement" xml:space="preserve">
     <value>Neue Aussage</value>
   </data>
+  <data name="Label.Comments" xml:space="preserve">
+    <value>Kommentare</value>
+  </data>
   <data name="Label.DeleteResource" xml:space="preserve">
     <value>Ressource entfernen</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Text.DeleteResource" xml:space="preserve">
     <value>Die ausgewählte Ressource und alle Kindelemente werden entfernt. Sind Sie sicher?</value>
+  </data>
+  <data name="Title.AddComment" xml:space="preserve">
+    <value>Neuer Kommentar</value>
   </data>
   <data name="Title.AddStatement" xml:space="preserve">
     <value>Neue Aussage hinzufügen...</value>

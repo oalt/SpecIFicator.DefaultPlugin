@@ -1,0 +1,37 @@
+﻿using GalaSoft.MvvmLight.Command;
+using MDD4All.SpecIF.DataModels;
+using MDD4All.SpecIF.DataProvider.Contracts;
+using MDD4All.SpecIF.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace SpecIFicator.DefaultPlugin.ViewModels
+{
+    public class DefaultPluginHierarchyViewModel : HierarchyViewModel
+    {
+        public DefaultPluginHierarchyViewModel(ISpecIfDataProviderFactory specIfDataProviderFactory, Key key) : base(specIfDataProviderFactory, key)
+        {
+            InitalizeCommands();
+        }
+
+        private void InitalizeCommands()
+        {
+            NewCommentCommand = new RelayCommand(ExecuteNewComment);
+        }
+
+        public bool ShowComments { get; set; }
+
+        public ICommand NewCommentCommand { get; set; }
+
+        private void ExecuteNewComment()
+        {
+            ShowComments = true;
+        }
+
+
+    }
+}

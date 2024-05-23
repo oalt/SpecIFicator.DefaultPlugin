@@ -70,6 +70,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Comments ähnelt.
+        /// </summary>
+        internal static string Label_Comments {
+            get {
+                return ResourceManager.GetString("Label.Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete Resource ähnelt.
         /// </summary>
         internal static string Label_DeleteResource {
@@ -120,6 +129,15 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         internal static string Text_DeleteResource {
             get {
                 return ResourceManager.GetString("Text.DeleteResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Comment ähnelt.
+        /// </summary>
+        internal static string Title_AddComment {
+            get {
+                return ResourceManager.GetString("Title.AddComment", resourceCulture);
             }
         }
         

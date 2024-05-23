@@ -43,6 +43,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Resources\BlazorComponents\CommentEditor.de.Designer.cs">
+        <DependentUpon>CommentEditor.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\CommentEditor.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommentEditor.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -102,11 +112,6 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>HierarchyView.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\BlazorComponents\MainToolbar.de.Designer.cs">
-        <DependentUpon>MainToolbar.de.resx</DependentUpon>
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
       </Compile>
       <Compile Update="Resources\BlazorComponents\MainToolbar.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -252,6 +257,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Resources\BlazorComponents\CommentEditor.de.resx">
+        <LastGenOutput>CommentEditor.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\CommentEditor.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>CommentEditor.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>DataStreamLoggerPage.Designer.cs</LastGenOutput>

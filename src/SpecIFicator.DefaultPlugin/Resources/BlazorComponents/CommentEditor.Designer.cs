@@ -22,14 +22,14 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MainToolbar___Kopieren {
+    internal class CommentEditor {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainToolbar___Kopieren() {
+        internal CommentEditor() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpecIFicator.DefaultPlugin.Resources.BlazorComponents.MainToolbar - Kopieren", typeof(MainToolbar___Kopieren).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpecIFicator.DefaultPlugin.Resources.BlazorComponents.CommentEditor", typeof(CommentEditor).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,20 @@ namespace SpecIFicator.DefaultPlugin.Resources.BlazorComponents {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Delete Resource ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
-        internal static string Label_DeleteResource {
+        internal static string Label_Description {
             get {
-                return ResourceManager.GetString("Label.DeleteResource", resourceCulture);
+                return ResourceManager.GetString("Label.Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Resource ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Title ähnelt.
         /// </summary>
-        internal static string Label_EditResource {
+        internal static string Label_Title {
             get {
-                return ResourceManager.GetString("Label.EditResource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New Resource ähnelt.
-        /// </summary>
-        internal static string Label_NewResource {
-            get {
-                return ResourceManager.GetString("Label.NewResource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New child resource ähnelt.
-        /// </summary>
-        internal static string Tooltip_NewChildResource {
-            get {
-                return ResourceManager.GetString("Tooltip.NewChildResource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New resource above ähnelt.
-        /// </summary>
-        internal static string Tooltip_NewResourceAbove {
-            get {
-                return ResourceManager.GetString("Tooltip.NewResourceAbove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New resource below ähnelt.
-        /// </summary>
-        internal static string Tooltip_NewResourceBelow {
-            get {
-                return ResourceManager.GetString("Tooltip.NewResourceBelow", resourceCulture);
+                return ResourceManager.GetString("Label.Title", resourceCulture);
             }
         }
     }

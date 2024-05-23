@@ -3,6 +3,7 @@ using Microsoft.Extensions.Localization;
 using MDD4All.SpecIF.ViewModels;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using System.Reflection.Metadata;
+using SpecIFicator.DefaultPlugin.ViewModels;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
@@ -15,7 +16,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
         private ISpecIfDataProviderFactory DataProviderFactory { get; set; }
 
         [Parameter]
-        public HierarchyViewModel DataContext { get; set; }
+        public DefaultPluginHierarchyViewModel DataContext { get; set; }
 
         protected override void OnInitialized()
         {
@@ -63,6 +64,12 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             StateHasChanged();
         }
 
+        private void OnNewCommentClicked()
+        {
+            DataContext.NewCommentCommand.Execute(null);
+            StateHasChanged();
+        }
+
         private async Task OnAddStatementDialogClose(bool accepted)
         {
             if (accepted)
@@ -78,7 +85,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private async Task OnEditDialogClose(bool accepted)
         {
-            if(accepted)
+            if (accepted)
             {
                 DataContext.ConfirmEditResourceCommand.Execute(null);
             }
@@ -91,7 +98,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private async Task OnDeleteDialogClose(bool accepted)
         {
-            if(accepted)
+            if (accepted)
             {
                 DataContext.DeleteResourceCommand.Execute(null);
             }
@@ -102,5 +109,10 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
             StateHasChanged();
         }
 
+        private async Task OnCommentDialogClose(bool accepted)
+        {
+            DataContext.ShowComments = false;
+            StateHasChanged();
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿.title {
+    font-weight: bold;
+    font-size: 1Em;
+}
+
+.author {
+    font-weight: bold;
+    color: darkgray;
+    font-size: small;
+}
+
+.date {
+    color: darkgray;
+    font-size: small;
+}

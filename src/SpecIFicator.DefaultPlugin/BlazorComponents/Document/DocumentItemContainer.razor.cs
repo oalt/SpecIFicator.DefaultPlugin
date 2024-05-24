@@ -1,6 +1,7 @@
 using MDD4All.SpecIF.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using SpecIFicator.DefaultPlugin.ViewModels;
 using System.ComponentModel;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
@@ -55,6 +56,16 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents.Document
         private async Task ScrollToElementAsync()
         {
             await JsRuntime.InvokeVoidAsync("ScrollElementIntoView", ElementReference);
+        }
+
+        private void OnCommentButtonClick()
+        {
+            if(ParentViewModel is DefaultPluginHierarchyViewModel)
+            {
+                DefaultPluginHierarchyViewModel viewModel = (DefaultPluginHierarchyViewModel)ParentViewModel;
+
+                viewModel.ShowCommentsCommand.Execute(null);
+            }
         }
 
         private void DataContextPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

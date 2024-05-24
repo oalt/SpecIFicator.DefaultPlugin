@@ -126,7 +126,11 @@
 }
 @if(DataContext.ShowComments)
 {
-    <ModalDialog Title="@L["Label.Comments"]"
+    string dialogTitle = L["Label.Comments"];
+    ResourceViewModel resourceViewModel = ((NodeViewModel)DataContext.SelectedNode).ReferencedResource;
+    dialogTitle += " - [" + resourceViewModel.Type + "] " + resourceViewModel.Title;
+   
+    <ModalDialog Title="@dialogTitle"
                  DialogType="ModalDialog.ModalDialogType.Ok"
                  OnClose="@OnCommentDialogClose">
         <CommentPanel HierarchyViewModel="DataContext" />

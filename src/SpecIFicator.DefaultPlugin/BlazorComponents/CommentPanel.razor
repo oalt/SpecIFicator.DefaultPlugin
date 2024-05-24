@@ -1,17 +1,19 @@
 ﻿<div>
-    
-
-
 @if (DataContext.ShowCommentEditor)
 {
     <CommentEditor DataContext="DataContext" />
 }
 else
 {
-        <button class="btn btn-outline-dark btn-small"
-            @onclick="() => DataContext.NewCommentCommand.Execute(null)">
-            <i class="bi bi-chat-square-text"> New</i>
-        </button>
+    <button class="btn btn-outline-dark btn-small mb-1"
+        @onclick="() => DataContext.NewCommentCommand.Execute(null)">
+        <span class="bi bi-chat-square-text">&nbsp;@L["Button.New"]</span>
+    </button>
+    <div class="panelStyle">
+    @foreach(ResourceViewModel resourceViewModel in DataContext.Comments)
+    {
+        <CommentView DataContext="resourceViewModel" />
+    }
+    </div>
 }
-
 </div>

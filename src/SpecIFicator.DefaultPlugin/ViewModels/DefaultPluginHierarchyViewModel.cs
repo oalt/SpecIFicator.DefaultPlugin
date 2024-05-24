@@ -20,12 +20,12 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
         private void InitalizeCommands()
         {
-            NewCommentCommand = new RelayCommand(ExecuteNewComment);
+            ShowCommentsCommand = new RelayCommand(ExecuteNewComment);
         }
 
         public bool ShowComments { get; set; }
 
-        public ICommand NewCommentCommand { get; set; }
+        public ICommand ShowCommentsCommand { get; set; }
 
         private void ExecuteNewComment()
         {

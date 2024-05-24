@@ -1,4 +1,5 @@
-﻿@using SpecIFicator.Framework.Configuration
+﻿@using SpecIFicator.DefaultPlugin.ViewModelExtensions
+@using SpecIFicator.Framework.Configuration
 <div @ref=ElementReference>
 @if (DataContext.IsLoading)
 {
@@ -22,7 +23,15 @@ else
             <CascadingValue Value="@DataContext">
                 <DynamicComponent Type="@itemType"></DynamicComponent>
             </CascadingValue>
-        </div>
+            @if(DataContext.ReferencedResource.HasComments(DataContext.MetadataReader))
+            {
+                <div class="commentIcon">
+                    <button class="btn btn-outline-info btn-sm"
+                            style="border-color:transparent"
+                            @onclick="OnCommentButtonClick"><i class="bi bi-chat-left-text"></i></button>
+                </div>
+            }
+            </div>
     }
     else
     {

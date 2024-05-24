@@ -53,6 +53,16 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>CommentEditor.resx</DependentUpon>
       </Compile>
+      <Compile Update="Resources\BlazorComponents\CommentPanel.de.Designer.cs">
+        <DependentUpon>CommentPanel.de.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\BlazorComponents\CommentPanel.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommentPanel.resx</DependentUpon>
+      </Compile>
       <Compile Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -264,6 +274,14 @@
       <EmbeddedResource Update="Resources\BlazorComponents\CommentEditor.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>CommentEditor.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\CommentPanel.de.resx">
+        <LastGenOutput>CommentPanel.de.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\BlazorComponents\CommentPanel.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>CommentPanel.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Resources\BlazorComponents\DataStreams\DataStreamLoggerPage.resx">
         <Generator>ResXFileCodeGenerator</Generator>

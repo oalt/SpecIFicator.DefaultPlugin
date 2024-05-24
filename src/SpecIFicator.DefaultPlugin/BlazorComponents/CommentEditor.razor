@@ -1,15 +1,22 @@
 ﻿<div>
-        <label for="titleID" class="form-label">@L["Label.Title"]</label>
-        <input type="text" class="form-control" id="titleID" />
+    <label for="titleID" class="form-label">@L["Label.Title"]</label>
+    <input type="text" 
+            class="form-control" 
+            id="titleID"
+            @bind-value="DataContext.TitleUnderEdit"/>
 
-        <label for="descriptionID" class="form-label">@L["Label.Description"]</label>
-        <BlazingComponents.Summernote.Editor ShowEditButton="false" />
+    <label for="descriptionID" class="form-label">@L["Label.Description"]</label>
+
+    <BlazingComponents.Summernote.Editor ShowEditButton="false" 
+                                            @bind-Content="DataContext.DescriptionUnderEdit" />
 
 
+    <div class="mt-1">
         <button class="btn btn-outline-success btn-small"
                 @onclick="() => DataContext.SaveCommentCommand.Execute(null)"><i class="bi bi-check"></i></button>
         <button class="btn btn-outline-danger btn-small"
                 @onclick="() => DataContext.CancelEditCommentCommand.Execute(null)"><i class="bi bi-x"></i></button>
+    </div>
 </div>
 
 

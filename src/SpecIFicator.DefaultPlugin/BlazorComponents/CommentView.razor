@@ -1,3 +1,11 @@
-﻿<h3>CommentView</h3>
+﻿<div class="card mb-1">
+    <div class="card-body">
+        <div><span class="author">@DataContext.Resource.ChangedBy</span> <span class="date">@DataContext.Timestamp</span></div>
+        <div class="title">@DataContext.Title</div>
+        <div>@((MarkupString)DataContext.Description)</div>
+    </div>
+
+</div>
+
 
 

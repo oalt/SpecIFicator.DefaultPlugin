@@ -1,11 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MDD4All.SpecIF.DataFactory;
+using MDD4All.SpecIF.DataModels;
+using MDD4All.SpecIF.DataModels.Manipulation;
 using MDD4All.SpecIF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace SpecIFicator.DefaultPlugin.ViewModels
@@ -18,7 +17,9 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
         public CommentsViewModel(HierarchyViewModel context) 
         { 
             _hierarchyViewModel = context;
+            
             InitializeCommands();
+            InitailizeComments();
         }
 
         private void InitializeCommands()
@@ -28,19 +29,106 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
             CancelEditCommentCommand = new RelayCommand(ExecuteCancelEditComment);
         }
 
-        private List<ResourceViewModel> Comments 
+        private void InitailizeComments()
+        {
+            ResourceViewModel resourceViewModel = ((NodeViewModel)_hierarchyViewModel.SelectedNode).ReferencedResource;
+
+            if (resourceViewModel != null)
+            {
+                foreach (StatementViewModel incomingStatement in resourceViewModel.IncomingStatements)
+                {
+                    if (incomingStatement.StatementClassKey.ID == "SC-refersTo")
+                    {
+                        ResourceViewModel commentElement = incomingStatement.SubjectResource;
+                        if (commentElement.Resource.GetTypeName(_hierarchyViewModel.MetadataReader) == "SpecIF:Comment")
+                        {
+                            _comments.Add(commentElement);
+                        }
+                    }
+                }
+
+                _comments.Sort((x, y) => y.Resource.ChangedAt.CompareTo(x.Resource.ChangedAt));
+            }
+
+            RaisePropertyChanged();
+        }
+
+        private List<ResourceViewModel> _comments = new List<ResourceViewModel>();
+
+        public List<ResourceViewModel> Comments 
         {
             get
             {
-                return new List<ResourceViewModel>();
+                return _comments;
+            }
+        }
+
+        private NodeViewModel ReferedNode { get; set; }
+
+        private ResourceViewModel CommentUnderEdit { get; set; } = null;
+
+
+        public string TitleUnderEdit
+        {
+            get
+            {
+                string result = "";
+
+                if (CommentUnderEdit != null)
+                {
+                    PropertyViewModel propertyViewModel = CommentUnderEdit.Properties.Find(prop => prop.PropertyClass.Title == "dcterms:title");
+                    if(propertyViewModel != null)
+                    {
+                        result = propertyViewModel.PrimaryLanguageStringValue;
+                    }
+                }
+
+                return result;
             }
 
             set
             {
+                if (CommentUnderEdit != null)
+                {
+                    PropertyViewModel propertyViewModel = CommentUnderEdit.Properties.Find(prop => prop.PropertyClass.Title == "dcterms:title");
+                    if (propertyViewModel != null)
+                    {
+                        propertyViewModel.PrimaryLanguageStringValue = value;
+                    }
+                }
             }
         }
 
-        private ResourceViewModel CommentUnderEdit { get; set; } = null;
+        public string DescriptionUnderEdit
+        {
+            get
+            {
+                string result = "";
+
+                if (CommentUnderEdit != null)
+                {
+                    PropertyViewModel propertyViewModel = CommentUnderEdit.Properties.Find(prop => prop.PropertyClass.Title == "dcterms:description");
+                    if (propertyViewModel != null)
+                    {
+                        result = propertyViewModel.PrimaryLanguageStringValue;
+                    }
+                }
+
+                return result;
+            }
+
+            set
+            {
+                if (CommentUnderEdit != null)
+                {
+                    PropertyViewModel propertyViewModel = CommentUnderEdit.Properties.Find(prop => prop.PropertyClass.Title == "dcterms:description");
+                    if (propertyViewModel != null)
+                    {
+                        propertyViewModel.PrimaryLanguageStringValue = value;
+                    }
+                }
+            }
+        }
 
         public bool ShowCommentEditor
         {
@@ -58,19 +146,42 @@ namespace SpecIFicator.DefaultPlugin.ViewModels
 
         private void ExecuteNewComment()
         {
+            ReferedNode = (NodeViewModel)_hierarchyViewModel.SelectedNode;
+
+            Resource newComment = SpecIfDataFactory.CreateResource(new Key("RC-Comment", "1.1"), _hierarchyViewModel.MetadataReader);
+            
             CommentUnderEdit = new ResourceViewModel(_hierarchyViewModel.MetadataReader,
                                                      _hierarchyViewModel.DataReader,
-                                                     _hierarchyViewModel.DataWriter);
+                                                     _hierarchyViewModel.DataWriter, 
+                                                     newComment);
         }
 
         private void ExecuteSaveComment()
         {
-            CommentUnderEdit = null;
-            RaisePropertyChanged();
+            _hierarchyViewModel.DataWriter.AddResource(CommentUnderEdit.Resource);
+
+            Statement statement = SpecIfDataFactory.CreateStatement(new Key("SC-refersTo", "1.1"),
+                                                                        CommentUnderEdit.Key,
+                                                                        ReferedNode.ReferencedResource.Key,
+                                                                        _hierarchyViewModel.MetadataReader);
+
+            Task.Run(() =>
+            {
+                _hierarchyViewModel.DataWriter.AddStatement(statement);
+
+                ReferedNode.ReferencedResource.ReinitializeStatementsAsync().Wait();
+                ReferedNode = null;
+                _comments.Insert(0, CommentUnderEdit);
+                CommentUnderEdit = null;
+                RaisePropertyChanged();
+            });
+                        
+            
         }
 
         private void ExecuteCancelEditComment()
         {
+            ReferedNode = null;
             CommentUnderEdit = null;
             RaisePropertyChanged();
         }

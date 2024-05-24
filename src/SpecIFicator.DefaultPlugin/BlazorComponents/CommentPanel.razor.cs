@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Localization;
-using MDD4All.SpecIF.DataModels;
 using MDD4All.SpecIF.ViewModels;
 using SpecIFicator.DefaultPlugin.ViewModels;
+using Microsoft.Extensions.Localization;
 
 namespace SpecIFicator.DefaultPlugin.BlazorComponents
 {
     public partial class CommentPanel
     {
+        [Inject]
+        private IStringLocalizer<CommentPanel> L { get; set; }
+
         [Parameter]
         public HierarchyViewModel HierarchyViewModel { get; set; }
 
@@ -26,7 +23,10 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private void OnPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            StateHasChanged();
+            InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
         }
     }
 }

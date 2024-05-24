@@ -66,7 +66,7 @@ namespace SpecIFicator.DefaultPlugin.BlazorComponents
 
         private void OnNewCommentClicked()
         {
-            DataContext.NewCommentCommand.Execute(null);
+            DataContext.ShowCommentsCommand.Execute(null);
             StateHasChanged();
         }
 

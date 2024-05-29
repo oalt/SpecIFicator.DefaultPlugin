@@ -30,7 +30,7 @@
       <PackageReference Include="MDD4All.SplitJs.Blazor" Version="2.0.1.5" />
       <PackageReference Include="MDD4All.VisNetwork.Blazor" Version="2.0.2.8" />
       <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.8" />
-      <PackageReference Include="SpecIFicator.Framework" Version="2.2.0.7" />
+      <PackageReference Include="SpecIFicator.Framework" Version="2.3.0.10" />
   </ItemGroup>
 
   <ItemGroup>
